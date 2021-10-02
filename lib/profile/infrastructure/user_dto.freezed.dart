@@ -21,13 +21,15 @@ class _$UserDTOTearOff {
   const _$UserDTOTearOff();
 
   _UserDTO call(
-      {required String name,
+      {required int id,
+      required String name,
       required String email,
       required String? profile_photo_path,
       @TimestampNullableConverter() required DateTime? created_at,
       @TimestampNullableConverter() required DateTime? updated_at,
       @TimestampNullableConverter() required DateTime? email_verified_at}) {
     return _UserDTO(
+      id: id,
       name: name,
       email: email,
       profile_photo_path: profile_photo_path,
@@ -47,6 +49,7 @@ const $UserDTO = _$UserDTOTearOff();
 
 /// @nodoc
 mixin _$UserDTO {
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String? get profile_photo_path => throw _privateConstructorUsedError;
@@ -67,7 +70,8 @@ abstract class $UserDTOCopyWith<$Res> {
   factory $UserDTOCopyWith(UserDTO value, $Res Function(UserDTO) then) =
       _$UserDTOCopyWithImpl<$Res>;
   $Res call(
-      {String name,
+      {int id,
+      String name,
       String email,
       String? profile_photo_path,
       @TimestampNullableConverter() DateTime? created_at,
@@ -85,6 +89,7 @@ class _$UserDTOCopyWithImpl<$Res> implements $UserDTOCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? email = freezed,
     Object? profile_photo_path = freezed,
@@ -93,6 +98,10 @@ class _$UserDTOCopyWithImpl<$Res> implements $UserDTOCopyWith<$Res> {
     Object? email_verified_at = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -127,7 +136,8 @@ abstract class _$UserDTOCopyWith<$Res> implements $UserDTOCopyWith<$Res> {
       __$UserDTOCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name,
+      {int id,
+      String name,
       String email,
       String? profile_photo_path,
       @TimestampNullableConverter() DateTime? created_at,
@@ -146,6 +156,7 @@ class __$UserDTOCopyWithImpl<$Res> extends _$UserDTOCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? email = freezed,
     Object? profile_photo_path = freezed,
@@ -154,6 +165,10 @@ class __$UserDTOCopyWithImpl<$Res> extends _$UserDTOCopyWithImpl<$Res>
     Object? email_verified_at = freezed,
   }) {
     return _then(_UserDTO(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -186,7 +201,8 @@ class __$UserDTOCopyWithImpl<$Res> extends _$UserDTOCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserDTO extends _UserDTO {
   const _$_UserDTO(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required this.email,
       required this.profile_photo_path,
       @TimestampNullableConverter() required this.created_at,
@@ -197,6 +213,8 @@ class _$_UserDTO extends _UserDTO {
   factory _$_UserDTO.fromJson(Map<String, dynamic> json) =>
       _$_$_UserDTOFromJson(json);
 
+  @override
+  final int id;
   @override
   final String name;
   @override
@@ -215,13 +233,15 @@ class _$_UserDTO extends _UserDTO {
 
   @override
   String toString() {
-    return 'UserDTO(name: $name, email: $email, profile_photo_path: $profile_photo_path, created_at: $created_at, updated_at: $updated_at, email_verified_at: $email_verified_at)';
+    return 'UserDTO(id: $id, name: $name, email: $email, profile_photo_path: $profile_photo_path, created_at: $created_at, updated_at: $updated_at, email_verified_at: $email_verified_at)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _UserDTO &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.email, email) ||
@@ -243,6 +263,7 @@ class _$_UserDTO extends _UserDTO {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(profile_photo_path) ^
@@ -263,7 +284,8 @@ class _$_UserDTO extends _UserDTO {
 
 abstract class _UserDTO extends UserDTO {
   const factory _UserDTO(
-          {required String name,
+          {required int id,
+          required String name,
           required String email,
           required String? profile_photo_path,
           @TimestampNullableConverter() required DateTime? created_at,
@@ -274,6 +296,8 @@ abstract class _UserDTO extends UserDTO {
 
   factory _UserDTO.fromJson(Map<String, dynamic> json) = _$_UserDTO.fromJson;
 
+  @override
+  int get id => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override

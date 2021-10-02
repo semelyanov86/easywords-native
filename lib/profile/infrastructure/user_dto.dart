@@ -9,6 +9,7 @@ part 'user_dto.g.dart';
 class UserDTO with _$UserDTO {
   const UserDTO._();
   const factory UserDTO({
+    required int id,
     required String name,
     required String email,
     required String? profile_photo_path,
@@ -28,6 +29,7 @@ class UserDTO with _$UserDTO {
       created_at: _.created_at,
       updated_at: _.updated_at,
       email_verified_at: _.email_verified_at,
+      id: _.id,
     );
   }
 
@@ -39,6 +41,7 @@ class UserDTO with _$UserDTO {
       created_at: created_at,
       updated_at: updated_at,
       email_verified_at: email_verified_at,
+      id: id,
     );
   }
 }

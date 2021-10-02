@@ -17,13 +17,15 @@ class _$UserTearOff {
   const _$UserTearOff();
 
   _User call(
-      {required String name,
+      {required int id,
+      required String name,
       required String email,
       required String? profile_photo_path,
       required DateTime? created_at,
       required DateTime? updated_at,
       required DateTime? email_verified_at}) {
     return _User(
+      id: id,
       name: name,
       email: email,
       profile_photo_path: profile_photo_path,
@@ -39,6 +41,7 @@ const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String? get profile_photo_path => throw _privateConstructorUsedError;
@@ -55,7 +58,8 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
   $Res call(
-      {String name,
+      {int id,
+      String name,
       String email,
       String? profile_photo_path,
       DateTime? created_at,
@@ -73,6 +77,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? email = freezed,
     Object? profile_photo_path = freezed,
@@ -81,6 +86,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? email_verified_at = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -115,7 +124,8 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$UserCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name,
+      {int id,
+      String name,
       String email,
       String? profile_photo_path,
       DateTime? created_at,
@@ -134,6 +144,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? email = freezed,
     Object? profile_photo_path = freezed,
@@ -142,6 +153,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? email_verified_at = freezed,
   }) {
     return _then(_User(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -174,7 +189,8 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
 class _$_User extends _User {
   const _$_User(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required this.email,
       required this.profile_photo_path,
       required this.created_at,
@@ -182,6 +198,8 @@ class _$_User extends _User {
       required this.email_verified_at})
       : super._();
 
+  @override
+  final int id;
   @override
   final String name;
   @override
@@ -197,13 +215,15 @@ class _$_User extends _User {
 
   @override
   String toString() {
-    return 'User(name: $name, email: $email, profile_photo_path: $profile_photo_path, created_at: $created_at, updated_at: $updated_at, email_verified_at: $email_verified_at)';
+    return 'User(id: $id, name: $name, email: $email, profile_photo_path: $profile_photo_path, created_at: $created_at, updated_at: $updated_at, email_verified_at: $email_verified_at)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _User &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.email, email) ||
@@ -225,6 +245,7 @@ class _$_User extends _User {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(profile_photo_path) ^
@@ -240,7 +261,8 @@ class _$_User extends _User {
 
 abstract class _User extends User {
   const factory _User(
-      {required String name,
+      {required int id,
+      required String name,
       required String email,
       required String? profile_photo_path,
       required DateTime? created_at,
@@ -248,6 +270,8 @@ abstract class _User extends User {
       required DateTime? email_verified_at}) = _$_User;
   const _User._() : super._();
 
+  @override
+  int get id => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override
