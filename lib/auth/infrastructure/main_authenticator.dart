@@ -98,7 +98,7 @@ class MainAuthenticator {
         .then((settings) => settings?.server ?? defaultUrl);
     try {
       try {
-        _dio.getUri(Uri.parse(revocationUrl + revocationEndpoint),
+        await _dio.getUri(Uri.parse(revocationUrl + revocationEndpoint),
             options: Options(headers: {
               'Authorization': 'Bearer $accessToken',
               'Content-Type': 'application/json',
