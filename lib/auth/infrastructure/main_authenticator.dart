@@ -90,13 +90,13 @@ class MainAuthenticator {
   }
 
   Future<Either<AuthFailure, Unit>> signOut() async {
-    final accessToken = await _credentialsStorage
-        .read()
-        .then((credentials) => credentials?.accessToken);
-    final revocationUrl = await _localSettingsStorage
-        .read()
-        .then((settings) => settings?.server ?? defaultUrl);
     try {
+      final accessToken = await _credentialsStorage
+          .read()
+          .then((credentials) => credentials?.accessToken);
+      final revocationUrl = await _localSettingsStorage
+          .read()
+          .then((settings) => settings?.server ?? defaultUrl);
       try {
         await _dio.getUri(Uri.parse(revocationUrl + revocationEndpoint),
             options: Options(headers: {
@@ -111,6 +111,14 @@ class MainAuthenticator {
           rethrow;
         }
       }
+      return clearCredentialsStorage();
+    } on PlatformException {
+      return left(const AuthFailure.storage());
+    }
+  }
+
+  Future<Either<AuthFailure, Unit>> clearCredentialsStorage() async {
+    try {
       await _credentialsStorage.clear();
       return right(unit);
     } on PlatformException {

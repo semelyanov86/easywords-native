@@ -14,8 +14,6 @@ class CardsRemoteService {
   CardsRemoteService(this._dio, this._headersCache);
 
   Future<RemoteResponse<List<WordDTO>>> getWords([int page = 1]) async {
-    const token = 'fsddfdsf';
-    const accept = 'application/json';
     final server = await MainLocalSettings.getServerUrl();
     final requestUri =
         Uri.https(server?.host ?? 'easywordsapp.ru', 'api/words', {
@@ -27,9 +25,6 @@ class CardsRemoteService {
     try {
       final response = await _dio.getUri(requestUri,
           options: Options(headers: {
-            'Authorization': "Bearer $token",
-            'Accept': accept,
-            'Content-Type': accept,
             'If-None-Match': previousHeaders?.etag ?? '',
           }));
 

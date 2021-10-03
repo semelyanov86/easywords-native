@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:words_native/auth/application/auth_notifier.dart';
@@ -8,6 +9,14 @@ import 'package:words_native/core/shared/providers.dart';
 
 final initializationProvider = FutureProvider<Unit>((ref) async {
   await ref.read(sembastProvider).init();
+  ref.read(dioProvider)
+    ..options = BaseOptions(
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    )
+    ..interceptors.add(ref.read(authInterceptorProvider));
   final authNotifier = ref.read(authNotifierProvider.notifier);
   await authNotifier.checkAndUpdateAuthStatus();
   return unit;
