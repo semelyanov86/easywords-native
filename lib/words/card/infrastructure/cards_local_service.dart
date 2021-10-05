@@ -33,4 +33,9 @@ class CardsLocalService {
     );
     return records.map((e) => WordDTO.fromJson(e.value)).toList();
   }
+
+  Future<int> getLocalPageCount() async {
+    final cardsCount = await _store.count(_sembastDatabase.instance);
+    return (cardsCount / PaginationConfig.itemsPerPage).ceil();
+  }
 }
