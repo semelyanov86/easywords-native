@@ -11,8 +11,9 @@ class GlobalSettings with _$GlobalSettings {
     @Default(20) int paginate,
     @Default('DE') String default_language,
     @Default(false) bool starred_enabled,
+    @Default(false) bool known_enabled,
     @Default(true) bool fresh_first,
-    @Default(false) bool show_starred,
+    @Default(false) bool show_shared,
     @Default(true) bool show_imported,
     @Default('RU') String main_language,
     @Default(['DE', 'EN']) List<String> languages_list,
@@ -22,17 +23,19 @@ class GlobalSettings with _$GlobalSettings {
     List<TranslationDirections> result = [];
     languages_list.forEach((key) {
       result.add(TranslationDirections(
-          original: main_language,
-          main: key,
-          icon: MdiIcons.arrowRightCircle,
-          description:
-              'First we will show ${main_language} and only then ${key}'));
+        original: main_language,
+        main: key,
+        icon: MdiIcons.arrowRightCircle,
+        description: 'First we will show ${main_language} and only then ${key}',
+        reversed: false,
+      ));
       result.add(TranslationDirections(
-          original: key,
-          main: main_language,
-          icon: MdiIcons.arrowLeftCircle,
-          description:
-              'First we will show ${key} and only then ${main_language}'));
+        original: key,
+        main: main_language,
+        icon: MdiIcons.arrowLeftCircle,
+        description: 'First we will show ${key} and only then ${main_language}',
+        reversed: true,
+      ));
     });
     return result;
   }

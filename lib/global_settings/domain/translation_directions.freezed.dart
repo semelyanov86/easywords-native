@@ -20,11 +20,13 @@ class _$TranslationDirectionsTearOff {
       {required String original,
       required String main,
       required IconData icon,
+      required bool reversed,
       String? description}) {
     return _TranslationDirections(
       original: original,
       main: main,
       icon: icon,
+      reversed: reversed,
       description: description,
     );
   }
@@ -38,6 +40,7 @@ mixin _$TranslationDirections {
   String get original => throw _privateConstructorUsedError;
   String get main => throw _privateConstructorUsedError;
   IconData get icon => throw _privateConstructorUsedError;
+  bool get reversed => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -50,7 +53,12 @@ abstract class $TranslationDirectionsCopyWith<$Res> {
   factory $TranslationDirectionsCopyWith(TranslationDirections value,
           $Res Function(TranslationDirections) then) =
       _$TranslationDirectionsCopyWithImpl<$Res>;
-  $Res call({String original, String main, IconData icon, String? description});
+  $Res call(
+      {String original,
+      String main,
+      IconData icon,
+      bool reversed,
+      String? description});
 }
 
 /// @nodoc
@@ -67,6 +75,7 @@ class _$TranslationDirectionsCopyWithImpl<$Res>
     Object? original = freezed,
     Object? main = freezed,
     Object? icon = freezed,
+    Object? reversed = freezed,
     Object? description = freezed,
   }) {
     return _then(_value.copyWith(
@@ -82,6 +91,10 @@ class _$TranslationDirectionsCopyWithImpl<$Res>
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
               as IconData,
+      reversed: reversed == freezed
+          ? _value.reversed
+          : reversed // ignore: cast_nullable_to_non_nullable
+              as bool,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -97,7 +110,12 @@ abstract class _$TranslationDirectionsCopyWith<$Res>
           $Res Function(_TranslationDirections) then) =
       __$TranslationDirectionsCopyWithImpl<$Res>;
   @override
-  $Res call({String original, String main, IconData icon, String? description});
+  $Res call(
+      {String original,
+      String main,
+      IconData icon,
+      bool reversed,
+      String? description});
 }
 
 /// @nodoc
@@ -116,6 +134,7 @@ class __$TranslationDirectionsCopyWithImpl<$Res>
     Object? original = freezed,
     Object? main = freezed,
     Object? icon = freezed,
+    Object? reversed = freezed,
     Object? description = freezed,
   }) {
     return _then(_TranslationDirections(
@@ -131,6 +150,10 @@ class __$TranslationDirectionsCopyWithImpl<$Res>
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
               as IconData,
+      reversed: reversed == freezed
+          ? _value.reversed
+          : reversed // ignore: cast_nullable_to_non_nullable
+              as bool,
       description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -146,6 +169,7 @@ class _$_TranslationDirections extends _TranslationDirections {
       {required this.original,
       required this.main,
       required this.icon,
+      required this.reversed,
       this.description})
       : super._();
 
@@ -156,11 +180,13 @@ class _$_TranslationDirections extends _TranslationDirections {
   @override
   final IconData icon;
   @override
+  final bool reversed;
+  @override
   final String? description;
 
   @override
   String toString() {
-    return 'TranslationDirections(original: $original, main: $main, icon: $icon, description: $description)';
+    return 'TranslationDirections(original: $original, main: $main, icon: $icon, reversed: $reversed, description: $description)';
   }
 
   @override
@@ -174,6 +200,9 @@ class _$_TranslationDirections extends _TranslationDirections {
                 const DeepCollectionEquality().equals(other.main, main)) &&
             (identical(other.icon, icon) ||
                 const DeepCollectionEquality().equals(other.icon, icon)) &&
+            (identical(other.reversed, reversed) ||
+                const DeepCollectionEquality()
+                    .equals(other.reversed, reversed)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
                     .equals(other.description, description)));
@@ -185,6 +214,7 @@ class _$_TranslationDirections extends _TranslationDirections {
       const DeepCollectionEquality().hash(original) ^
       const DeepCollectionEquality().hash(main) ^
       const DeepCollectionEquality().hash(icon) ^
+      const DeepCollectionEquality().hash(reversed) ^
       const DeepCollectionEquality().hash(description);
 
   @JsonKey(ignore: true)
@@ -199,6 +229,7 @@ abstract class _TranslationDirections extends TranslationDirections {
       {required String original,
       required String main,
       required IconData icon,
+      required bool reversed,
       String? description}) = _$_TranslationDirections;
   const _TranslationDirections._() : super._();
 
@@ -208,6 +239,8 @@ abstract class _TranslationDirections extends TranslationDirections {
   String get main => throw _privateConstructorUsedError;
   @override
   IconData get icon => throw _privateConstructorUsedError;
+  @override
+  bool get reversed => throw _privateConstructorUsedError;
   @override
   String? get description => throw _privateConstructorUsedError;
   @override

@@ -10,6 +10,9 @@ class TranslationDirections with _$TranslationDirections {
     required String original,
     required String main,
     required IconData icon,
+    required bool reversed,
     String? description,
   }) = _TranslationDirections;
+  String get mainLanguage => reversed ? main : original;
+  String get originalLanguage => reversed ? original : main;
 }

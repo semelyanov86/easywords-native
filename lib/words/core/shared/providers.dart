@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:words_native/core/shared/providers.dart';
+import 'package:words_native/global_settings/shared/providers.dart';
 import 'package:words_native/words/card/application/cards_notifier.dart';
 import 'package:words_native/words/card/infrastructure/cards_local_service.dart';
 import 'package:words_native/words/card/infrastructure/cards_remote_service.dart';
@@ -11,7 +12,10 @@ final wordHeadersCacheProvired = Provider(
 );
 
 final wordsLocalServiceProvider = Provider(
-  (ref) => CardsLocalService(ref.watch(sembastProvider)),
+  (ref) => CardsLocalService(
+    ref.watch(sembastProvider),
+    ref.watch(globalSettingsLocalServiceProvider),
+  ),
 );
 
 final wordsRemoteServiceProvider = Provider(

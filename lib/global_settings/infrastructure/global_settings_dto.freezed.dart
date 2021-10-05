@@ -24,8 +24,9 @@ class _$GlobalSettingsDTOTearOff {
       {int paginate = 20,
       String default_language = 'DE',
       bool starred_enabled = false,
+      bool known_enabled = false,
       bool fresh_first = true,
-      bool show_starred = false,
+      bool show_shared = false,
       bool show_imported = true,
       String main_language = 'RU',
       List<String> languages_list = const ['DE', 'EN']}) {
@@ -33,8 +34,9 @@ class _$GlobalSettingsDTOTearOff {
       paginate: paginate,
       default_language: default_language,
       starred_enabled: starred_enabled,
+      known_enabled: known_enabled,
       fresh_first: fresh_first,
-      show_starred: show_starred,
+      show_shared: show_shared,
       show_imported: show_imported,
       main_language: main_language,
       languages_list: languages_list,
@@ -54,8 +56,9 @@ mixin _$GlobalSettingsDTO {
   int get paginate => throw _privateConstructorUsedError;
   String get default_language => throw _privateConstructorUsedError;
   bool get starred_enabled => throw _privateConstructorUsedError;
+  bool get known_enabled => throw _privateConstructorUsedError;
   bool get fresh_first => throw _privateConstructorUsedError;
-  bool get show_starred => throw _privateConstructorUsedError;
+  bool get show_shared => throw _privateConstructorUsedError;
   bool get show_imported => throw _privateConstructorUsedError;
   String get main_language => throw _privateConstructorUsedError;
   List<String> get languages_list => throw _privateConstructorUsedError;
@@ -75,8 +78,9 @@ abstract class $GlobalSettingsDTOCopyWith<$Res> {
       {int paginate,
       String default_language,
       bool starred_enabled,
+      bool known_enabled,
       bool fresh_first,
-      bool show_starred,
+      bool show_shared,
       bool show_imported,
       String main_language,
       List<String> languages_list});
@@ -96,8 +100,9 @@ class _$GlobalSettingsDTOCopyWithImpl<$Res>
     Object? paginate = freezed,
     Object? default_language = freezed,
     Object? starred_enabled = freezed,
+    Object? known_enabled = freezed,
     Object? fresh_first = freezed,
-    Object? show_starred = freezed,
+    Object? show_shared = freezed,
     Object? show_imported = freezed,
     Object? main_language = freezed,
     Object? languages_list = freezed,
@@ -115,13 +120,17 @@ class _$GlobalSettingsDTOCopyWithImpl<$Res>
           ? _value.starred_enabled
           : starred_enabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      known_enabled: known_enabled == freezed
+          ? _value.known_enabled
+          : known_enabled // ignore: cast_nullable_to_non_nullable
+              as bool,
       fresh_first: fresh_first == freezed
           ? _value.fresh_first
           : fresh_first // ignore: cast_nullable_to_non_nullable
               as bool,
-      show_starred: show_starred == freezed
-          ? _value.show_starred
-          : show_starred // ignore: cast_nullable_to_non_nullable
+      show_shared: show_shared == freezed
+          ? _value.show_shared
+          : show_shared // ignore: cast_nullable_to_non_nullable
               as bool,
       show_imported: show_imported == freezed
           ? _value.show_imported
@@ -150,8 +159,9 @@ abstract class _$GlobalSettingsDTOCopyWith<$Res>
       {int paginate,
       String default_language,
       bool starred_enabled,
+      bool known_enabled,
       bool fresh_first,
-      bool show_starred,
+      bool show_shared,
       bool show_imported,
       String main_language,
       List<String> languages_list});
@@ -173,8 +183,9 @@ class __$GlobalSettingsDTOCopyWithImpl<$Res>
     Object? paginate = freezed,
     Object? default_language = freezed,
     Object? starred_enabled = freezed,
+    Object? known_enabled = freezed,
     Object? fresh_first = freezed,
-    Object? show_starred = freezed,
+    Object? show_shared = freezed,
     Object? show_imported = freezed,
     Object? main_language = freezed,
     Object? languages_list = freezed,
@@ -192,13 +203,17 @@ class __$GlobalSettingsDTOCopyWithImpl<$Res>
           ? _value.starred_enabled
           : starred_enabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      known_enabled: known_enabled == freezed
+          ? _value.known_enabled
+          : known_enabled // ignore: cast_nullable_to_non_nullable
+              as bool,
       fresh_first: fresh_first == freezed
           ? _value.fresh_first
           : fresh_first // ignore: cast_nullable_to_non_nullable
               as bool,
-      show_starred: show_starred == freezed
-          ? _value.show_starred
-          : show_starred // ignore: cast_nullable_to_non_nullable
+      show_shared: show_shared == freezed
+          ? _value.show_shared
+          : show_shared // ignore: cast_nullable_to_non_nullable
               as bool,
       show_imported: show_imported == freezed
           ? _value.show_imported
@@ -223,8 +238,9 @@ class _$_GlobalSettingsDTO extends _GlobalSettingsDTO {
       {this.paginate = 20,
       this.default_language = 'DE',
       this.starred_enabled = false,
+      this.known_enabled = false,
       this.fresh_first = true,
-      this.show_starred = false,
+      this.show_shared = false,
       this.show_imported = true,
       this.main_language = 'RU',
       this.languages_list = const ['DE', 'EN']})
@@ -242,12 +258,15 @@ class _$_GlobalSettingsDTO extends _GlobalSettingsDTO {
   @JsonKey(defaultValue: false)
   @override
   final bool starred_enabled;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool known_enabled;
   @JsonKey(defaultValue: true)
   @override
   final bool fresh_first;
   @JsonKey(defaultValue: false)
   @override
-  final bool show_starred;
+  final bool show_shared;
   @JsonKey(defaultValue: true)
   @override
   final bool show_imported;
@@ -260,7 +279,7 @@ class _$_GlobalSettingsDTO extends _GlobalSettingsDTO {
 
   @override
   String toString() {
-    return 'GlobalSettingsDTO(paginate: $paginate, default_language: $default_language, starred_enabled: $starred_enabled, fresh_first: $fresh_first, show_starred: $show_starred, show_imported: $show_imported, main_language: $main_language, languages_list: $languages_list)';
+    return 'GlobalSettingsDTO(paginate: $paginate, default_language: $default_language, starred_enabled: $starred_enabled, known_enabled: $known_enabled, fresh_first: $fresh_first, show_shared: $show_shared, show_imported: $show_imported, main_language: $main_language, languages_list: $languages_list)';
   }
 
   @override
@@ -276,12 +295,15 @@ class _$_GlobalSettingsDTO extends _GlobalSettingsDTO {
             (identical(other.starred_enabled, starred_enabled) ||
                 const DeepCollectionEquality()
                     .equals(other.starred_enabled, starred_enabled)) &&
+            (identical(other.known_enabled, known_enabled) ||
+                const DeepCollectionEquality()
+                    .equals(other.known_enabled, known_enabled)) &&
             (identical(other.fresh_first, fresh_first) ||
                 const DeepCollectionEquality()
                     .equals(other.fresh_first, fresh_first)) &&
-            (identical(other.show_starred, show_starred) ||
+            (identical(other.show_shared, show_shared) ||
                 const DeepCollectionEquality()
-                    .equals(other.show_starred, show_starred)) &&
+                    .equals(other.show_shared, show_shared)) &&
             (identical(other.show_imported, show_imported) ||
                 const DeepCollectionEquality()
                     .equals(other.show_imported, show_imported)) &&
@@ -299,8 +321,9 @@ class _$_GlobalSettingsDTO extends _GlobalSettingsDTO {
       const DeepCollectionEquality().hash(paginate) ^
       const DeepCollectionEquality().hash(default_language) ^
       const DeepCollectionEquality().hash(starred_enabled) ^
+      const DeepCollectionEquality().hash(known_enabled) ^
       const DeepCollectionEquality().hash(fresh_first) ^
-      const DeepCollectionEquality().hash(show_starred) ^
+      const DeepCollectionEquality().hash(show_shared) ^
       const DeepCollectionEquality().hash(show_imported) ^
       const DeepCollectionEquality().hash(main_language) ^
       const DeepCollectionEquality().hash(languages_list);
@@ -321,8 +344,9 @@ abstract class _GlobalSettingsDTO extends GlobalSettingsDTO {
       {int paginate,
       String default_language,
       bool starred_enabled,
+      bool known_enabled,
       bool fresh_first,
-      bool show_starred,
+      bool show_shared,
       bool show_imported,
       String main_language,
       List<String> languages_list}) = _$_GlobalSettingsDTO;
@@ -338,9 +362,11 @@ abstract class _GlobalSettingsDTO extends GlobalSettingsDTO {
   @override
   bool get starred_enabled => throw _privateConstructorUsedError;
   @override
+  bool get known_enabled => throw _privateConstructorUsedError;
+  @override
   bool get fresh_first => throw _privateConstructorUsedError;
   @override
-  bool get show_starred => throw _privateConstructorUsedError;
+  bool get show_shared => throw _privateConstructorUsedError;
   @override
   bool get show_imported => throw _privateConstructorUsedError;
   @override

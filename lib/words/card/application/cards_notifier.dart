@@ -31,9 +31,9 @@ class CardsNotifier extends StateNotifier<CardsState> {
 
   int _page = 1;
 
-  Future<void> getNextCardsPage() async {
+  Future<void> getNextCardsPage(String language) async {
     state = CardsState.loadInProgress(state.cards);
-    final failureOrCards = await _repository.getWords(_page);
+    final failureOrCards = await _repository.getWords(language, _page);
     state = failureOrCards.fold(
       (l) => CardsState.loadFailure(state.cards, l),
       (r) {

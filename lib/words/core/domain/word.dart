@@ -20,4 +20,7 @@ class Word with _$Word {
   String get displayName => '$original - $translated';
   int get originalLength => original.length;
   int get translatedLength => translated.length;
+  String getLanguageValue(String wordLanguage) {
+    return language == wordLanguage ? original : translated;
+  }
 }

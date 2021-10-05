@@ -13,11 +13,14 @@ class CardsRemoteService {
 
   CardsRemoteService(this._dio, this._headersCache);
 
-  Future<RemoteResponse<List<WordDTO>>> getWords([int page = 1]) async {
+  Future<RemoteResponse<List<WordDTO>>> getWords(String language,
+      [int page = 1]) async {
     final server = await MainLocalSettings.getServerUrl();
+
     final requestUri =
         Uri.https(server?.host ?? 'easywordsapp.ru', 'api/words', {
       'page': '$page',
+      'language': language,
     });
 
     final previousHeaders = await _headersCache.getHeaders(requestUri);
@@ -35,13 +38,13 @@ class CardsRemoteService {
       } else if (response.statusCode == 200) {
         final headers = ServerHeaders.parse(response);
         await _headersCache.saveHeaders(requestUri, headers);
-        final convertedData = (response.data as List<dynamic>)
+        final convertedData = (response.data['data'] as List<dynamic>)
             .map((e) => WordDTO.fromJson(e as Map<String, dynamic>))
             .toList();
         return RemoteResponse.withNewData(
           convertedData,
           maxPage: response.data?['meta']?['last_page'] != null
-              ? int.parse(response.data?['meta']?['last_page'] as String)
+              ? response.data?['meta']?['last_page'] as int
               : 1,
         );
       } else {

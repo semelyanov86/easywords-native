@@ -13,17 +13,17 @@ class CardsRepository {
 
   CardsRepository(this._remoteService, this._localService);
 
-  Future<Either<WordFailure, Fresh<List<Word>>>> getWords(
+  Future<Either<WordFailure, Fresh<List<Word>>>> getWords(String language,
       [int page = 1]) async {
     try {
-      final remoteWordItems = await _remoteService.getWords(page);
+      final remoteWordItems = await _remoteService.getWords(language, page);
       return right(await remoteWordItems.when(
         noConnection: (maxPage) async => Fresh.no(
-          await _localService.getPage(page).then((_) => _.toDomain()),
+          await _localService.getPage(language, page).then((_) => _.toDomain()),
           isNextPageAvailable: page < maxPage,
         ),
         notModified: (maxPage) async => Fresh.yes(
-          await _localService.getPage(page).then((_) => _.toDomain()),
+          await _localService.getPage(language, page).then((_) => _.toDomain()),
           isNextPageAvailable: page < maxPage,
         ),
         withNewData: (data, maxPage) async {

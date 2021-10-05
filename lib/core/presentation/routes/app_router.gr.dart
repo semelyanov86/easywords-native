@@ -8,9 +8,11 @@ import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
 import '../../../auth/presentation/sign_in_page.dart' as _i4;
+import '../../../global_settings/domain/translation_directions.dart' as _i7;
 import '../../../language_selector/presentation/language_selector_page.dart'
     as _i5;
 import '../../../splash/presentation/splash_page.dart' as _i3;
+import '../../../words/card/presentation/cards_list_page.dart' as _i6;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -29,6 +31,12 @@ class AppRouter extends _i1.RootStackRouter {
     LanguageSelectorRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i5.LanguageSelectorPage());
+    },
+    CardsListRoute.name: (routeData) {
+      final args = routeData.argsAs<CardsListRouteArgs>();
+      return _i1.MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: _i6.CardsListPage(key: args.key, direction: args.direction));
     }
   };
 
@@ -36,7 +44,8 @@ class AppRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(SplashRoute.name, path: '/'),
         _i1.RouteConfig(SignInRoute.name, path: '/sign-in'),
-        _i1.RouteConfig(LanguageSelectorRoute.name, path: '/start')
+        _i1.RouteConfig(LanguageSelectorRoute.name, path: '/start'),
+        _i1.RouteConfig(CardsListRoute.name, path: '/cards')
       ];
 }
 
@@ -56,4 +65,21 @@ class LanguageSelectorRoute extends _i1.PageRouteInfo {
   const LanguageSelectorRoute() : super(name, path: '/start');
 
   static const String name = 'LanguageSelectorRoute';
+}
+
+class CardsListRoute extends _i1.PageRouteInfo<CardsListRouteArgs> {
+  CardsListRoute({_i2.Key? key, required _i7.TranslationDirections direction})
+      : super(name,
+            path: '/cards',
+            args: CardsListRouteArgs(key: key, direction: direction));
+
+  static const String name = 'CardsListRoute';
+}
+
+class CardsListRouteArgs {
+  const CardsListRouteArgs({this.key, required this.direction});
+
+  final _i2.Key? key;
+
+  final _i7.TranslationDirections direction;
 }

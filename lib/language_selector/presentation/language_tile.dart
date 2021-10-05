@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:words_native/core/presentation/routes/app_router.gr.dart';
 import 'package:words_native/global_settings/domain/translation_directions.dart';
 
 class LanguageTile extends StatelessWidget {
@@ -30,7 +32,11 @@ class LanguageTile extends StatelessWidget {
         ],
       ),
       onTap: () {
-        // TODO: Load cards
+        AutoRouter.of(context).push(
+          CardsListRoute(
+            direction: direction,
+          ),
+        );
       },
     );
   }
