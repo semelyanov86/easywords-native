@@ -15,6 +15,8 @@ final initializationProvider = FutureProvider<Unit>((ref) async {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
+      validateStatus: (status) =>
+          status != null && status >= 200 && status < 400,
     )
     ..interceptors.add(ref.read(authInterceptorProvider));
   final authNotifier = ref.read(authNotifierProvider.notifier);

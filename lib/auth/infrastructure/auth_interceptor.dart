@@ -18,7 +18,7 @@ class AuthInterceptor extends Interceptor {
     final modifiedOptions = options
       ..headers.addAll(credentials == null
           ? {}
-          : {'Authorization': 'bearer ${credentials.accessToken}'});
+          : {'Authorization': 'Bearer ${credentials.accessToken}'});
     handler.next(modifiedOptions);
   }
 

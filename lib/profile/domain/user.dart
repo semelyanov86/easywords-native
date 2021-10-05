@@ -14,4 +14,6 @@ class User with _$User {
     required DateTime? updated_at,
     required DateTime? email_verified_at,
   }) = _User;
+
+  String get profilePathSmall => profile_photo_path ?? '';
 }

@@ -1,4 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:words_native/global_settings/domain/translation_directions.dart';
 
 part 'global_settings.freezed.dart';
 
@@ -15,4 +17,23 @@ class GlobalSettings with _$GlobalSettings {
     @Default('RU') String main_language,
     @Default(['DE', 'EN']) List<String> languages_list,
   }) = _GlobalSettings;
+
+  List<TranslationDirections> get languageDirections {
+    List<TranslationDirections> result = [];
+    languages_list.forEach((key) {
+      result.add(TranslationDirections(
+          original: main_language,
+          main: key,
+          icon: MdiIcons.arrowRightCircle,
+          description:
+              'First we will show ${main_language} and only then ${key}'));
+      result.add(TranslationDirections(
+          original: key,
+          main: main_language,
+          icon: MdiIcons.arrowLeftCircle,
+          description:
+              'First we will show ${key} and only then ${main_language}'));
+    });
+    return result;
+  }
 }

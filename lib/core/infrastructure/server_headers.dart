@@ -15,7 +15,7 @@ class ServerHeaders with _$ServerHeaders {
   factory ServerHeaders.parse(Response response) {
     return ServerHeaders(
         etag: response.headers.map['ETag']?[0],
-        last_page: response.data?['meta']?['last_page'] as int);
+        last_page: response.data?['meta']?['last_page'] as int?);
   }
 
   factory ServerHeaders.fromJson(Map<String, dynamic> json) =>

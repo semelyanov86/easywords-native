@@ -44,7 +44,7 @@ class GlobalSettingsRemoteService {
       }
     } on DioError catch (e) {
       if (e.isNoConnectionError) {
-        return RemoteResponse.noConnection(
+        return const RemoteResponse.noConnection(
           maxPage: 1,
         );
       } else if (e.response != null) {
