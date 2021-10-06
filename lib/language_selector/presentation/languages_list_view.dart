@@ -17,37 +17,58 @@ class LanguagesListView extends StatelessWidget {
       if (state.settings.entity.languageDirections.isEmpty) {
         return const NoResultsDisplay(message: 'No supported languages found!');
       }
-      return ListView.builder(
-        itemCount: state.map(
-          initial: (_) => 0,
-          loadInProgress: (_) => _.settings.entity.languageDirections.length,
-          loadSuccess: (_) => _.settings.entity.languageDirections.length,
-          loadFailure: (_) => _.settings.entity.languageDirections.length + 1,
-        ),
-        itemBuilder: (context, index) {
-          return state.map(
-            initial: (_) => LanguageTile(
-              direction: _.settings.entity.languageDirections[index],
+      return Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Container(
+              child: const Text(
+                'Please choose a language for learning words',
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
-            loadInProgress: (_) {
-              return const LoadingLanguageTile();
-            },
-            loadSuccess: (_) {
-              if (!_.settings.isFresh) {
-                showNoConnectionToast(
-                  'You are not online. Some information may be outdated.',
-                  context,
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: state.map(
+                initial: (_) => 0,
+                loadInProgress: (_) =>
+                    _.settings.entity.languageDirections.length,
+                loadSuccess: (_) => _.settings.entity.languageDirections.length,
+                loadFailure: (_) =>
+                    _.settings.entity.languageDirections.length + 1,
+              ),
+              itemBuilder: (context, index) {
+                return state.map(
+                  initial: (_) => LanguageTile(
+                    direction: _.settings.entity.languageDirections[index],
+                  ),
+                  loadInProgress: (_) {
+                    return const LoadingLanguageTile();
+                  },
+                  loadSuccess: (_) {
+                    if (!_.settings.isFresh) {
+                      showNoConnectionToast(
+                        'You are not online. Some information may be outdated.',
+                        context,
+                      );
+                    }
+                    return LanguageTile(
+                      direction: _.settings.entity.languageDirections[index],
+                    );
+                  },
+                  loadFailure: (_) => FailureLanguageTile(
+                    failure: _.failure,
+                  ),
                 );
-              }
-              return LanguageTile(
-                direction: _.settings.entity.languageDirections[index],
-              );
-            },
-            loadFailure: (_) => FailureLanguageTile(
-              failure: _.failure,
+              },
             ),
-          );
-        },
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset('assets/images/easywords-full.png'),
+          ),
+        ],
       );
     });
   }
