@@ -133,7 +133,6 @@ class MainAuthenticator {
         .then((settings) => settings?.server ?? defaultUrl);
     try {
       try {
-        print(loginUrl + signInEndpoint);
         final Response response = await _dio.postUri(
             Uri.parse(loginUrl + signInEndpoint),
             data: {'email': email, 'password': password, 'device_name': device},
@@ -144,11 +143,13 @@ class MainAuthenticator {
         String token = response.data['token'] as String;
         await _credentialsStorage.save(Credentials(token));
       } on DioError catch (e) {
-        print('error dio:');
-        print(e.response);
         if (e.isNoConnectionError) {
           // Ignoring
         } else {
+          if (e.response != null && e.response?.statusCode == 422) {
+            return left(
+                const AuthFailure.server('Login or password does not match!'));
+          }
           rethrow;
         }
       }

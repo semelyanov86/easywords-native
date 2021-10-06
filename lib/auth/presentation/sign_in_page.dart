@@ -5,15 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:words_native/auth/application/auth_notifier.dart';
 import 'package:words_native/auth/shared/providers.dart';
+import 'package:words_native/core/presentation/toasts.dart';
 import 'package:words_native/local_settings/domain/local_settings_model.dart';
 import 'package:words_native/local_settings/infrastructure/local_settings_storage.dart';
 import 'package:words_native/local_settings/infrastructure/main_local_settings.dart';
 import 'package:words_native/local_settings/infrastructure/secure_local_settings_storage.dart';
 
 class SignInPage extends StatefulWidget {
-  const SignInPage({Key? key}) : super(key: key);
+  final StateNotifierProvider<AuthNotifier, AuthState>? authNotifierProvider;
+
+  const SignInPage({Key? key, required this.authNotifierProvider})
+      : super(key: key);
 
   @override
   _SignInState createState() => _SignInState();
@@ -40,93 +44,114 @@ class _SignInState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 48),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const Icon(
-                    MdiIcons.cardText,
-                    size: 150,
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Text(
-                    'Welcome to \n EasyWords!',
-                    style: Theme.of(context).textTheme.headline6,
-                    textAlign: TextAlign.center,
-                  ),
-                  TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    controller: emailController,
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
+    return ProviderListener<AuthState>(
+      provider: widget.authNotifierProvider,
+      onChange: (context, state) {
+        state.map(
+          initial: (_) {},
+          unauthenticated: (_) {},
+          authenticated: (_) {},
+          failure: (_) {
+            _.failure.map(
+              server: (_) {
+                showNoConnectionToast(
+                  _.message ?? 'Auth Error',
+                  context,
+                );
+              },
+              storage: (_) {
+                showNoConnectionToast(
+                  _.toString(),
+                  context,
+                );
+              },
+            );
+          },
+        );
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 48),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Image.asset('assets/images/easywords-full.png'),
+                    const SizedBox(
+                      height: 16,
                     ),
-                    validator: (String? value) {
-                      // Validation condition
-                      if (value!.trim().isEmpty) {
-                        return 'Please enter email';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    keyboardType: TextInputType.text,
-                    controller: passwordController,
-                    obscureText: true,
-                    autocorrect: false,
-                    enableSuggestions: false,
-                    decoration: const InputDecoration(labelText: 'Password'),
-                    validator: (String? value) {
-                      // Validation condition
-                      if (value!.isEmpty) {
-                        return 'Please enter password';
-                      }
-
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    keyboardType: TextInputType.url,
-                    controller: serverController,
-                    // initialValue: storage.read(),
-                    decoration: const InputDecoration(
-                      labelText: 'Server',
+                    TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      controller: emailController,
+                      decoration: const InputDecoration(
+                        labelText: 'Email',
+                      ),
+                      validator: (String? value) {
+                        // Validation condition
+                        if (value!.trim().isEmpty) {
+                          return 'Please enter email';
+                        }
+                        return null;
+                      },
                     ),
-                    validator: (String? value) {
-                      // Validation condition
-                      if (value!.trim().isEmpty) {
-                        return 'Please enter valid server';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 42,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      final url =
-                          MainLocalSettings.parseUrl(serverController.text);
+                    TextFormField(
+                      keyboardType: TextInputType.text,
+                      controller: passwordController,
+                      obscureText: true,
+                      autocorrect: false,
+                      enableSuggestions: false,
+                      decoration: const InputDecoration(labelText: 'Password'),
+                      validator: (String? value) {
+                        // Validation condition
+                        if (value!.isEmpty) {
+                          return 'Please enter password';
+                        }
 
-                      final settingsModel = LocalSettingsModel(server: url);
-                      storage.save(settingsModel);
-                      context.read(authNotifierProvider.notifier).signIn(
-                          emailController.text,
-                          passwordController.text,
-                          deviceName,
-                          Uri.parse(url));
-                    },
-                    child: const Text('Sign In'),
-                  ),
-                  Text(errorMessage, style: const TextStyle(color: Colors.red)),
-                ],
+                        return null;
+                      },
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.url,
+                      controller: serverController,
+                      // initialValue: storage.read(),
+                      decoration: const InputDecoration(
+                        labelText: 'Server',
+                      ),
+                      validator: (String? value) {
+                        // Validation condition
+                        if (value!.trim().isEmpty) {
+                          return 'Please enter valid server';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 42,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        final url =
+                            MainLocalSettings.parseUrl(serverController.text);
+
+                        final settingsModel = LocalSettingsModel(server: url);
+                        storage.save(settingsModel);
+                        final authState =
+                            context.read(authNotifierProvider.notifier);
+                        authState.signIn(
+                            emailController.text,
+                            passwordController.text,
+                            deviceName,
+                            Uri.parse(url));
+                      },
+                      child: const Text('Sign In'),
+                    ),
+                    Text(errorMessage,
+                        style: const TextStyle(color: Colors.red)),
+                  ],
+                ),
               ),
             ),
           ),

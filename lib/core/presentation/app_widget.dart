@@ -44,7 +44,8 @@ class AppWidget extends ConsumerWidget {
                 );
               },
               unauthenticated: (_) {
-                appRouter.pushAndPopUntil(const SignInRoute(),
+                appRouter.pushAndPopUntil(
+                    SignInRoute(authNotifierProvider: authNotifierProvider),
                     predicate: (route) => false);
               });
         },
