@@ -43,6 +43,12 @@ class _CardsListPageState extends State<CardsListPage> {
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, child) {
       final state = ref(cardsNotifierProvider);
+      final serviceModel = ref(cardsCalculationProvider);
+      final serviceNotifier = context.read(cardsCalculationProvider.notifier);
+      Future.delayed(Duration.zero, () async {
+        serviceNotifier.setWords(state.cards.entity);
+      });
+
       return ProviderListener<CardsState>(
         onChange: (context, state) {},
         provider: cardsNotifierProvider,
@@ -56,7 +62,7 @@ class _CardsListPageState extends State<CardsListPage> {
                     child: CircularProgressIndicator(),
                   ),
               loadSuccess: (_) {
-                if (_.cards.entity.isEmpty) {
+                if (serviceModel.isEmpty()) {
                   return const NoResultsDisplay(
                     message: 'These are no words to learn.',
                   );
@@ -86,10 +92,14 @@ class _CardsListPageState extends State<CardsListPage> {
                         ListTile(
                           title: Text(
                             flipped
-                                ? _.cards.entity[index].getLanguageValue(
-                                    widget.direction.mainLanguage)
-                                : _.cards.entity[index].getLanguageValue(
-                                    widget.direction.originalLanguage),
+                                ? serviceModel
+                                    .getCurrentWord()
+                                    .getLanguageValue(
+                                        widget.direction.mainLanguage)
+                                : serviceModel
+                                    .getCurrentWord()
+                                    .getLanguageValue(
+                                        widget.direction.originalLanguage),
                             style: Theme.of(context).textTheme.headline5,
                           ),
                         ),
@@ -108,9 +118,7 @@ class _CardsListPageState extends State<CardsListPage> {
                             FlatButton(
                               textColor: const Color(0xFF6200EE),
                               onPressed: () {
-                                setState(() {
-                                  index++;
-                                });
+                                serviceNotifier.setNextWord();
                               },
                               child: const Text('NEXT'),
                             ),

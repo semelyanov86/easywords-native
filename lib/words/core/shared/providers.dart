@@ -2,6 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:words_native/core/shared/providers.dart';
 import 'package:words_native/global_settings/shared/providers.dart';
 import 'package:words_native/words/card/application/cards_notifier.dart';
+import 'package:words_native/words/card/infrastructure/cards_calculation_service.dart';
 import 'package:words_native/words/card/infrastructure/cards_local_service.dart';
 import 'package:words_native/words/card/infrastructure/cards_remote_service.dart';
 import 'package:words_native/words/card/infrastructure/cards_repository.dart';
@@ -35,3 +36,7 @@ final cardsRepositoryProvider = Provider(
 final cardsNotifierProvider = StateNotifierProvider<CardsNotifier, CardsState>(
   (ref) => CardsNotifier(ref.watch(cardsRepositoryProvider)),
 );
+
+final cardsCalculationProvider = StateNotifierProvider<
+    CardsCalculationServiceNotifier,
+    CardsCalculationService>((ref) => CardsCalculationServiceNotifier());
