@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:words_native/auth/shared/providers.dart';
+import 'package:words_native/core/presentation/app_bar.dart';
 import 'package:words_native/global_settings/shared/providers.dart';
 import 'package:words_native/language_selector/presentation/languages_list_view.dart';
 
@@ -24,16 +23,7 @@ class _LanguageSelectorPageState extends State<LanguageSelectorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('EasyWordsApp'),
-        actions: [
-          IconButton(
-              onPressed: () {
-                context.read(authNotifierProvider.notifier).signOut();
-              },
-              icon: const Icon(MdiIcons.logoutVariant))
-        ],
-      ),
+      appBar: AppBarWidget(header: 'EasyWords App'),
       body: const LanguagesListView(),
     );
   }
