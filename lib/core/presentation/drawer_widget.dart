@@ -40,8 +40,13 @@ class DrawerWidget extends ConsumerWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.account_circle),
-            title: Text('Profile'),
+            leading: const Icon(Icons.account_circle),
+            title: const Text('Profile'),
+            onTap: () {
+              AutoRouter.of(context).push(
+                const ProfileRoute(),
+              );
+            },
           ),
           ListTile(
             leading: const Icon(Icons.settings),
