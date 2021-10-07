@@ -19,10 +19,6 @@ class AppBarWidget extends ConsumerWidget implements PreferredSizeWidget {
             },
             icon: const Icon(MdiIcons.plusCircleOutline))
       ],
-      leading: IconButton(
-        icon: Icon(Icons.menu),
-        onPressed: () {},
-      ),
     );
   }
 

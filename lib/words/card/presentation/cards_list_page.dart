@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:words_native/core/presentation/app_bar.dart';
+import 'package:words_native/core/presentation/drawer_widget.dart';
 import 'package:words_native/global_settings/domain/translation_directions.dart';
 import 'package:words_native/language_selector/presentation/no_results_display.dart';
 import 'package:words_native/words/card/application/cards_notifier.dart';
@@ -57,6 +58,7 @@ class _CardsListPageState extends State<CardsListPage> {
           appBar: const AppBarWidget(
             header: 'Study Mode',
           ),
+          drawer: DrawerWidget(),
           body: state.map(
               initial: (_) => Container(),
               loadInProgress: (_) => const Center(

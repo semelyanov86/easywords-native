@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:words_native/core/presentation/app_bar.dart';
+import 'package:words_native/core/presentation/drawer_widget.dart';
 import 'package:words_native/global_settings/shared/providers.dart';
 import 'package:words_native/language_selector/presentation/languages_list_view.dart';
 
@@ -24,6 +25,7 @@ class _LanguageSelectorPageState extends State<LanguageSelectorPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(header: 'EasyWords App'),
+      drawer: DrawerWidget(),
       body: const LanguagesListView(),
     );
   }
