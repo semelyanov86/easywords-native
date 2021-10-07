@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:words_native/auth/shared/providers.dart';
+import 'package:words_native/core/presentation/routes/app_router.gr.dart';
 
 class DrawerWidget extends ConsumerWidget {
   const DrawerWidget({Key? key}) : super(key: key);
@@ -42,8 +44,13 @@ class DrawerWidget extends ConsumerWidget {
             title: Text('Profile'),
           ),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Settings'),
+            leading: const Icon(Icons.settings),
+            onTap: () {
+              AutoRouter.of(context).push(
+                const SettingsRoute(),
+              );
+            },
+            title: const Text('Settings'),
           ),
           ListTile(
             leading: Icon(Icons.analytics),
@@ -54,8 +61,8 @@ class DrawerWidget extends ConsumerWidget {
             title: Text('Change Password'),
           ),
           ListTile(
-            leading: Icon(Icons.logout),
-            title: Text('LogOut'),
+            leading: const Icon(Icons.logout),
+            title: const Text('LogOut'),
             onTap: () => context.read(authNotifierProvider.notifier).signOut(),
           ),
         ],

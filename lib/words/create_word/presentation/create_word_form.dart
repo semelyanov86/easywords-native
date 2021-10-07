@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:words_native/global_settings/shared/providers.dart';
+import 'package:words_native/core/presentation/primitives/languages_list_widget.dart';
 import 'package:words_native/words/core/shared/providers.dart';
 
 class CreateWordForm extends StatefulWidget {
@@ -23,23 +23,10 @@ class _CreateWordForm extends State<CreateWordForm> {
   final _translatedController = TextEditingController();
   String _selectedLanguage = '';
 
-  List<String> _languages = [];
-
   @override
   void initState() {
     super.initState();
     // ref.read(starredReposNotifierProvider.notifier).getNextStarredReposPage();
-    /*_languages = context
-        .read(globalSettingsNotifierProvider.notifier)
-        .state
-        .settings
-        .entity
-        .languages_list;*/
-    _languages =
-        context.read(globalSettingsNotifierProvider.notifier).getLanguages();
-    _selectedLanguage = context
-        .read(globalSettingsNotifierProvider.notifier)
-        .getSelectedLanguage();
   }
 
   void _fieldFocusChange(
@@ -114,30 +101,14 @@ class _CreateWordForm extends State<CreateWordForm> {
                     .setTranslated(value ?? ''),
               ),
               const SizedBox(height: 10),
-              DropdownButtonFormField(
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    icon: Icon(Icons.map),
-                    labelText: 'Select language'),
-                items: _languages.map((language) {
-                  return DropdownMenuItem(
-                    child: Text(language),
-                    value: language,
-                  );
-                }).toList(),
-                onChanged: (language) {
-                  setState(() {
-                    _selectedLanguage = language as String;
-                    context
-                        .read(createWordProvider.notifier)
-                        .setLanguage(language as String);
-                  });
-                },
-                value: _selectedLanguage,
-                validator: (val) {
-                  return val == null ? 'Please select a language' : null;
-                },
-              ),
+              LanguagesListWidget(languageValueSetter: (language) {
+                setState(() {
+                  _selectedLanguage = language as String;
+                  context
+                      .read(createWordProvider.notifier)
+                      .setLanguage(language as String);
+                });
+              }),
               SizedBox(height: 10),
               ElevatedButton(
                 child: const Text('Create Word'),

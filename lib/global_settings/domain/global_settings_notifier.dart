@@ -48,4 +48,60 @@ class GlobalSettingsNotifier extends StateNotifier<GlobalSettingsState> {
       },
     );
   }
+
+  int getPaginationValue() {
+    return state.settings.entity.paginate;
+  }
+
+  bool getStarredValue() {
+    return state.settings.entity.starred_enabled;
+  }
+
+  bool getLearnedValue() {
+    return state.settings.entity.known_enabled;
+  }
+
+  bool getFreshFirstValue() {
+    return state.settings.entity.fresh_first;
+  }
+
+  bool getShowImportedValue() {
+    return state.settings.entity.show_imported;
+  }
+
+  bool getShowSharedValue() {
+    return state.settings.entity.show_shared;
+  }
+
+  bool getLatestFirstValue() {
+    return false;
+  }
+
+  void setPagination(int value) {
+    return;
+  }
+
+  void setStarred(bool value) {
+    return;
+  }
+
+  void setAsKnown(bool value) {
+    return;
+  }
+
+  void setFreshFirst(bool value) {
+    return;
+  }
+
+  void setShowImported(bool value) {
+    return;
+  }
+
+  void setShowShared(bool value) {
+    return;
+  }
+
+  void setLatestFirst(bool value) {
+    return;
+  }
 }
