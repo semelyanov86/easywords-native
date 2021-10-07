@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:words_native/auth/application/auth_notifier.dart';
 import 'package:words_native/auth/shared/providers.dart';
@@ -24,11 +25,11 @@ final initializationProvider = FutureProvider<Unit>((ref) async {
   return unit;
 });
 
-class AppWidget extends ConsumerWidget {
+class AppWidget extends HookWidget {
   final appRouter = AppRouter();
 
   @override
-  Widget build(BuildContext context, ScopedReader ref) {
+  Widget build(BuildContext context) {
     return ProviderListener(
       provider: initializationProvider,
       onChange: (context, value) {},

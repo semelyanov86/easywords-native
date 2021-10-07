@@ -57,6 +57,7 @@ class _CardsListPageState extends State<CardsListPage> {
         child: Scaffold(
           appBar: const AppBarWidget(
             header: 'Study Mode',
+            showBackButton: true,
           ),
           drawer: DrawerWidget(),
           body: state.map(

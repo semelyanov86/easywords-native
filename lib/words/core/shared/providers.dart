@@ -7,6 +7,7 @@ import 'package:words_native/words/card/infrastructure/cards_local_service.dart'
 import 'package:words_native/words/card/infrastructure/cards_remote_service.dart';
 import 'package:words_native/words/card/infrastructure/cards_repository.dart';
 import 'package:words_native/words/core/infrastructure/words_headers_cache.dart';
+import 'package:words_native/words/create_word/application/create_state_notifier.dart';
 
 final wordHeadersCacheProvired = Provider(
   (ref) => WordsHeadersCache(ref.watch(sembastProvider)),
@@ -40,3 +41,7 @@ final cardsNotifierProvider = StateNotifierProvider<CardsNotifier, CardsState>(
 final cardsCalculationProvider = StateNotifierProvider<
     CardsCalculationServiceNotifier,
     CardsCalculationService>((ref) => CardsCalculationServiceNotifier());
+
+final createWordProvider =
+    StateNotifierProvider<CreateStateNotifier, CreateState>(
+        (ref) => CreateStateNotifier());

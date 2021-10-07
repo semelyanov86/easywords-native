@@ -28,6 +28,14 @@ class GlobalSettingsNotifier extends StateNotifier<GlobalSettingsState> {
   GlobalSettingsNotifier(this._repository)
       : super(GlobalSettingsState.initial(Fresh.yes(const GlobalSettings())));
 
+  List<String> getLanguages() {
+    return state.settings.entity.languages_list;
+  }
+
+  String getSelectedLanguage() {
+    return state.settings.entity.default_language;
+  }
+
   final int _page = 1;
 
   Future<void> getSettings() async {
