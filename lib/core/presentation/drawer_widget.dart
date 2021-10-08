@@ -62,8 +62,13 @@ class DrawerWidget extends ConsumerWidget {
             title: Text('Statistics'),
           ),
           ListTile(
-            leading: Icon(Icons.password),
-            title: Text('Change Password'),
+            leading: const Icon(Icons.password),
+            title: const Text('Change Password'),
+            onTap: () {
+              AutoRouter.of(context).push(
+                const ChangePasswordRoute(),
+              );
+            },
           ),
           ListTile(
             leading: const Icon(Icons.logout),
