@@ -37,12 +37,24 @@ class CardsNotifier extends StateNotifier<CardsState> {
     state = failureOrCards.fold(
       (l) => CardsState.loadFailure(state.cards, l),
       (r) {
-        _page++;
+        // _page++;
         return CardsState.loadSuccess(
-          r.copyWith(entity: [...state.cards.entity, ...r.entity]),
+          r.copyWith(entity: r.entity),
           isNexPageAvailable: r.isNextPageAvailable ?? false,
         );
       },
     );
+  }
+
+  Future<void> flipWord(int word) async {
+    await _repository.markFlipped(word);
+  }
+
+  Future<void> markKnown(Word word) async {
+    await _repository.markKnown(word);
+  }
+
+  void increasePage() {
+    _page++;
   }
 }

@@ -38,6 +38,18 @@ class CardsRepository {
       return left(WordFailure.api(e.errorCode));
     }
   }
+
+  Future<void> markFlipped(int word) async {
+    _remoteService
+        .markViewed(word)
+        .then((value) => _localService.updateRecord(value));
+  }
+
+  Future<void> markKnown(Word word) async {
+    _remoteService
+        .markKnown(word.id, word.done_at == null)
+        .then((value) => _localService.updateRecord(value));
+  }
 }
 
 extension DTOListToDomainList on List<WordDTO> {

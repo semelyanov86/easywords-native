@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:words_native/core/infrastructure/dio_extensions.dart';
 import 'package:words_native/core/infrastructure/network_exceptions.dart';
@@ -61,5 +63,25 @@ class CardsRemoteService {
         rethrow;
       }
     }
+  }
+
+  Future<WordDTO> markViewed(int word) async {
+    final server = await MainLocalSettings.getServerUrl();
+    final path = 'api/words/${word.toString()}/viewed';
+
+    final requestUri = Uri.https(server?.host ?? 'easywordsapp.ru', path);
+    final response = await _dio.getUri(requestUri);
+    log(requestUri.toString());
+    return WordDTO.fromJson(response.data['data'] as Map<String, dynamic>);
+  }
+
+  Future<WordDTO> markKnown(int word, bool value) async {
+    final server = await MainLocalSettings.getServerUrl();
+    final path = 'api/words/${word.toString()}/known/${value ? 1 : 0}';
+
+    final requestUri = Uri.https(server?.host ?? 'easywordsapp.ru', path);
+    final response = await _dio.getUri(requestUri);
+    log(requestUri.toString());
+    return WordDTO.fromJson(response.data['data'] as Map<String, dynamic>);
   }
 }

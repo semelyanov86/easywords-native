@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:words_native/core/presentation/app_bar.dart';
 import 'package:words_native/core/presentation/drawer_widget.dart';
+import 'package:words_native/core/presentation/toasts.dart';
 import 'package:words_native/global_settings/domain/translation_directions.dart';
 import 'package:words_native/language_selector/presentation/no_results_display.dart';
 import 'package:words_native/words/card/application/cards_notifier.dart';
@@ -60,77 +62,185 @@ class _CardsListPageState extends State<CardsListPage> {
             showBackButton: true,
           ),
           drawer: DrawerWidget(),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                FloatingActionButton(
+                  onPressed: () {
+                    setState(() {
+                      flipped = !flipped;
+                    });
+                    if (flipped) {
+                      try {
+                        context
+                            .read(cardsNotifierProvider.notifier)
+                            .flipWord(serviceModel.getCurrentWord().id);
+                      } on Exception catch (e) {
+                        showNoConnectionToast(
+                            'There was a connection error when marking this word as viewed',
+                            context);
+                      }
+                    }
+                  },
+                  child: const Icon(Icons.flip),
+                  backgroundColor: Colors.amber,
+                ),
+                FloatingActionButton(
+                  onPressed: () {
+                    serviceNotifier.setNextWord();
+                  },
+                  child: const Icon(Icons.arrow_forward),
+                  backgroundColor: Colors.green,
+                ),
+              ],
+            ),
+          ),
           body: state.map(
               initial: (_) => Container(),
               loadInProgress: (_) => const Center(
                     child: CircularProgressIndicator(),
                   ),
               loadSuccess: (_) {
-                if (serviceModel.isEmpty()) {
+                if (state.maybeWhen(
+                    loadSuccess: (words, _) => serviceModel.words.isEmpty,
+                    orElse: () => false)) {
                   return const NoResultsDisplay(
                     message: 'These are no words to learn.',
                   );
                 }
-                return Center(
-                  child: Card(
-                    clipBehavior: Clip.antiAlias,
-                    child: Column(
-                      children: [
-                        ListTile(
-                          leading: Icon(MdiIcons.book),
-                          title: const Text('Translate word!'),
-                          subtitle: Text(
-                            'Please try to translate word',
-                            style:
-                                TextStyle(color: Colors.black.withOpacity(0.6)),
-                          ),
+                return Column(
+                  children: [
+                    ListTile(
+                      leading: Icon(MdiIcons.book),
+                      title: const Text('Translate word!'),
+                      subtitle: Text(
+                        'Please try to translate word',
+                        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'After translating you can learn it.',
+                        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      ),
+                    ),
+                    Center(
+                      child: Card(
+                        clipBehavior: Clip.antiAlias,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text(
-                            'After translating you can learn it.',
-                            style:
-                                TextStyle(color: Colors.black.withOpacity(0.6)),
-                          ),
-                        ),
-                        ListTile(
-                          title: Text(
-                            flipped
-                                ? serviceModel
-                                    .getCurrentWord()
-                                    .getLanguageValue(
-                                        widget.direction.mainLanguage)
-                                : serviceModel
-                                    .getCurrentWord()
-                                    .getLanguageValue(
-                                        widget.direction.originalLanguage),
-                            style: Theme.of(context).textTheme.headline5,
-                          ),
-                        ),
-                        ButtonBar(
-                          alignment: MainAxisAlignment.start,
+                        elevation: 5,
+                        margin: const EdgeInsets.all(5),
+                        child: Column(
                           children: [
-                            FlatButton(
-                              textColor: const Color(0xFF6200EE),
-                              onPressed: () {
-                                setState(() {
-                                  flipped = !flipped;
-                                });
-                              },
-                              child: const Text('FLIP'),
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    serviceModel.getDisplayCurrent() +
+                                        '/' +
+                                        serviceModel.words.length.toString(),
+                                    style:
+                                        Theme.of(context).textTheme.subtitle2,
+                                  ),
+                                  Text(
+                                    '#' +
+                                        serviceModel
+                                            .getCurrentWord()
+                                            .id
+                                            .toString(),
+                                    style:
+                                        Theme.of(context).textTheme.subtitle2,
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      serviceNotifier.deleteWord();
+                                    },
+                                    icon: Icon(Icons.delete),
+                                  ),
+                                ],
+                              ),
                             ),
-                            FlatButton(
-                              textColor: const Color(0xFF6200EE),
-                              onPressed: () {
-                                serviceNotifier.setNextWord();
-                              },
-                              child: const Text('NEXT'),
+                            ListTile(
+                              title: Text(
+                                flipped
+                                    ? serviceModel
+                                        .getCurrentWord()
+                                        .getLanguageValue(
+                                            widget.direction.mainLanguage)
+                                    : serviceModel
+                                        .getCurrentWord()
+                                        .getLanguageValue(
+                                            widget.direction.originalLanguage),
+                                style: Theme.of(context).textTheme.headline5,
+                              ),
+                            ),
+                            ButtonBar(
+                              alignment: MainAxisAlignment.start,
+                              children: [
+                                FlatButton(
+                                  textColor: serviceModel.prev == null
+                                      ? const Color.fromRGBO(90, 90, 90, 100)
+                                      : const Color.fromRGBO(157, 252, 3, 100),
+                                  onPressed: () {
+                                    serviceNotifier.setPrevWord();
+                                  },
+                                  child: const Text('PREV'),
+                                ),
+                                FlatButton(
+                                  textColor:
+                                      const Color.fromRGBO(252, 86, 3, 100),
+                                  onPressed: () {
+                                    try {
+                                      context
+                                          .read(cardsNotifierProvider.notifier)
+                                          .markKnown(
+                                              serviceModel.getCurrentWord());
+                                    } on DioError catch (e) {
+                                      showNoConnectionToast(e.message, context);
+                                    }
+                                    serviceNotifier.setLearned();
+                                  },
+                                  child: Text(
+                                      serviceModel.getCurrentWord().done_at ==
+                                              null
+                                          ? 'LEARNED!'
+                                          : 'BACK TO LEARN'),
+                                ),
+                                FlatButton(
+                                  textColor: const Color(0xFF6200EE),
+                                  onPressed: () {
+                                    serviceNotifier.setStarred(
+                                        !serviceModel.getCurrentWord().starred);
+                                  },
+                                  child: serviceModel.getCurrentWord().starred
+                                      ? Text('UNSTAR')
+                                      : Text('STAR'),
+                                ),
+                                FlatButton(
+                                  textColor:
+                                      const Color.fromRGBO(76, 128, 158, 100),
+                                  onPressed: () {
+                                    // serviceNotifier.setLearned();
+                                  },
+                                  child: const Text('SHARE'),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 );
               },
               loadFailure: (_) => Center(

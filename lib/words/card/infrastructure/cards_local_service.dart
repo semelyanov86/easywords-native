@@ -29,6 +29,11 @@ class CardsLocalService {
         );
   }
 
+  Future<void> updateRecord(WordDTO dto) async {
+    await _store.update(_sembastDatabase.instance, dto.toJson(),
+        finder: Finder(filter: Filter.equals('id', dto.id)));
+  }
+
   Future<List<WordDTO>> getPage(String language, int page) async {
     final settings = await _settings
         .getSettings(1)

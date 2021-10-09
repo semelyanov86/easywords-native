@@ -17,10 +17,14 @@ class _$CardsCalculationServiceTearOff {
   const _$CardsCalculationServiceTearOff();
 
   _CardsCalculationService call(
-      {int index = 0, int current = 0, List<Word> words = const []}) {
+      {int index = 0,
+      int current = 0,
+      int? prev = null,
+      List<Word> words = const []}) {
     return _CardsCalculationService(
       index: index,
       current: current,
+      prev: prev,
       words: words,
     );
   }
@@ -33,6 +37,7 @@ const $CardsCalculationService = _$CardsCalculationServiceTearOff();
 mixin _$CardsCalculationService {
   int get index => throw _privateConstructorUsedError;
   int get current => throw _privateConstructorUsedError;
+  int? get prev => throw _privateConstructorUsedError;
   List<Word> get words => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -45,7 +50,7 @@ abstract class $CardsCalculationServiceCopyWith<$Res> {
   factory $CardsCalculationServiceCopyWith(CardsCalculationService value,
           $Res Function(CardsCalculationService) then) =
       _$CardsCalculationServiceCopyWithImpl<$Res>;
-  $Res call({int index, int current, List<Word> words});
+  $Res call({int index, int current, int? prev, List<Word> words});
 }
 
 /// @nodoc
@@ -61,6 +66,7 @@ class _$CardsCalculationServiceCopyWithImpl<$Res>
   $Res call({
     Object? index = freezed,
     Object? current = freezed,
+    Object? prev = freezed,
     Object? words = freezed,
   }) {
     return _then(_value.copyWith(
@@ -72,6 +78,10 @@ class _$CardsCalculationServiceCopyWithImpl<$Res>
           ? _value.current
           : current // ignore: cast_nullable_to_non_nullable
               as int,
+      prev: prev == freezed
+          ? _value.prev
+          : prev // ignore: cast_nullable_to_non_nullable
+              as int?,
       words: words == freezed
           ? _value.words
           : words // ignore: cast_nullable_to_non_nullable
@@ -87,7 +97,7 @@ abstract class _$CardsCalculationServiceCopyWith<$Res>
           $Res Function(_CardsCalculationService) then) =
       __$CardsCalculationServiceCopyWithImpl<$Res>;
   @override
-  $Res call({int index, int current, List<Word> words});
+  $Res call({int index, int current, int? prev, List<Word> words});
 }
 
 /// @nodoc
@@ -106,6 +116,7 @@ class __$CardsCalculationServiceCopyWithImpl<$Res>
   $Res call({
     Object? index = freezed,
     Object? current = freezed,
+    Object? prev = freezed,
     Object? words = freezed,
   }) {
     return _then(_CardsCalculationService(
@@ -117,6 +128,10 @@ class __$CardsCalculationServiceCopyWithImpl<$Res>
           ? _value.current
           : current // ignore: cast_nullable_to_non_nullable
               as int,
+      prev: prev == freezed
+          ? _value.prev
+          : prev // ignore: cast_nullable_to_non_nullable
+              as int?,
       words: words == freezed
           ? _value.words
           : words // ignore: cast_nullable_to_non_nullable
@@ -129,7 +144,10 @@ class __$CardsCalculationServiceCopyWithImpl<$Res>
 
 class _$_CardsCalculationService extends _CardsCalculationService {
   const _$_CardsCalculationService(
-      {this.index = 0, this.current = 0, this.words = const []})
+      {this.index = 0,
+      this.current = 0,
+      this.prev = null,
+      this.words = const []})
       : super._();
 
   @JsonKey(defaultValue: 0)
@@ -138,13 +156,16 @@ class _$_CardsCalculationService extends _CardsCalculationService {
   @JsonKey(defaultValue: 0)
   @override
   final int current;
+  @JsonKey(defaultValue: null)
+  @override
+  final int? prev;
   @JsonKey(defaultValue: const [])
   @override
   final List<Word> words;
 
   @override
   String toString() {
-    return 'CardsCalculationService(index: $index, current: $current, words: $words)';
+    return 'CardsCalculationService(index: $index, current: $current, prev: $prev, words: $words)';
   }
 
   @override
@@ -156,6 +177,8 @@ class _$_CardsCalculationService extends _CardsCalculationService {
             (identical(other.current, current) ||
                 const DeepCollectionEquality()
                     .equals(other.current, current)) &&
+            (identical(other.prev, prev) ||
+                const DeepCollectionEquality().equals(other.prev, prev)) &&
             (identical(other.words, words) ||
                 const DeepCollectionEquality().equals(other.words, words)));
   }
@@ -165,6 +188,7 @@ class _$_CardsCalculationService extends _CardsCalculationService {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(index) ^
       const DeepCollectionEquality().hash(current) ^
+      const DeepCollectionEquality().hash(prev) ^
       const DeepCollectionEquality().hash(words);
 
   @JsonKey(ignore: true)
@@ -176,13 +200,18 @@ class _$_CardsCalculationService extends _CardsCalculationService {
 
 abstract class _CardsCalculationService extends CardsCalculationService {
   const factory _CardsCalculationService(
-      {int index, int current, List<Word> words}) = _$_CardsCalculationService;
+      {int index,
+      int current,
+      int? prev,
+      List<Word> words}) = _$_CardsCalculationService;
   const _CardsCalculationService._() : super._();
 
   @override
   int get index => throw _privateConstructorUsedError;
   @override
   int get current => throw _privateConstructorUsedError;
+  @override
+  int? get prev => throw _privateConstructorUsedError;
   @override
   List<Word> get words => throw _privateConstructorUsedError;
   @override
