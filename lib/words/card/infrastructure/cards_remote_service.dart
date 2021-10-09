@@ -20,7 +20,7 @@ class CardsRemoteService {
     final server = await MainLocalSettings.getServerUrl();
 
     final requestUri =
-        Uri.https(server?.host ?? 'easywordsapp.ru', 'api/words', {
+        Uri.https(server?.host ?? MainLocalSettings.defaultHost, 'api/words', {
       'page': '$page',
       'language': language,
     });
@@ -69,7 +69,8 @@ class CardsRemoteService {
     final server = await MainLocalSettings.getServerUrl();
     final path = 'api/words/${word.toString()}/viewed';
 
-    final requestUri = Uri.https(server?.host ?? 'easywordsapp.ru', path);
+    final requestUri =
+        Uri.https(server?.host ?? MainLocalSettings.defaultHost, path);
     final response = await _dio.getUri(requestUri);
     log(requestUri.toString());
     return WordDTO.fromJson(response.data['data'] as Map<String, dynamic>);
@@ -79,7 +80,8 @@ class CardsRemoteService {
     final server = await MainLocalSettings.getServerUrl();
     final path = 'api/words/${word.toString()}/known/${value ? 1 : 0}';
 
-    final requestUri = Uri.https(server?.host ?? 'easywordsapp.ru', path);
+    final requestUri =
+        Uri.https(server?.host ?? MainLocalSettings.defaultHost, path);
     final response = await _dio.getUri(requestUri);
     log(requestUri.toString());
     return WordDTO.fromJson(response.data['data'] as Map<String, dynamic>);

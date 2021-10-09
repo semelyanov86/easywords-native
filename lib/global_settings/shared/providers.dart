@@ -6,7 +6,7 @@ import 'package:words_native/global_settings/infrastructure/global_settings_loca
 import 'package:words_native/global_settings/infrastructure/global_settings_remote_service.dart';
 import 'package:words_native/global_settings/infrastructure/global_settings_repository.dart';
 
-final wordHeadersCacheProvired = Provider(
+final globalSettingsHeadersCacheProvired = Provider(
   (ref) => GlobalSettingsHeadersCache(ref.watch(sembastProvider)),
 );
 
@@ -17,7 +17,7 @@ final globalSettingsLocalServiceProvider = Provider(
 final globalSettingsRemoteServiceProvider = Provider(
   (ref) => GlobalSettingsRemoteService(
     ref.watch(dioProvider),
-    ref.watch(wordHeadersCacheProvired),
+    ref.watch(globalSettingsHeadersCacheProvired),
   ),
 );
 

@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:words_native/auth/shared/providers.dart';
 import 'package:words_native/core/presentation/routes/app_router.gr.dart';
+import 'package:words_native/profile/domain/user.dart';
+import 'package:words_native/profile/shared/providers.dart';
 
 class DrawerWidget extends ConsumerWidget {
   const DrawerWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, _) {
+    User user = context.read(profileNotifierProvider).user.entity;
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -20,8 +23,8 @@ class DrawerWidget extends ConsumerWidget {
             ),
             child: Column(
               children: [
-                const Text(
-                  'Administrator',
+                Text(
+                  user.name,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -30,9 +33,11 @@ class DrawerWidget extends ConsumerWidget {
                 const Divider(
                   color: Colors.transparent,
                 ),
-                const CircleAvatar(
+                CircleAvatar(
                   backgroundImage: CachedNetworkImageProvider(
-                    'https://easywordsapp.ru/images/easywords.png',
+                    user.profilePathSmall.isEmpty
+                        ? 'https://easywordsapp.ru/images/easywords.png'
+                        : user.profilePathSmall,
                   ),
                   backgroundColor: Colors.transparent,
                 ),

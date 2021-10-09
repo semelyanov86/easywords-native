@@ -4,6 +4,7 @@ import 'package:words_native/core/presentation/app_bar.dart';
 import 'package:words_native/core/presentation/drawer_widget.dart';
 import 'package:words_native/global_settings/shared/providers.dart';
 import 'package:words_native/language_selector/presentation/languages_list_view.dart';
+import 'package:words_native/profile/shared/providers.dart';
 
 class LanguageSelectorPage extends StatefulWidget {
   const LanguageSelectorPage({Key? key}) : super(key: key);
@@ -19,14 +20,17 @@ class _LanguageSelectorPageState extends State<LanguageSelectorPage> {
     Future.microtask(
       () => context.read(globalSettingsNotifierProvider.notifier).getSettings(),
     );
+    Future.microtask(
+      () => context.read(profileNotifierProvider.notifier).getProfile(),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: AppBarWidget(header: 'EasyWords App'),
       drawer: DrawerWidget(),
-      body: const LanguagesListView(),
+      body: LanguagesListView(),
     );
   }
 }

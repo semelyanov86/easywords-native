@@ -2,6 +2,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:words_native/local_settings/infrastructure/secure_local_settings_storage.dart';
 
 class MainLocalSettings {
+  static const defaultHost = 'easywordsapp.ru';
   static String parseUrl(String uri) {
     final url = Uri.parse(uri);
     String address = '';

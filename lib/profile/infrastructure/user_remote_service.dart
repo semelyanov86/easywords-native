@@ -3,20 +3,20 @@ import 'package:words_native/core/infrastructure/dio_extensions.dart';
 import 'package:words_native/core/infrastructure/network_exceptions.dart';
 import 'package:words_native/core/infrastructure/remote_response.dart';
 import 'package:words_native/core/infrastructure/server_headers.dart';
-import 'package:words_native/global_settings/infrastructure/global_settings_dto.dart';
-import 'package:words_native/global_settings/infrastructure/global_settings_headers_cache.dart';
 import 'package:words_native/local_settings/infrastructure/main_local_settings.dart';
+import 'package:words_native/profile/infrastructure/user_dto.dart';
+import 'package:words_native/profile/infrastructure/user_headers_cache.dart';
 
-class GlobalSettingsRemoteService {
+class UserRemoteService {
   final Dio _dio;
-  final GlobalSettingsHeadersCache _headersCache;
+  final UserHeadersCache _headersCache;
 
-  GlobalSettingsRemoteService(this._dio, this._headersCache);
+  UserRemoteService(this._dio, this._headersCache);
 
-  Future<RemoteResponse<GlobalSettingsDTO>> getSettings([int page = 1]) async {
+  Future<RemoteResponse<UserDTO>> getProfile() async {
     final server = await MainLocalSettings.getServerUrl();
-    final requestUri = Uri.https(
-        server?.host ?? MainLocalSettings.defaultHost, 'api/settings');
+    final requestUri =
+        Uri.https(server?.host ?? MainLocalSettings.defaultHost, 'api/me');
 
     final previousHeaders = await _headersCache.getHeaders(requestUri);
 
@@ -27,14 +27,14 @@ class GlobalSettingsRemoteService {
           }));
 
       if (response.statusCode == 304) {
-        return RemoteResponse.notModified(
-          maxPage: previousHeaders?.last_page ?? 0,
+        return const RemoteResponse.notModified(
+          maxPage: 1,
         );
       } else if (response.statusCode == 200) {
         final headers = ServerHeaders.parse(response);
         await _headersCache.saveHeaders(requestUri, headers);
-        final convertedData = GlobalSettingsDTO.fromJson(
-            response.data['data'] as Map<String, dynamic>);
+        final convertedData =
+            UserDTO.fromJson(response.data['data'] as Map<String, dynamic>);
         return RemoteResponse.withNewData(
           convertedData,
           maxPage: 1,

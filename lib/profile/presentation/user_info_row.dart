@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 
-class UserInfoRow extends StatelessWidget {
+class UserInfoRow {
   final String label;
   final String value;
 
-  const UserInfoRow({Key? key, required this.label, required this.value})
-      : super(key: key);
+  const UserInfoRow({required this.label, required this.value});
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Text(label),
-        Text(value),
-      ],
-    );
+  DataRow generate() {
+    return DataRow(cells: [
+      DataCell(Text(label)),
+      DataCell(Text(value)),
+    ]);
   }
 }
