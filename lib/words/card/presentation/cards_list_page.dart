@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -7,6 +6,7 @@ import 'package:words_native/core/presentation/drawer_widget.dart';
 import 'package:words_native/core/presentation/toasts.dart';
 import 'package:words_native/global_settings/domain/translation_directions.dart';
 import 'package:words_native/language_selector/presentation/no_results_display.dart';
+import 'package:words_native/profile/presentation/choose_user_page.dart';
 import 'package:words_native/words/card/application/cards_notifier.dart';
 import 'package:words_native/words/core/shared/providers.dart';
 
@@ -163,6 +163,24 @@ class _CardsListPageState extends State<CardsListPage> {
                                   ),
                                   IconButton(
                                     onPressed: () {
+                                      context
+                                          .read(cardsNotifierProvider.notifier)
+                                          .deleteWord(
+                                              serviceModel.getCurrentWord().id)
+                                          .then((value) => showNoConnectionToast(
+                                              'Word successfully deleted with id: ' +
+                                                  serviceModel
+                                                      .getCurrentWord()
+                                                      .id
+                                                      .toString(),
+                                              context))
+                                          .catchError((e) {
+                                        showNoConnectionToast(
+                                            'Connection error when trying to delete word: ' +
+                                                e.toString(),
+                                            context);
+                                      });
+
                                       serviceNotifier.deleteWord();
                                     },
                                     icon: Icon(Icons.delete),
@@ -200,14 +218,16 @@ class _CardsListPageState extends State<CardsListPage> {
                                   textColor:
                                       const Color.fromRGBO(252, 86, 3, 100),
                                   onPressed: () {
-                                    try {
-                                      context
-                                          .read(cardsNotifierProvider.notifier)
-                                          .markKnown(
-                                              serviceModel.getCurrentWord());
-                                    } on DioError catch (e) {
-                                      showNoConnectionToast(e.message, context);
-                                    }
+                                    context
+                                        .read(cardsNotifierProvider.notifier)
+                                        .markKnown(
+                                            serviceModel.getCurrentWord())
+                                        .catchError((e) {
+                                      showNoConnectionToast(
+                                          'Connection error when trying to mark word as learned: ' +
+                                              e.toString(),
+                                          context);
+                                    });
                                     serviceNotifier.setLearned();
                                   },
                                   child: Text(
@@ -219,8 +239,24 @@ class _CardsListPageState extends State<CardsListPage> {
                                 FlatButton(
                                   textColor: const Color(0xFF6200EE),
                                   onPressed: () {
+                                    context
+                                        .read(cardsNotifierProvider.notifier)
+                                        .starWord(serviceModel.getCurrentWord())
+                                        .catchError((e) {
+                                      showNoConnectionToast(
+                                          'Connection error when trying to mark word as starred: ' +
+                                              e.toString(),
+                                          context);
+                                    });
                                     serviceNotifier.setStarred(
                                         !serviceModel.getCurrentWord().starred);
+                                    showNoConnectionToast(
+                                        'Successfully mark starring with ID: ' +
+                                            serviceModel
+                                                .getCurrentWord()
+                                                .id
+                                                .toString(),
+                                        context);
                                   },
                                   child: serviceModel.getCurrentWord().starred
                                       ? Text('UNSTAR')
@@ -229,8 +265,41 @@ class _CardsListPageState extends State<CardsListPage> {
                                 FlatButton(
                                   textColor:
                                       const Color.fromRGBO(76, 128, 158, 100),
-                                  onPressed: () {
-                                    // serviceNotifier.setLearned();
+                                  onPressed: () async {
+                                    var tappedName = await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return ChooseUserPage();
+                                    }));
+                                    if (tappedName != null) {
+                                      context
+                                          .read(cardsNotifierProvider.notifier)
+                                          .shareWord(
+                                              serviceModel.getCurrentWord().id,
+                                              tappedName as int)
+                                          .then((value) => showNoConnectionToast(
+                                              'Created new word with ID: ${value.id.toString()}',
+                                              context))
+                                          .catchError((e) {
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                AlertDialog(
+                                                  title: const Text(
+                                                      'Error during sharing'),
+                                                  content: Text(
+                                                      'There was an error in sharing word. Maybe word already exists.'),
+                                                  actions: <Widget>[
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              context, 'OK'),
+                                                      child: const Text('OK'),
+                                                    ),
+                                                  ],
+                                                ));
+                                      });
+                                    }
                                   },
                                   child: const Text('SHARE'),
                                 ),

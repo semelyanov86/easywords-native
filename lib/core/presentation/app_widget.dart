@@ -52,6 +52,7 @@ class AppWidget extends HookWidget {
         },
         child: MaterialApp.router(
           title: 'EasyWords App',
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primarySwatch: Colors.lightGreen,
           ),

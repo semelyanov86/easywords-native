@@ -83,7 +83,34 @@ class CardsRemoteService {
     final requestUri =
         Uri.https(server?.host ?? MainLocalSettings.defaultHost, path);
     final response = await _dio.getUri(requestUri);
-    log(requestUri.toString());
+    return WordDTO.fromJson(response.data['data'] as Map<String, dynamic>);
+  }
+
+  Future<WordDTO> shareWord(int word, int user) async {
+    final server = await MainLocalSettings.getServerUrl();
+    final path = 'api/words/${word.toString()}/share/${user.toString()}';
+    final requestUri =
+        Uri.https(server?.host ?? MainLocalSettings.defaultHost, path);
+    final response = await _dio.getUri(requestUri);
+    return WordDTO.fromJson(response.data['data'] as Map<String, dynamic>);
+  }
+
+  Future<void> deleteWord(int word) async {
+    final server = await MainLocalSettings.getServerUrl();
+    final path = 'api/words/${word.toString()}';
+
+    final requestUri =
+        Uri.https(server?.host ?? MainLocalSettings.defaultHost, path);
+    await _dio.deleteUri(requestUri);
+  }
+
+  Future<WordDTO> starWord(int word, bool value) async {
+    final server = await MainLocalSettings.getServerUrl();
+    final path = 'api/words/${word.toString()}/starred/${value ? 1 : 0}';
+
+    final requestUri =
+        Uri.https(server?.host ?? MainLocalSettings.defaultHost, path);
+    final response = await _dio.getUri(requestUri);
     return WordDTO.fromJson(response.data['data'] as Map<String, dynamic>);
   }
 }

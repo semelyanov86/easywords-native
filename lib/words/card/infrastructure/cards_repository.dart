@@ -50,6 +50,20 @@ class CardsRepository {
         .markKnown(word.id, word.done_at == null)
         .then((value) => _localService.updateRecord(value));
   }
+
+  Future<WordDTO> shareWord(int word, int user) async {
+    return _remoteService.shareWord(word, user);
+  }
+
+  Future<void> deleteWord(int word) async {
+    return _remoteService.deleteWord(word);
+  }
+
+  Future<void> starWord(Word word) async {
+    _remoteService
+        .starWord(word.id, !word.starred)
+        .then((value) => _localService.updateRecord(value));
+  }
 }
 
 extension DTOListToDomainList on List<WordDTO> {
