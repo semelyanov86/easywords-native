@@ -6,4 +6,5 @@ part 'word_failure.freezed.dart';
 class WordFailure with _$WordFailure {
   const WordFailure._();
   const factory WordFailure.api(int? errorCode) = _Api;
+  const factory WordFailure.validation(String message) = _Validation;
 }

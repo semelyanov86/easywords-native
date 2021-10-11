@@ -21,6 +21,12 @@ class _$WordFailureTearOff {
       errorCode,
     );
   }
+
+  _Validation validation(String message) {
+    return _Validation(
+      message,
+    );
+  }
 }
 
 /// @nodoc
@@ -28,33 +34,31 @@ const $WordFailure = _$WordFailureTearOff();
 
 /// @nodoc
 mixin _$WordFailure {
-  int? get errorCode => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int? errorCode) api,
+    required TResult Function(String message) validation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int? errorCode)? api,
+    TResult Function(String message)? validation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Api value) api,
+    required TResult Function(_Validation value) validation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Api value)? api,
+    TResult Function(_Validation value)? validation,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $WordFailureCopyWith<WordFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -63,7 +67,6 @@ abstract class $WordFailureCopyWith<$Res> {
   factory $WordFailureCopyWith(
           WordFailure value, $Res Function(WordFailure) then) =
       _$WordFailureCopyWithImpl<$Res>;
-  $Res call({int? errorCode});
 }
 
 /// @nodoc
@@ -73,25 +76,12 @@ class _$WordFailureCopyWithImpl<$Res> implements $WordFailureCopyWith<$Res> {
   final WordFailure _value;
   // ignore: unused_field
   final $Res Function(WordFailure) _then;
-
-  @override
-  $Res call({
-    Object? errorCode = freezed,
-  }) {
-    return _then(_value.copyWith(
-      errorCode: errorCode == freezed
-          ? _value.errorCode
-          : errorCode // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$ApiCopyWith<$Res> implements $WordFailureCopyWith<$Res> {
+abstract class _$ApiCopyWith<$Res> {
   factory _$ApiCopyWith(_Api value, $Res Function(_Api) then) =
       __$ApiCopyWithImpl<$Res>;
-  @override
   $Res call({int? errorCode});
 }
 
@@ -152,6 +142,7 @@ class _$_Api extends _Api {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int? errorCode) api,
+    required TResult Function(String message) validation,
   }) {
     return api(errorCode);
   }
@@ -160,6 +151,7 @@ class _$_Api extends _Api {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int? errorCode)? api,
+    TResult Function(String message)? validation,
     required TResult orElse(),
   }) {
     if (api != null) {
@@ -172,6 +164,7 @@ class _$_Api extends _Api {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Api value) api,
+    required TResult Function(_Validation value) validation,
   }) {
     return api(this);
   }
@@ -180,6 +173,7 @@ class _$_Api extends _Api {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Api value)? api,
+    TResult Function(_Validation value)? validation,
     required TResult orElse(),
   }) {
     if (api != null) {
@@ -193,9 +187,123 @@ abstract class _Api extends WordFailure {
   const factory _Api(int? errorCode) = _$_Api;
   const _Api._() : super._();
 
-  @override
   int? get errorCode => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   _$ApiCopyWith<_Api> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ValidationCopyWith<$Res> {
+  factory _$ValidationCopyWith(
+          _Validation value, $Res Function(_Validation) then) =
+      __$ValidationCopyWithImpl<$Res>;
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$ValidationCopyWithImpl<$Res> extends _$WordFailureCopyWithImpl<$Res>
+    implements _$ValidationCopyWith<$Res> {
+  __$ValidationCopyWithImpl(
+      _Validation _value, $Res Function(_Validation) _then)
+      : super(_value, (v) => _then(v as _Validation));
+
+  @override
+  _Validation get _value => super._value as _Validation;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_Validation(
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Validation extends _Validation {
+  const _$_Validation(this.message) : super._();
+
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'WordFailure.validation(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _Validation &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality().equals(other.message, message)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ValidationCopyWith<_Validation> get copyWith =>
+      __$ValidationCopyWithImpl<_Validation>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int? errorCode) api,
+    required TResult Function(String message) validation,
+  }) {
+    return validation(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int? errorCode)? api,
+    TResult Function(String message)? validation,
+    required TResult orElse(),
+  }) {
+    if (validation != null) {
+      return validation(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Api value) api,
+    required TResult Function(_Validation value) validation,
+  }) {
+    return validation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Api value)? api,
+    TResult Function(_Validation value)? validation,
+    required TResult orElse(),
+  }) {
+    if (validation != null) {
+      return validation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Validation extends WordFailure {
+  const factory _Validation(String message) = _$_Validation;
+  const _Validation._() : super._();
+
+  String get message => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$ValidationCopyWith<_Validation> get copyWith =>
+      throw _privateConstructorUsedError;
 }

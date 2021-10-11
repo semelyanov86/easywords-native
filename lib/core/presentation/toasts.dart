@@ -26,3 +26,35 @@ Future<void> showNoConnectionToast(String message, BuildContext context) async {
     },
   );
 }
+
+Future<void> showNotificationToast(String message, BuildContext context) async {
+  await showFlash(
+    context: context,
+    duration: const Duration(seconds: 2),
+    builder: (context, controller) {
+      return Flash.dialog(
+        backgroundColor: Colors.black.withOpacity(0.5),
+        controller: controller,
+        borderRadius: BorderRadius.circular(8),
+        margin: const EdgeInsets.all(8.0),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            message,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+            ),
+          ),
+        ),
+      );
+    },
+  );
+}
+
+ScaffoldFeatureController showSuccessToast(
+    String message, BuildContext context) {
+  return ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(content: Text(message)),
+  );
+}
