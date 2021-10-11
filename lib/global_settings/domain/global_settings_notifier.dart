@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:words_native/core/domain/fresh.dart';
@@ -74,34 +75,83 @@ class GlobalSettingsNotifier extends StateNotifier<GlobalSettingsState> {
   }
 
   bool getLatestFirstValue() {
-    return false;
+    return state.settings.entity.latest_first;
   }
 
-  void setPagination(int value) {
-    return;
+  Future<Either<GlobalSettingsFailure, Fresh<bool>>> setPagination(
+      int value) async {
+    var result = _repository.setSettings('paginate', value);
+    getSettings();
+
+    return result;
   }
 
-  void setStarred(bool value) {
-    return;
+  Future<Either<GlobalSettingsFailure, Fresh<bool>>> setStarred(
+      bool value) async {
+    var result = _repository.setSettings('starred_enabled', value);
+    getSettings();
+
+    return result;
   }
 
-  void setAsKnown(bool value) {
-    return;
+  Future<Either<GlobalSettingsFailure, Fresh<bool>>> setAsKnown(
+      bool value) async {
+    var result = _repository.setSettings('known_enabled', value);
+    getSettings();
+
+    return result;
   }
 
-  void setFreshFirst(bool value) {
-    return;
+  Future<Either<GlobalSettingsFailure, Fresh<bool>>> setFreshFirst(
+      bool value) async {
+    var result = _repository.setSettings('fresh_first', value);
+    getSettings();
+
+    return result;
   }
 
-  void setShowImported(bool value) {
-    return;
+  Future<Either<GlobalSettingsFailure, Fresh<bool>>> setShowImported(
+      bool value) async {
+    var result = _repository.setSettings('show_imported', value);
+    getSettings();
+
+    return result;
   }
 
-  void setShowShared(bool value) {
-    return;
+  Future<Either<GlobalSettingsFailure, Fresh<bool>>> setShowShared(
+      bool value) async {
+    var result = _repository.setSettings('show_shared', value);
+    getSettings();
+
+    return result;
   }
 
-  void setLatestFirst(bool value) {
-    return;
+  Future<Either<GlobalSettingsFailure, Fresh<bool>>> setLatestFirst(
+      bool value) async {
+    var result = _repository.setSettings('latest_first', value);
+    getSettings();
+
+    return result;
+  }
+
+  Future<Either<GlobalSettingsFailure, Fresh<bool>>> setDefaultLanguage(
+      String value) async {
+    var result = _repository.setSettings('default_language', value);
+    getSettings();
+
+    return result;
+  }
+
+  Future<void> importWords() async {
+    state = GlobalSettingsState.loadInProgress(state.settings);
+    final failureOrSettings =
+        await _repository.importWords(getSelectedLanguage());
+    state = failureOrSettings.fold(
+      (l) => GlobalSettingsState.loadFailure(state.settings, l),
+      (r) {
+        return GlobalSettingsState.loadSuccess(
+            Fresh.yes(state.settings.entity));
+      },
+    );
   }
 }

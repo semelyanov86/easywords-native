@@ -21,15 +21,16 @@ class _$GlobalSettingsDTOTearOff {
   const _$GlobalSettingsDTOTearOff();
 
   _GlobalSettingsDTO call(
-      {int paginate = 20,
+      {@JsonKey(fromJson: _parseInt) int paginate = 21,
       String default_language = 'DE',
-      bool starred_enabled = false,
-      bool known_enabled = false,
-      bool fresh_first = true,
-      bool show_shared = false,
-      bool show_imported = true,
+      @JsonKey(fromJson: _parseBool) bool starred_enabled = false,
+      @JsonKey(fromJson: _parseBool) bool known_enabled = false,
+      @JsonKey(fromJson: _parseBool) bool fresh_first = true,
+      @JsonKey(fromJson: _parseBool) bool show_shared = false,
+      @JsonKey(fromJson: _parseBool) bool show_imported = true,
       String main_language = 'RU',
-      List<String> languages_list = const ['DE', 'EN']}) {
+      List<String> languages_list = const [],
+      @JsonKey(fromJson: _parseBool) bool latest_first = false}) {
     return _GlobalSettingsDTO(
       paginate: paginate,
       default_language: default_language,
@@ -40,6 +41,7 @@ class _$GlobalSettingsDTOTearOff {
       show_imported: show_imported,
       main_language: main_language,
       languages_list: languages_list,
+      latest_first: latest_first,
     );
   }
 
@@ -53,15 +55,23 @@ const $GlobalSettingsDTO = _$GlobalSettingsDTOTearOff();
 
 /// @nodoc
 mixin _$GlobalSettingsDTO {
+  @JsonKey(fromJson: _parseInt)
   int get paginate => throw _privateConstructorUsedError;
   String get default_language => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _parseBool)
   bool get starred_enabled => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _parseBool)
   bool get known_enabled => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _parseBool)
   bool get fresh_first => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _parseBool)
   bool get show_shared => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _parseBool)
   bool get show_imported => throw _privateConstructorUsedError;
   String get main_language => throw _privateConstructorUsedError;
   List<String> get languages_list => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _parseBool)
+  bool get latest_first => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -75,15 +85,16 @@ abstract class $GlobalSettingsDTOCopyWith<$Res> {
           GlobalSettingsDTO value, $Res Function(GlobalSettingsDTO) then) =
       _$GlobalSettingsDTOCopyWithImpl<$Res>;
   $Res call(
-      {int paginate,
+      {@JsonKey(fromJson: _parseInt) int paginate,
       String default_language,
-      bool starred_enabled,
-      bool known_enabled,
-      bool fresh_first,
-      bool show_shared,
-      bool show_imported,
+      @JsonKey(fromJson: _parseBool) bool starred_enabled,
+      @JsonKey(fromJson: _parseBool) bool known_enabled,
+      @JsonKey(fromJson: _parseBool) bool fresh_first,
+      @JsonKey(fromJson: _parseBool) bool show_shared,
+      @JsonKey(fromJson: _parseBool) bool show_imported,
       String main_language,
-      List<String> languages_list});
+      List<String> languages_list,
+      @JsonKey(fromJson: _parseBool) bool latest_first});
 }
 
 /// @nodoc
@@ -106,6 +117,7 @@ class _$GlobalSettingsDTOCopyWithImpl<$Res>
     Object? show_imported = freezed,
     Object? main_language = freezed,
     Object? languages_list = freezed,
+    Object? latest_first = freezed,
   }) {
     return _then(_value.copyWith(
       paginate: paginate == freezed
@@ -144,6 +156,10 @@ class _$GlobalSettingsDTOCopyWithImpl<$Res>
           ? _value.languages_list
           : languages_list // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      latest_first: latest_first == freezed
+          ? _value.latest_first
+          : latest_first // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -156,15 +172,16 @@ abstract class _$GlobalSettingsDTOCopyWith<$Res>
       __$GlobalSettingsDTOCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int paginate,
+      {@JsonKey(fromJson: _parseInt) int paginate,
       String default_language,
-      bool starred_enabled,
-      bool known_enabled,
-      bool fresh_first,
-      bool show_shared,
-      bool show_imported,
+      @JsonKey(fromJson: _parseBool) bool starred_enabled,
+      @JsonKey(fromJson: _parseBool) bool known_enabled,
+      @JsonKey(fromJson: _parseBool) bool fresh_first,
+      @JsonKey(fromJson: _parseBool) bool show_shared,
+      @JsonKey(fromJson: _parseBool) bool show_imported,
       String main_language,
-      List<String> languages_list});
+      List<String> languages_list,
+      @JsonKey(fromJson: _parseBool) bool latest_first});
 }
 
 /// @nodoc
@@ -189,6 +206,7 @@ class __$GlobalSettingsDTOCopyWithImpl<$Res>
     Object? show_imported = freezed,
     Object? main_language = freezed,
     Object? languages_list = freezed,
+    Object? latest_first = freezed,
   }) {
     return _then(_GlobalSettingsDTO(
       paginate: paginate == freezed
@@ -227,6 +245,10 @@ class __$GlobalSettingsDTOCopyWithImpl<$Res>
           ? _value.languages_list
           : languages_list // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      latest_first: latest_first == freezed
+          ? _value.latest_first
+          : latest_first // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -235,51 +257,55 @@ class __$GlobalSettingsDTOCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_GlobalSettingsDTO extends _GlobalSettingsDTO {
   const _$_GlobalSettingsDTO(
-      {this.paginate = 20,
+      {@JsonKey(fromJson: _parseInt) this.paginate = 21,
       this.default_language = 'DE',
-      this.starred_enabled = false,
-      this.known_enabled = false,
-      this.fresh_first = true,
-      this.show_shared = false,
-      this.show_imported = true,
+      @JsonKey(fromJson: _parseBool) this.starred_enabled = false,
+      @JsonKey(fromJson: _parseBool) this.known_enabled = false,
+      @JsonKey(fromJson: _parseBool) this.fresh_first = true,
+      @JsonKey(fromJson: _parseBool) this.show_shared = false,
+      @JsonKey(fromJson: _parseBool) this.show_imported = true,
       this.main_language = 'RU',
-      this.languages_list = const ['DE', 'EN']})
+      this.languages_list = const [],
+      @JsonKey(fromJson: _parseBool) this.latest_first = false})
       : super._();
 
   factory _$_GlobalSettingsDTO.fromJson(Map<String, dynamic> json) =>
       _$_$_GlobalSettingsDTOFromJson(json);
 
-  @JsonKey(defaultValue: 20)
   @override
+  @JsonKey(fromJson: _parseInt)
   final int paginate;
   @JsonKey(defaultValue: 'DE')
   @override
   final String default_language;
-  @JsonKey(defaultValue: false)
   @override
+  @JsonKey(fromJson: _parseBool)
   final bool starred_enabled;
-  @JsonKey(defaultValue: false)
   @override
+  @JsonKey(fromJson: _parseBool)
   final bool known_enabled;
-  @JsonKey(defaultValue: true)
   @override
+  @JsonKey(fromJson: _parseBool)
   final bool fresh_first;
-  @JsonKey(defaultValue: false)
   @override
+  @JsonKey(fromJson: _parseBool)
   final bool show_shared;
-  @JsonKey(defaultValue: true)
   @override
+  @JsonKey(fromJson: _parseBool)
   final bool show_imported;
   @JsonKey(defaultValue: 'RU')
   @override
   final String main_language;
-  @JsonKey(defaultValue: const ['DE', 'EN'])
+  @JsonKey(defaultValue: const [])
   @override
   final List<String> languages_list;
+  @override
+  @JsonKey(fromJson: _parseBool)
+  final bool latest_first;
 
   @override
   String toString() {
-    return 'GlobalSettingsDTO(paginate: $paginate, default_language: $default_language, starred_enabled: $starred_enabled, known_enabled: $known_enabled, fresh_first: $fresh_first, show_shared: $show_shared, show_imported: $show_imported, main_language: $main_language, languages_list: $languages_list)';
+    return 'GlobalSettingsDTO(paginate: $paginate, default_language: $default_language, starred_enabled: $starred_enabled, known_enabled: $known_enabled, fresh_first: $fresh_first, show_shared: $show_shared, show_imported: $show_imported, main_language: $main_language, languages_list: $languages_list, latest_first: $latest_first)';
   }
 
   @override
@@ -312,7 +338,10 @@ class _$_GlobalSettingsDTO extends _GlobalSettingsDTO {
                     .equals(other.main_language, main_language)) &&
             (identical(other.languages_list, languages_list) ||
                 const DeepCollectionEquality()
-                    .equals(other.languages_list, languages_list)));
+                    .equals(other.languages_list, languages_list)) &&
+            (identical(other.latest_first, latest_first) ||
+                const DeepCollectionEquality()
+                    .equals(other.latest_first, latest_first)));
   }
 
   @override
@@ -326,7 +355,8 @@ class _$_GlobalSettingsDTO extends _GlobalSettingsDTO {
       const DeepCollectionEquality().hash(show_shared) ^
       const DeepCollectionEquality().hash(show_imported) ^
       const DeepCollectionEquality().hash(main_language) ^
-      const DeepCollectionEquality().hash(languages_list);
+      const DeepCollectionEquality().hash(languages_list) ^
+      const DeepCollectionEquality().hash(latest_first);
 
   @JsonKey(ignore: true)
   @override
@@ -341,38 +371,48 @@ class _$_GlobalSettingsDTO extends _GlobalSettingsDTO {
 
 abstract class _GlobalSettingsDTO extends GlobalSettingsDTO {
   const factory _GlobalSettingsDTO(
-      {int paginate,
+      {@JsonKey(fromJson: _parseInt) int paginate,
       String default_language,
-      bool starred_enabled,
-      bool known_enabled,
-      bool fresh_first,
-      bool show_shared,
-      bool show_imported,
+      @JsonKey(fromJson: _parseBool) bool starred_enabled,
+      @JsonKey(fromJson: _parseBool) bool known_enabled,
+      @JsonKey(fromJson: _parseBool) bool fresh_first,
+      @JsonKey(fromJson: _parseBool) bool show_shared,
+      @JsonKey(fromJson: _parseBool) bool show_imported,
       String main_language,
-      List<String> languages_list}) = _$_GlobalSettingsDTO;
+      List<String> languages_list,
+      @JsonKey(fromJson: _parseBool) bool latest_first}) = _$_GlobalSettingsDTO;
   const _GlobalSettingsDTO._() : super._();
 
   factory _GlobalSettingsDTO.fromJson(Map<String, dynamic> json) =
       _$_GlobalSettingsDTO.fromJson;
 
   @override
+  @JsonKey(fromJson: _parseInt)
   int get paginate => throw _privateConstructorUsedError;
   @override
   String get default_language => throw _privateConstructorUsedError;
   @override
+  @JsonKey(fromJson: _parseBool)
   bool get starred_enabled => throw _privateConstructorUsedError;
   @override
+  @JsonKey(fromJson: _parseBool)
   bool get known_enabled => throw _privateConstructorUsedError;
   @override
+  @JsonKey(fromJson: _parseBool)
   bool get fresh_first => throw _privateConstructorUsedError;
   @override
+  @JsonKey(fromJson: _parseBool)
   bool get show_shared => throw _privateConstructorUsedError;
   @override
+  @JsonKey(fromJson: _parseBool)
   bool get show_imported => throw _privateConstructorUsedError;
   @override
   String get main_language => throw _privateConstructorUsedError;
   @override
   List<String> get languages_list => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(fromJson: _parseBool)
+  bool get latest_first => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GlobalSettingsDTOCopyWith<_GlobalSettingsDTO> get copyWith =>

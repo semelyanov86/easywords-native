@@ -25,7 +25,8 @@ class _$GlobalSettingsTearOff {
       bool show_shared = false,
       bool show_imported = true,
       String main_language = 'RU',
-      List<String> languages_list = const ['DE', 'EN']}) {
+      List<String> languages_list = const ['DE', 'EN'],
+      bool latest_first = false}) {
     return _GlobalSettings(
       paginate: paginate,
       default_language: default_language,
@@ -36,6 +37,7 @@ class _$GlobalSettingsTearOff {
       show_imported: show_imported,
       main_language: main_language,
       languages_list: languages_list,
+      latest_first: latest_first,
     );
   }
 }
@@ -54,6 +56,7 @@ mixin _$GlobalSettings {
   bool get show_imported => throw _privateConstructorUsedError;
   String get main_language => throw _privateConstructorUsedError;
   List<String> get languages_list => throw _privateConstructorUsedError;
+  bool get latest_first => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GlobalSettingsCopyWith<GlobalSettings> get copyWith =>
@@ -74,7 +77,8 @@ abstract class $GlobalSettingsCopyWith<$Res> {
       bool show_shared,
       bool show_imported,
       String main_language,
-      List<String> languages_list});
+      List<String> languages_list,
+      bool latest_first});
 }
 
 /// @nodoc
@@ -97,6 +101,7 @@ class _$GlobalSettingsCopyWithImpl<$Res>
     Object? show_imported = freezed,
     Object? main_language = freezed,
     Object? languages_list = freezed,
+    Object? latest_first = freezed,
   }) {
     return _then(_value.copyWith(
       paginate: paginate == freezed
@@ -135,6 +140,10 @@ class _$GlobalSettingsCopyWithImpl<$Res>
           ? _value.languages_list
           : languages_list // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      latest_first: latest_first == freezed
+          ? _value.latest_first
+          : latest_first // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -155,7 +164,8 @@ abstract class _$GlobalSettingsCopyWith<$Res>
       bool show_shared,
       bool show_imported,
       String main_language,
-      List<String> languages_list});
+      List<String> languages_list,
+      bool latest_first});
 }
 
 /// @nodoc
@@ -180,6 +190,7 @@ class __$GlobalSettingsCopyWithImpl<$Res>
     Object? show_imported = freezed,
     Object? main_language = freezed,
     Object? languages_list = freezed,
+    Object? latest_first = freezed,
   }) {
     return _then(_GlobalSettings(
       paginate: paginate == freezed
@@ -218,6 +229,10 @@ class __$GlobalSettingsCopyWithImpl<$Res>
           ? _value.languages_list
           : languages_list // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      latest_first: latest_first == freezed
+          ? _value.latest_first
+          : latest_first // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -234,7 +249,8 @@ class _$_GlobalSettings extends _GlobalSettings {
       this.show_shared = false,
       this.show_imported = true,
       this.main_language = 'RU',
-      this.languages_list = const ['DE', 'EN']})
+      this.languages_list = const ['DE', 'EN'],
+      this.latest_first = false})
       : super._();
 
   @JsonKey(defaultValue: 20)
@@ -264,10 +280,13 @@ class _$_GlobalSettings extends _GlobalSettings {
   @JsonKey(defaultValue: const ['DE', 'EN'])
   @override
   final List<String> languages_list;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool latest_first;
 
   @override
   String toString() {
-    return 'GlobalSettings(paginate: $paginate, default_language: $default_language, starred_enabled: $starred_enabled, known_enabled: $known_enabled, fresh_first: $fresh_first, show_shared: $show_shared, show_imported: $show_imported, main_language: $main_language, languages_list: $languages_list)';
+    return 'GlobalSettings(paginate: $paginate, default_language: $default_language, starred_enabled: $starred_enabled, known_enabled: $known_enabled, fresh_first: $fresh_first, show_shared: $show_shared, show_imported: $show_imported, main_language: $main_language, languages_list: $languages_list, latest_first: $latest_first)';
   }
 
   @override
@@ -300,7 +319,10 @@ class _$_GlobalSettings extends _GlobalSettings {
                     .equals(other.main_language, main_language)) &&
             (identical(other.languages_list, languages_list) ||
                 const DeepCollectionEquality()
-                    .equals(other.languages_list, languages_list)));
+                    .equals(other.languages_list, languages_list)) &&
+            (identical(other.latest_first, latest_first) ||
+                const DeepCollectionEquality()
+                    .equals(other.latest_first, latest_first)));
   }
 
   @override
@@ -314,7 +336,8 @@ class _$_GlobalSettings extends _GlobalSettings {
       const DeepCollectionEquality().hash(show_shared) ^
       const DeepCollectionEquality().hash(show_imported) ^
       const DeepCollectionEquality().hash(main_language) ^
-      const DeepCollectionEquality().hash(languages_list);
+      const DeepCollectionEquality().hash(languages_list) ^
+      const DeepCollectionEquality().hash(latest_first);
 
   @JsonKey(ignore: true)
   @override
@@ -332,7 +355,8 @@ abstract class _GlobalSettings extends GlobalSettings {
       bool show_shared,
       bool show_imported,
       String main_language,
-      List<String> languages_list}) = _$_GlobalSettings;
+      List<String> languages_list,
+      bool latest_first}) = _$_GlobalSettings;
   const _GlobalSettings._() : super._();
 
   @override
@@ -353,6 +377,8 @@ abstract class _GlobalSettings extends GlobalSettings {
   String get main_language => throw _privateConstructorUsedError;
   @override
   List<String> get languages_list => throw _privateConstructorUsedError;
+  @override
+  bool get latest_first => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GlobalSettingsCopyWith<_GlobalSettings> get copyWith =>

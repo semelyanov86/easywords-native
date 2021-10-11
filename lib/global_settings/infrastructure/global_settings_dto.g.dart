@@ -8,18 +8,19 @@ part of 'global_settings_dto.dart';
 
 _$_GlobalSettingsDTO _$_$_GlobalSettingsDTOFromJson(Map<String, dynamic> json) {
   return _$_GlobalSettingsDTO(
-    paginate: json['paginate'] as int? ?? 20,
+    paginate: _parseInt(json['paginate']),
     default_language: json['default_language'] as String? ?? 'DE',
-    starred_enabled: json['starred_enabled'] as bool? ?? false,
-    known_enabled: json['known_enabled'] as bool? ?? false,
-    fresh_first: json['fresh_first'] as bool? ?? true,
-    show_shared: json['show_shared'] as bool? ?? false,
-    show_imported: json['show_imported'] as bool? ?? true,
+    starred_enabled: _parseBool(json['starred_enabled']),
+    known_enabled: _parseBool(json['known_enabled']),
+    fresh_first: _parseBool(json['fresh_first']),
+    show_shared: _parseBool(json['show_shared']),
+    show_imported: _parseBool(json['show_imported']),
     main_language: json['main_language'] as String? ?? 'RU',
     languages_list: (json['languages_list'] as List<dynamic>?)
             ?.map((e) => e as String)
             .toList() ??
-        ['DE', 'EN'],
+        [],
+    latest_first: _parseBool(json['latest_first']),
   );
 }
 
@@ -35,4 +36,5 @@ Map<String, dynamic> _$_$_GlobalSettingsDTOToJson(
       'show_imported': instance.show_imported,
       'main_language': instance.main_language,
       'languages_list': instance.languages_list,
+      'latest_first': instance.latest_first,
     };

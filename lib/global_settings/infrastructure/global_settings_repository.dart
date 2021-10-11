@@ -41,4 +41,54 @@ class GlobalSettingsRepository {
       return left(GlobalSettingsFailure.api(e.errorCode));
     }
   }
+
+  Future<Either<GlobalSettingsFailure, Fresh<bool>>> setSettings(
+      String key, dynamic value) async {
+    try {
+      final remoteSettings = await _remoteService.setSettings(key, value);
+      return right(await remoteSettings.when(
+        noConnection: (maxPage) async => Fresh.no(
+          false,
+          isNextPageAvailable: false,
+        ),
+        notModified: (maxPage) async => Fresh.yes(
+          true,
+          isNextPageAvailable: false,
+        ),
+        withNewData: (data, maxPage) async {
+          return Fresh.yes(
+            true,
+            isNextPageAvailable: false,
+          );
+        },
+      ));
+    } on RestApiException catch (e) {
+      return left(GlobalSettingsFailure.api(e.errorCode));
+    }
+  }
+
+  Future<Either<GlobalSettingsFailure, Fresh<bool>>> importWords(
+      String language) async {
+    try {
+      final importResult = await _remoteService.importWords(language);
+      return right(await importResult.when(
+        noConnection: (maxPage) async => Fresh.no(
+          false,
+          isNextPageAvailable: false,
+        ),
+        notModified: (maxPage) async => Fresh.yes(
+          true,
+          isNextPageAvailable: false,
+        ),
+        withNewData: (data, maxPage) async {
+          return Fresh.yes(
+            true,
+            isNextPageAvailable: false,
+          );
+        },
+      ));
+    } on RestApiException catch (e) {
+      return left(GlobalSettingsFailure.api(e.errorCode));
+    }
+  }
 }

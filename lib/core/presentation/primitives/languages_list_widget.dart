@@ -8,9 +8,11 @@ class LanguagesListWidget extends StatefulWidget {
   const LanguagesListWidget({
     Key? key,
     required this.languageValueSetter,
+    required this.languagesList,
   }) : super(key: key);
 
   final LanguageValueSetter languageValueSetter;
+  final List<String> languagesList;
 
   @override
   _LanguagesListWidgetState createState() {
@@ -47,7 +49,7 @@ class _LanguagesListWidgetState extends State<LanguagesListWidget> {
           icon: Icon(Icons.map),
           labelText: 'Select language',
         ),
-        items: _languages.map((language) {
+        items: widget.languagesList.map((language) {
           return DropdownMenuItem(
             child: Text(language),
             value: language,

@@ -17,6 +17,7 @@ class GlobalSettings with _$GlobalSettings {
     @Default(true) bool show_imported,
     @Default('RU') String main_language,
     @Default(['DE', 'EN']) List<String> languages_list,
+    @Default(false) bool latest_first,
   }) = _GlobalSettings;
 
   List<TranslationDirections> get languageDirections {
