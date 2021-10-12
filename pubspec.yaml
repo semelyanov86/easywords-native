@@ -17,10 +17,13 @@ dependencies:
   flash: ^2.0.2
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   flutter_hooks: ^0.17.0
   flutter_secure_storage: ^4.2.1
   freezed_annotation: ^0.14.2
   hooks_riverpod: ^0.14.0+4
+  intl: ^0.17.0
   json_annotation: ^4.0.1
   material_design_icons_flutter: ^5.0.5955-rc.1
   oauth2: ^2.0.0
@@ -43,4 +46,5 @@ flutter:
   assets:
     - assets/images/easywords-full.png
   uses-material-design: true
-
+flutter_intl:
+  enabled: true

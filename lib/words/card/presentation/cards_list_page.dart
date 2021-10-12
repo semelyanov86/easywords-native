@@ -4,6 +4,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:words_native/core/presentation/app_bar.dart';
 import 'package:words_native/core/presentation/drawer_widget.dart';
 import 'package:words_native/core/presentation/toasts.dart';
+import 'package:words_native/generated/l10n.dart';
 import 'package:words_native/global_settings/domain/translation_directions.dart';
 import 'package:words_native/language_selector/presentation/no_results_display.dart';
 import 'package:words_native/profile/presentation/choose_user_page.dart';
@@ -57,8 +58,8 @@ class _CardsListPageState extends State<CardsListPage> {
         onChange: (context, state) {},
         provider: cardsNotifierProvider,
         child: Scaffold(
-          appBar: const AppBarWidget(
-            header: 'Study Mode',
+          appBar: AppBarWidget(
+            header: S.of(context).header,
             showBackButton: true,
           ),
           drawer: DrawerWidget(),
@@ -81,8 +82,7 @@ class _CardsListPageState extends State<CardsListPage> {
                             .flipWord(serviceModel.getCurrentWord().id);
                       } on Exception catch (e) {
                         showNoConnectionToast(
-                            'There was a connection error when marking this word as viewed',
-                            context);
+                            S.of(context).error_marking_viewed, context);
                       }
                     }
                   },
@@ -108,24 +108,24 @@ class _CardsListPageState extends State<CardsListPage> {
                 if (state.maybeWhen(
                     loadSuccess: (words, _) => serviceModel.words.isEmpty,
                     orElse: () => false)) {
-                  return const NoResultsDisplay(
-                    message: 'These are no words to learn.',
+                  return NoResultsDisplay(
+                    message: S.of(context).no_items,
                   );
                 }
                 return Column(
                   children: [
                     ListTile(
                       leading: Icon(MdiIcons.book),
-                      title: const Text('Translate word!'),
+                      title: Text(S.of(context).headline),
                       subtitle: Text(
-                        'Please try to translate word',
+                        S.of(context).headline2,
                         style: TextStyle(color: Colors.black.withOpacity(0.6)),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Text(
-                        'After translating you can learn it.',
+                        S.of(context).intro,
                         style: TextStyle(color: Colors.black.withOpacity(0.6)),
                       ),
                     ),
@@ -167,16 +167,17 @@ class _CardsListPageState extends State<CardsListPage> {
                                           .read(cardsNotifierProvider.notifier)
                                           .deleteWord(
                                               serviceModel.getCurrentWord().id)
-                                          .then((value) => showNoConnectionToast(
-                                              'Word successfully deleted with id: ' +
-                                                  serviceModel
-                                                      .getCurrentWord()
-                                                      .id
-                                                      .toString(),
-                                              context))
+                                          .then((value) =>
+                                              showNoConnectionToast(
+                                                  S.of(context).delete_info +
+                                                      serviceModel
+                                                          .getCurrentWord()
+                                                          .id
+                                                          .toString(),
+                                                  context))
                                           .catchError((e) {
                                         showNoConnectionToast(
-                                            'Connection error when trying to delete word: ' +
+                                            S.of(context).delete_error +
                                                 e.toString(),
                                             context);
                                       });
@@ -212,7 +213,7 @@ class _CardsListPageState extends State<CardsListPage> {
                                   onPressed: () {
                                     serviceNotifier.setPrevWord();
                                   },
-                                  child: const Text('PREV'),
+                                  child: Text(S.of(context).prev),
                                 ),
                                 FlatButton(
                                   textColor:
@@ -224,7 +225,7 @@ class _CardsListPageState extends State<CardsListPage> {
                                             serviceModel.getCurrentWord())
                                         .catchError((e) {
                                       showNoConnectionToast(
-                                          'Connection error when trying to mark word as learned: ' +
+                                          S.of(context).learned_error +
                                               e.toString(),
                                           context);
                                     });
@@ -233,8 +234,8 @@ class _CardsListPageState extends State<CardsListPage> {
                                   child: Text(
                                       serviceModel.getCurrentWord().done_at ==
                                               null
-                                          ? 'LEARNED!'
-                                          : 'BACK TO LEARN'),
+                                          ? S.of(context).know
+                                          : S.of(context).unknown),
                                 ),
                                 FlatButton(
                                   textColor: const Color(0xFF6200EE),
@@ -244,14 +245,14 @@ class _CardsListPageState extends State<CardsListPage> {
                                         .starWord(serviceModel.getCurrentWord())
                                         .catchError((e) {
                                       showNoConnectionToast(
-                                          'Connection error when trying to mark word as starred: ' +
+                                          S.of(context).starring_error +
                                               e.toString(),
                                           context);
                                     });
                                     serviceNotifier.setStarred(
                                         !serviceModel.getCurrentWord().starred);
                                     showNoConnectionToast(
-                                        'Successfully mark starring with ID: ' +
+                                        S.of(context).starring_notification +
                                             serviceModel
                                                 .getCurrentWord()
                                                 .id
@@ -259,8 +260,8 @@ class _CardsListPageState extends State<CardsListPage> {
                                         context);
                                   },
                                   child: serviceModel.getCurrentWord().starred
-                                      ? Text('UNSTAR')
-                                      : Text('STAR'),
+                                      ? Text(S.of(context).unstar)
+                                      : Text(S.of(context).star),
                                 ),
                                 FlatButton(
                                   textColor:
@@ -277,31 +278,38 @@ class _CardsListPageState extends State<CardsListPage> {
                                           .shareWord(
                                               serviceModel.getCurrentWord().id,
                                               tappedName as int)
-                                          .then((value) => showNoConnectionToast(
-                                              'Created new word with ID: ${value.id.toString()}',
-                                              context))
+                                          .then((value) =>
+                                              showNoConnectionToast(
+                                                  S
+                                                          .of(context)
+                                                          .creation_message +
+                                                      value.id.toString(),
+                                                  context))
                                           .catchError((e) {
                                         showDialog(
                                             context: context,
                                             builder: (BuildContext context) =>
                                                 AlertDialog(
-                                                  title: const Text(
-                                                      'Error during sharing'),
-                                                  content: Text(
-                                                      'There was an error in sharing word. Maybe word already exists.'),
+                                                  title: Text(S
+                                                      .of(context)
+                                                      .sharing_error_header),
+                                                  content: Text(S
+                                                      .of(context)
+                                                      .sharing_error),
                                                   actions: <Widget>[
                                                     TextButton(
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               context, 'OK'),
-                                                      child: const Text('OK'),
+                                                      child: Text(
+                                                          S.of(context).ok),
                                                     ),
                                                   ],
                                                 ));
                                       });
                                     }
                                   },
-                                  child: const Text('SHARE'),
+                                  child: Text(S.of(context).share),
                                 ),
                               ],
                             ),

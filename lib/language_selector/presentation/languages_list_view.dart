@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:words_native/core/presentation/toasts.dart';
+import 'package:words_native/generated/l10n.dart';
 import 'package:words_native/global_settings/shared/providers.dart';
 import 'package:words_native/language_selector/presentation/failure_language_tile.dart';
 import 'package:words_native/language_selector/presentation/language_tile.dart';
@@ -22,8 +23,8 @@ class LanguagesListView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Container(
-              child: const Text(
-                'Please choose a language for learning words',
+              child: Text(
+                S.of(context).chooseLanguage,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
@@ -49,7 +50,7 @@ class LanguagesListView extends StatelessWidget {
                   loadSuccess: (_) {
                     if (!_.settings.isFresh) {
                       showNoConnectionToast(
-                        'You are not online. Some information may be outdated.',
+                        S.of(context).offline_info,
                         context,
                       );
                     }
