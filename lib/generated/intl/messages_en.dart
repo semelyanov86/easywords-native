@@ -129,6 +129,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "translated": MessageLookupByLibrary.simpleMessage("Translated word"),
         "unknown": MessageLookupByLibrary.simpleMessage("Learn Again!"),
         "unstar": MessageLookupByLibrary.simpleMessage("Remove Star"),
+        "update_words": MessageLookupByLibrary.simpleMessage("Update words"),
         "updated_at": MessageLookupByLibrary.simpleMessage("Updated At"),
         "updated_this_month":
             MessageLookupByLibrary.simpleMessage("Viewed in this month"),

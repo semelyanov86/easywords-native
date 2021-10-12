@@ -434,7 +434,15 @@ class S {
     );
   }
 
-  // skipped getter for the 'update-words' key
+  /// `Update words`
+  String get update_words {
+    return Intl.message(
+      'Update words',
+      name: 'update_words',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `Add to dictionary`
   String get create_header {

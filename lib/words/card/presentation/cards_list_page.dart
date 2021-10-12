@@ -108,9 +108,12 @@ class _CardsListPageState extends State<CardsListPage> {
                 if (state.maybeWhen(
                     loadSuccess: (words, _) => serviceModel.words.isEmpty,
                     orElse: () => false)) {
-                  return NoResultsDisplay(
-                    message: S.of(context).no_items,
-                  );
+                  return state.cards.entity.isEmpty
+                      ? NoResultsDisplay(
+                          message: S.of(context).no_items,
+                          language: widget.direction.originalLanguage,
+                        )
+                      : const CircularProgressIndicator();
                 }
                 return Column(
                   children: [

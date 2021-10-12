@@ -16,7 +16,10 @@ class LanguagesListView extends StatelessWidget {
     return Consumer(builder: (context, ref, child) {
       final state = ref(globalSettingsNotifierProvider);
       if (state.settings.entity.languageDirections.isEmpty) {
-        return const NoResultsDisplay(message: 'No supported languages found!');
+        return const NoResultsDisplay(
+          message: 'No supported languages found!',
+          language: null,
+        );
       }
       return Column(
         children: <Widget>[

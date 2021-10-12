@@ -137,6 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "translated": MessageLookupByLibrary.simpleMessage("Перевод слова"),
         "unknown": MessageLookupByLibrary.simpleMessage("Учить снова!"),
         "unstar": MessageLookupByLibrary.simpleMessage("Удалить из избранного"),
+        "update_words": MessageLookupByLibrary.simpleMessage("Обновить слова"),
         "updated_at": MessageLookupByLibrary.simpleMessage("Дата обновления"),
         "updated_this_month": MessageLookupByLibrary.simpleMessage(
             "Просмотренные слова в этом месяце"),

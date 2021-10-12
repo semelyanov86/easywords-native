@@ -39,7 +39,7 @@
   "show": "Turn",
   "know": "Got it!",
   "unknown": "Learn Again!",
-  "update-words": "Update words",
+  "update_words": "Update words",
   "create_header": "Add to dictionary",
   "short": "Quick create new word",
   "fill-data": "Fill out the form",
