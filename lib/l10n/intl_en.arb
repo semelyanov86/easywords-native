@@ -1,6 +1,6 @@
 {
   "title": "EasyWords App",
-  "ChangePassword": "Изменить пароль",
+  "ChangePassword": "Log Out",
   "Profile": "Profile",
   "Settings": "Settings",
   "Statistics": "Statistics",
@@ -82,5 +82,7 @@
   "starring_error": "Connection error when trying to mark word as starred: ",
   "learned_error": "Connection error when trying to mark word as learned: ",
   "delete_error": "Connection error when trying to delete word: ",
-  "delete_info": "Word successfully deleted with id: "
+  "delete_info": "Word successfully deleted with id: ",
+  "next_page": "Next Page",
+  "first_page": "First Page"
 }

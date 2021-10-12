@@ -71,4 +71,8 @@ class CardsNotifier extends StateNotifier<CardsState> {
   void increasePage() {
     _page++;
   }
+
+  void dropPage() {
+    _page = 1;
+  }
 }

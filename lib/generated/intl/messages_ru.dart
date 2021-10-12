@@ -57,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "error_marking_viewed": MessageLookupByLibrary.simpleMessage(
             "Ошибка при отправке на сервер информации о просмотре слова"),
         "field": MessageLookupByLibrary.simpleMessage("Поле"),
+        "first_page": MessageLookupByLibrary.simpleMessage("Сначала"),
         "fresh_first": MessageLookupByLibrary.simpleMessage(
             "Показывать сначала слова сортированные по дате создания"),
         "from_sample": MessageLookupByLibrary.simpleMessage(
@@ -89,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Часто просматриваемые слова"),
         "name": MessageLookupByLibrary.simpleMessage("Имя пользователя"),
         "next": MessageLookupByLibrary.simpleMessage("Следующий"),
+        "next_page": MessageLookupByLibrary.simpleMessage("Следующая страница"),
         "no_items": MessageLookupByLibrary.simpleMessage(
             "Нет слов для изучения. Добавьте новые слова или обновите список с сервера"),
         "not_dones":

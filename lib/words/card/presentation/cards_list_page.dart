@@ -37,6 +37,8 @@ class _CardsListPageState extends State<CardsListPage> {
           .read(cardsNotifierProvider.notifier)
           .getNextCardsPage(widget.direction.originalLanguage),
     );
+    Future.microtask(
+        () => context.read(cardsCalculationProvider.notifier).setDefaultData());
   }
 
   @override
@@ -50,6 +52,7 @@ class _CardsListPageState extends State<CardsListPage> {
       final state = ref(cardsNotifierProvider);
       final serviceModel = ref(cardsCalculationProvider);
       final serviceNotifier = context.read(cardsCalculationProvider.notifier);
+      final cardsNotifier = context.read(cardsNotifierProvider.notifier);
       Future.delayed(Duration.zero, () async {
         serviceNotifier.setWords(state.cards.entity);
       });
@@ -77,8 +80,7 @@ class _CardsListPageState extends State<CardsListPage> {
                     });
                     if (flipped) {
                       try {
-                        context
-                            .read(cardsNotifierProvider.notifier)
+                        cardsNotifier
                             .flipWord(serviceModel.getCurrentWord().id);
                       } on Exception catch (e) {
                         showNoConnectionToast(
@@ -118,7 +120,7 @@ class _CardsListPageState extends State<CardsListPage> {
                 return Column(
                   children: [
                     ListTile(
-                      leading: Icon(MdiIcons.book),
+                      leading: const Icon(MdiIcons.book),
                       title: Text(S.of(context).headline),
                       subtitle: Text(
                         S.of(context).headline2,
@@ -126,10 +128,51 @@ class _CardsListPageState extends State<CardsListPage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Text(
                         S.of(context).intro,
                         style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              cardsNotifier.dropPage();
+                              cardsNotifier.getNextCardsPage(
+                                  widget.direction.originalLanguage);
+                              serviceNotifier.setWords(state.cards.entity);
+                              serviceNotifier.setDefaultData();
+                            },
+                            icon: const Icon(
+                              Icons.arrow_back_ios,
+                              color: Colors.yellowAccent,
+                              size: 24.0,
+                            ),
+                            label: Text(S.of(context).first_page),
+                          ),
+                          if (state.cards.isNextPageAvailable == true)
+                            ElevatedButton.icon(
+                              onPressed: () {
+                                cardsNotifier.increasePage();
+                                cardsNotifier.getNextCardsPage(
+                                    widget.direction.originalLanguage);
+                                serviceNotifier.setWords(state.cards.entity);
+                                serviceNotifier.setDefaultData();
+                              },
+                              icon: const Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.yellowAccent,
+                                size: 24.0,
+                              ),
+                              label: Text(S.of(context).next_page),
+                            )
+                          else
+                            Container(),
+                        ],
                       ),
                     ),
                     Center(
@@ -166,8 +209,7 @@ class _CardsListPageState extends State<CardsListPage> {
                                   ),
                                   IconButton(
                                     onPressed: () {
-                                      context
-                                          .read(cardsNotifierProvider.notifier)
+                                      cardsNotifier
                                           .deleteWord(
                                               serviceModel.getCurrentWord().id)
                                           .then((value) =>
@@ -222,8 +264,7 @@ class _CardsListPageState extends State<CardsListPage> {
                                   textColor:
                                       const Color.fromRGBO(252, 86, 3, 100),
                                   onPressed: () {
-                                    context
-                                        .read(cardsNotifierProvider.notifier)
+                                    cardsNotifier
                                         .markKnown(
                                             serviceModel.getCurrentWord())
                                         .catchError((e) {
@@ -243,8 +284,7 @@ class _CardsListPageState extends State<CardsListPage> {
                                 FlatButton(
                                   textColor: const Color(0xFF6200EE),
                                   onPressed: () {
-                                    context
-                                        .read(cardsNotifierProvider.notifier)
+                                    cardsNotifier
                                         .starWord(serviceModel.getCurrentWord())
                                         .catchError((e) {
                                       showNoConnectionToast(
@@ -276,8 +316,7 @@ class _CardsListPageState extends State<CardsListPage> {
                                       return ChooseUserPage();
                                     }));
                                     if (tappedName != null) {
-                                      context
-                                          .read(cardsNotifierProvider.notifier)
+                                      cardsNotifier
                                           .shareWord(
                                               serviceModel.getCurrentWord().id,
                                               tappedName as int)

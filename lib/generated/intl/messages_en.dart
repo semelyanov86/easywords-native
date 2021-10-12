@@ -21,8 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "ChangePassword":
-            MessageLookupByLibrary.simpleMessage("Изменить пароль"),
+        "ChangePassword": MessageLookupByLibrary.simpleMessage("Log Out"),
         "Logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "Profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "Settings": MessageLookupByLibrary.simpleMessage("Settings"),
@@ -54,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "error_marking_viewed": MessageLookupByLibrary.simpleMessage(
             "There was a connection error when marking this word as viewed"),
         "field": MessageLookupByLibrary.simpleMessage("Field"),
+        "first_page": MessageLookupByLibrary.simpleMessage("First Page"),
         "fresh_first": MessageLookupByLibrary.simpleMessage("Show fresh first"),
         "from_sample": MessageLookupByLibrary.simpleMessage(
             "Word added from samples list"),
@@ -84,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Most viewed words"),
         "name": MessageLookupByLibrary.simpleMessage("User Name"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "next_page": MessageLookupByLibrary.simpleMessage("Next Page"),
         "no_items": MessageLookupByLibrary.simpleMessage(
             "No words for learning. Add new words and try to update list."),
         "not_dones":

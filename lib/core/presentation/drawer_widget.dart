@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:words_native/auth/shared/providers.dart';
 import 'package:words_native/core/presentation/routes/app_router.gr.dart';
+import 'package:words_native/generated/l10n.dart';
 import 'package:words_native/profile/domain/user.dart';
 import 'package:words_native/profile/shared/providers.dart';
 
@@ -46,7 +47,7 @@ class DrawerWidget extends ConsumerWidget {
           ),
           ListTile(
             leading: const Icon(Icons.account_circle),
-            title: const Text('Profile'),
+            title: Text(S.of(context).Profile),
             onTap: () {
               AutoRouter.of(context).push(
                 const ProfileRoute(),
@@ -60,15 +61,15 @@ class DrawerWidget extends ConsumerWidget {
                 const SettingsRoute(),
               );
             },
-            title: const Text('Settings'),
+            title: Text(S.of(context).Settings),
           ),
           ListTile(
             leading: Icon(Icons.analytics),
-            title: Text('Statistics'),
+            title: Text(S.of(context).Statistics),
           ),
           ListTile(
             leading: const Icon(Icons.password),
-            title: const Text('Change Password'),
+            title: Text(S.of(context).ChangePassword),
             onTap: () {
               AutoRouter.of(context).push(
                 const ChangePasswordRoute(),
@@ -77,7 +78,7 @@ class DrawerWidget extends ConsumerWidget {
           ),
           ListTile(
             leading: const Icon(Icons.logout),
-            title: const Text('LogOut'),
+            title: Text(S.of(context).Logout),
             onTap: () => context.read(authNotifierProvider.notifier).signOut(),
           ),
         ],

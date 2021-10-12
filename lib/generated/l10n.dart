@@ -60,10 +60,10 @@ class S {
     );
   }
 
-  /// `Изменить пароль`
+  /// `Log Out`
   String get ChangePassword {
     return Intl.message(
-      'Изменить пароль',
+      'Log Out',
       name: 'ChangePassword',
       desc: '',
       args: [],
@@ -853,6 +853,26 @@ class S {
     return Intl.message(
       'Word successfully deleted with id: ',
       name: 'delete_info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next Page`
+  String get next_page {
+    return Intl.message(
+      'Next Page',
+      name: 'next_page',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First Page`
+  String get first_page {
+    return Intl.message(
+      'First Page',
+      name: 'first_page',
       desc: '',
       args: [],
     );

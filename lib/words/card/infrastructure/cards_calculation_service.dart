@@ -59,8 +59,7 @@ class CardsCalculationServiceNotifier
   void setLearned() {
     final words = state.words;
     words.removeAt(state.current);
-    state = state.copyWith(words: words);
-    setNextWord();
+    state = state.copyWith(words: words, prev: null);
   }
 
   void setStarred(bool value) {
@@ -79,5 +78,9 @@ class CardsCalculationServiceNotifier
     words.removeAt(state.current);
     state = state.copyWith(words: words);
     setNextWord();
+  }
+
+  void setDefaultData() {
+    state = state.copyWith(index: 0, prev: null, current: 0);
   }
 }
