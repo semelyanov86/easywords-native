@@ -688,6 +688,16 @@ class S {
     );
   }
 
+  /// `Enter your current password`
+  String get current_password_desc {
+    return Intl.message(
+      'Enter your current password',
+      name: 'current_password_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `New password`
   String get password {
     return Intl.message(
@@ -698,11 +708,31 @@ class S {
     );
   }
 
+  /// `Enter new password`
+  String get password_desc {
+    return Intl.message(
+      'Enter new password',
+      name: 'password_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Confirm password`
   String get password_confirmation {
     return Intl.message(
       'Confirm password',
       name: 'password_confirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Confirm password`
+  String get password_confirmation_desc {
+    return Intl.message(
+      'Please Confirm password',
+      name: 'password_confirmation_desc',
       desc: '',
       args: [],
     );
@@ -873,6 +903,76 @@ class S {
     return Intl.message(
       'First Page',
       name: 'first_page',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get submit {
+    return Intl.message(
+      'Submit',
+      name: 'submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Form is not valid! Please review and correct`
+  String get validation_error {
+    return Intl.message(
+      'Form is not valid! Please review and correct',
+      name: 'validation_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current password is required`
+  String get password_required {
+    return Intl.message(
+      'Current password is required',
+      name: 'password_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password does not match`
+  String get password_does_not_match {
+    return Intl.message(
+      'Password does not match',
+      name: 'password_does_not_match',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `6 character required for password`
+  String get password_chars_required {
+    return Intl.message(
+      '6 character required for password',
+      name: 'password_chars_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password updated successfully`
+  String get password_update_success {
+    return Intl.message(
+      'Password updated successfully',
+      name: 'password_update_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error in updating password: `
+  String get password_update_error {
+    return Intl.message(
+      'Error in updating password: ',
+      name: 'password_update_error',
       desc: '',
       args: [],
     );

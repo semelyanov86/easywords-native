@@ -54,4 +54,40 @@ class UserRemoteService {
       }
     }
   }
+
+  Future<RemoteResponse<UserDTO>> updatePassword(
+      String current, String newPass, String confirmPass) async {
+    final server = await MainLocalSettings.getServerUrl();
+    final requestUri = Uri.https(
+        server?.host ?? MainLocalSettings.defaultHost, 'api/user/password');
+
+    try {
+      final response = await _dio.putUri(requestUri, data: {
+        'current_password': current,
+        'password': newPass,
+        'password_confirmation': confirmPass
+      });
+
+      if (response.statusCode == 200) {
+        final convertedData =
+            UserDTO.fromJson(response.data['data'] as Map<String, dynamic>);
+        return RemoteResponse.withNewData(
+          convertedData,
+          maxPage: 1,
+        );
+      } else {
+        throw RestApiException(response.statusCode);
+      }
+    } on DioError catch (e) {
+      if (e.isNoConnectionError) {
+        return const RemoteResponse.noConnection(
+          maxPage: 1,
+        );
+      } else if (e.response != null) {
+        throw RestApiException(e.response?.statusCode);
+      } else {
+        rethrow;
+      }
+    }
+  }
 }

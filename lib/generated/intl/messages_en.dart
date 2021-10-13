@@ -40,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Created new word with ID: "),
         "current_password":
             MessageLookupByLibrary.simpleMessage("Current password"),
+        "current_password_desc":
+            MessageLookupByLibrary.simpleMessage("Enter your current password"),
         "default_language":
             MessageLookupByLibrary.simpleMessage("Default language to learn"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
@@ -96,12 +98,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "paginate": MessageLookupByLibrary.simpleMessage(
             "Number of words learn at once"),
         "password": MessageLookupByLibrary.simpleMessage("New password"),
+        "password_chars_required": MessageLookupByLibrary.simpleMessage(
+            "6 character required for password"),
         "password_confirmation":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
+        "password_confirmation_desc":
+            MessageLookupByLibrary.simpleMessage("Please Confirm password"),
+        "password_desc":
+            MessageLookupByLibrary.simpleMessage("Enter new password"),
+        "password_does_not_match":
+            MessageLookupByLibrary.simpleMessage("Password does not match"),
         "password_header":
             MessageLookupByLibrary.simpleMessage("Change password"),
+        "password_required": MessageLookupByLibrary.simpleMessage(
+            "Current password is required"),
         "password_short": MessageLookupByLibrary.simpleMessage(
             "Here you can change user password"),
+        "password_update_error": MessageLookupByLibrary.simpleMessage(
+            "Error in updating password: "),
+        "password_update_success": MessageLookupByLibrary.simpleMessage(
+            "Password updated successfully"),
         "prev": MessageLookupByLibrary.simpleMessage("Prev"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "share": MessageLookupByLibrary.simpleMessage("Share"),
@@ -125,6 +141,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Successfully mark starring with ID: "),
         "statistics_header": MessageLookupByLibrary.simpleMessage(
             "Your activity in learning language"),
+        "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "title": MessageLookupByLibrary.simpleMessage("EasyWords App"),
         "total_views": MessageLookupByLibrary.simpleMessage("Total views"),
         "translated": MessageLookupByLibrary.simpleMessage("Translated word"),
@@ -136,6 +153,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Viewed in this month"),
         "updated_today": MessageLookupByLibrary.simpleMessage("Viewed today"),
         "users_count": MessageLookupByLibrary.simpleMessage("Number of users"),
+        "validation_error": MessageLookupByLibrary.simpleMessage(
+            "Form is not valid! Please review and correct"),
         "value": MessageLookupByLibrary.simpleMessage("Value"),
         "views": MessageLookupByLibrary.simpleMessage("Number of views")
       };

@@ -48,4 +48,29 @@ class UserRepository {
       return left(UserFailure.api(e.errorCode));
     }
   }
+
+  Future<Either<UserFailure, Fresh<User>>> updatePassword(
+      String current, String newPass, String confirmPass) async {
+    try {
+      final remoteProfile =
+          await _remoteService.updatePassword(current, newPass, confirmPass);
+      return right(await remoteProfile.when(
+        noConnection: (maxPage) async => throw RestApiException(500),
+        notModified: (maxPage) async => Fresh.yes(
+          await _localService
+              .getProfile()
+              .then((_) => _ == null ? defaultUser : _.toDomain()),
+          isNextPageAvailable: false,
+        ),
+        withNewData: (data, maxPage) async {
+          return Fresh.yes(
+            data.toDomain(),
+            isNextPageAvailable: false,
+          );
+        },
+      ));
+    } on RestApiException catch (e) {
+      return left(UserFailure.api(e.errorCode));
+    }
+  }
 }

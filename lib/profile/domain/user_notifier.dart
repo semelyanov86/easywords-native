@@ -33,4 +33,17 @@ class UserNotifier extends StateNotifier<UserState> {
       },
     );
   }
+
+  Future<void> updatePassword(
+      String current, String newPass, String confirmPass) async {
+    state = UserState.loadInProgress(state.user);
+    final failureOrSettings =
+        await _repository.updatePassword(current, newPass, confirmPass);
+    state = failureOrSettings.fold(
+      (l) => UserState.loadFailure(state.user, l),
+      (r) {
+        return UserState.loadSuccess(Fresh.yes(r.entity));
+      },
+    );
+  }
 }

@@ -43,6 +43,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Создано новое слово с уникальным номером: "),
         "current_password":
             MessageLookupByLibrary.simpleMessage("Текущий пароль"),
+        "current_password_desc":
+            MessageLookupByLibrary.simpleMessage("Введите текущий пароль"),
         "default_language": MessageLookupByLibrary.simpleMessage(
             "Язык для изучения по умолчанию"),
         "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
@@ -103,12 +105,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "paginate": MessageLookupByLibrary.simpleMessage(
             "Количество слов, изучаемых за один раз"),
         "password": MessageLookupByLibrary.simpleMessage("Новый пароль"),
+        "password_chars_required": MessageLookupByLibrary.simpleMessage(
+            "Длина пароля минимум 6 символов"),
         "password_confirmation":
             MessageLookupByLibrary.simpleMessage("Подтвердите пароль"),
+        "password_confirmation_desc":
+            MessageLookupByLibrary.simpleMessage("Подтвердите новый пароль"),
+        "password_desc":
+            MessageLookupByLibrary.simpleMessage("Введите новый пароль"),
+        "password_does_not_match":
+            MessageLookupByLibrary.simpleMessage("Пароли не совпадают"),
         "password_header":
             MessageLookupByLibrary.simpleMessage("Изменить пароль"),
+        "password_required": MessageLookupByLibrary.simpleMessage(
+            "Пароль нужно указывать обязательно"),
         "password_short": MessageLookupByLibrary.simpleMessage(
             "Здесь можно изменить пароль пользователя"),
+        "password_update_error": MessageLookupByLibrary.simpleMessage(
+            "Ошибка при обновлении пароля: "),
+        "password_update_success":
+            MessageLookupByLibrary.simpleMessage("Пароль успешно обновлён"),
         "prev": MessageLookupByLibrary.simpleMessage("Предыдущий"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
         "share": MessageLookupByLibrary.simpleMessage("Поделиться"),
@@ -133,6 +149,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Слово добавлено в избранное с номером: "),
         "statistics_header": MessageLookupByLibrary.simpleMessage(
             "Ваша персональная статистика по изучению языков"),
+        "submit": MessageLookupByLibrary.simpleMessage("Отправить"),
         "title": MessageLookupByLibrary.simpleMessage("EasyWords App"),
         "total_views":
             MessageLookupByLibrary.simpleMessage("Количество просмотров"),
@@ -147,6 +164,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Просмотренные слова сегодня"),
         "users_count": MessageLookupByLibrary.simpleMessage(
             "Количество пользователей в системе"),
+        "validation_error": MessageLookupByLibrary.simpleMessage(
+            "Форма заполнена не корректно. Пожалуйста, проверьте правильность заполнения всех полей."),
         "value": MessageLookupByLibrary.simpleMessage("Значение"),
         "views": MessageLookupByLibrary.simpleMessage("Просмотры")
       };

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:words_native/core/presentation/app_bar.dart';
 import 'package:words_native/core/presentation/drawer_widget.dart';
+import 'package:words_native/generated/l10n.dart';
+import 'package:words_native/profile/shared/providers.dart';
 
 class ChangePasswordPage extends StatefulWidget {
   const ChangePasswordPage({Key? key}) : super(key: key);
@@ -35,97 +38,101 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: const AppBarWidget(
-        header: 'Change your password',
-        showBackButton: true,
-      ),
-      drawer: const DrawerWidget(),
-      body: Form(
-        key: _formKey,
-        child: ListView(
-          padding: const EdgeInsets.all(16.0),
-          children: [
-            const SizedBox(height: 10),
-            TextFormField(
-              autofocus: true,
-              controller: _currentPassController,
-              obscureText: _hidePass,
-              maxLength: 15,
-              decoration: InputDecoration(
-                labelText: 'Current Password *',
-                hintText: 'Enter your current password',
-                suffixIcon: IconButton(
-                  icon:
-                      Icon(_hidePass ? Icons.visibility : Icons.visibility_off),
-                  onPressed: () {
-                    setState(() {
-                      _hidePass = !_hidePass;
-                    });
-                  },
+    return Consumer(
+      builder: (context, provider, child) {
+        return Scaffold(
+          key: _scaffoldKey,
+          appBar: AppBarWidget(
+            header: S.of(context).password_header,
+            showBackButton: true,
+          ),
+          drawer: const DrawerWidget(),
+          body: Form(
+            key: _formKey,
+            child: ListView(
+              padding: const EdgeInsets.all(16.0),
+              children: [
+                const SizedBox(height: 10),
+                TextFormField(
+                  autofocus: true,
+                  controller: _currentPassController,
+                  obscureText: _hidePass,
+                  maxLength: 15,
+                  decoration: InputDecoration(
+                    labelText: S.of(context).current_password,
+                    hintText: S.of(context).current_password_desc,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                          _hidePass ? Icons.visibility : Icons.visibility_off),
+                      onPressed: () {
+                        setState(() {
+                          _hidePass = !_hidePass;
+                        });
+                      },
+                    ),
+                    icon: const Icon(Icons.security),
+                  ),
+                  validator: _validatePassword,
                 ),
-                icon: const Icon(Icons.security),
-              ),
-              validator: _validatePassword,
-            ),
-            SizedBox(height: 10),
-            TextFormField(
-              autofocus: true,
-              controller: _passController,
-              obscureText: _hidePass,
-              maxLength: 15,
-              decoration: InputDecoration(
-                labelText: 'New Password *',
-                hintText: 'Enter new password',
-                suffixIcon: IconButton(
-                  icon:
-                      Icon(_hidePass ? Icons.visibility : Icons.visibility_off),
-                  onPressed: () {
-                    setState(() {
-                      _hidePass = !_hidePass;
-                    });
-                  },
+                const SizedBox(height: 10),
+                TextFormField(
+                  autofocus: true,
+                  controller: _passController,
+                  obscureText: _hidePass,
+                  maxLength: 15,
+                  decoration: InputDecoration(
+                    labelText: S.of(context).password,
+                    hintText: S.of(context).password_desc,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                          _hidePass ? Icons.visibility : Icons.visibility_off),
+                      onPressed: () {
+                        setState(() {
+                          _hidePass = !_hidePass;
+                        });
+                      },
+                    ),
+                    icon: const Icon(Icons.security),
+                  ),
+                  validator: _validatePassword,
                 ),
-                icon: const Icon(Icons.security),
-              ),
-              validator: _validatePassword,
+                const SizedBox(height: 10),
+                TextFormField(
+                  controller: _confirmPassController,
+                  obscureText: _hidePass,
+                  maxLength: 15,
+                  decoration: InputDecoration(
+                    labelText: S.of(context).password_confirmation,
+                    hintText: S.of(context).password_desc,
+                    icon: const Icon(Icons.border_color),
+                  ),
+                  validator: _validatePassword,
+                ),
+                const SizedBox(height: 15),
+                ElevatedButton(
+                  onPressed: _submitForm,
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.green,
+                    textStyle: const TextStyle(color: Colors.white),
+                  ),
+                  child: Text(S.of(context).submit),
+                  //color: Colors.green,
+                ),
+              ],
             ),
-            SizedBox(height: 10),
-            TextFormField(
-              controller: _confirmPassController,
-              obscureText: _hidePass,
-              maxLength: 15,
-              decoration: const InputDecoration(
-                labelText: 'Confirm Password *',
-                hintText: 'Confirm the password',
-                icon: Icon(Icons.border_color),
-              ),
-              validator: _validatePassword,
-            ),
-            const SizedBox(height: 15),
-            ElevatedButton(
-              child: const Text('Submit Form'),
-              onPressed: _submitForm,
-              style: ElevatedButton.styleFrom(
-                primary: Colors.green,
-                textStyle: TextStyle(color: Colors.white),
-              ),
-              //color: Colors.green,
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
   String? _validatePassword(String? value) {
     if (_passController.text.length != 6) {
-      return '6 character required for password';
+      return S.of(context).password_chars_required;
     } else if (_confirmPassController.text != _passController.text) {
-      return 'Password does not match';
+      return S.of(context).password_does_not_match;
     } else if (_currentPassController == null || _currentPassController == '') {
-      return 'Current password is required';
+      return S.of(context).password_required;
     } else {
       return null;
     }
@@ -134,19 +141,31 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
+      context.read(profileNotifierProvider.notifier).updatePassword(
+          _currentPassController.text,
+          _passController.text,
+          _confirmPassController.text);
+      context.read(profileNotifierProvider).map(
+          initial: (_) => Container(),
+          loadInProgress: (_) => const CircularProgressIndicator(),
+          loadSuccess: (_) =>
+              _showMessage(message: S.of(context).password_update_success),
+          loadFailure: (_) => _showMessage(
+              message: S.of(context).password_update_error +
+                  _.failure.errorCode.toString()));
     } else {
-      _showMessage(message: 'Form is not valid! Please review and correct');
+      _showMessage(message: S.of(context).validation_error);
     }
   }
 
   void _showMessage({required String message}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         backgroundColor: Colors.red,
         content: Text(
           message,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w600,
             fontSize: 18.0,

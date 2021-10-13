@@ -66,8 +66,11 @@
   "password_short": "Here you can change user password",
   "password_fill-data": "Fill the form",
   "current_password": "Current password",
+  "current_password_desc": "Enter your current password",
   "password": "New password",
+  "password_desc": "Enter new password",
   "password_confirmation": "Confirm password",
+  "password_confirmation_desc": "Please Confirm password",
   "import_header": "Do not have time for adding new words? Just import most popular words for your default language!",
   "import_button": "Import Words!",
   "from_sample": "Word added from samples list",
@@ -84,5 +87,12 @@
   "delete_error": "Connection error when trying to delete word: ",
   "delete_info": "Word successfully deleted with id: ",
   "next_page": "Next Page",
-  "first_page": "First Page"
+  "first_page": "First Page",
+  "submit": "Submit",
+  "validation_error": "Form is not valid! Please review and correct",
+  "password_required": "Current password is required",
+  "password_does_not_match": "Password does not match",
+  "password_chars_required": "6 character required for password",
+  "password_update_success": "Password updated successfully",
+  "password_update_error": "Error in updating password: "
 }
