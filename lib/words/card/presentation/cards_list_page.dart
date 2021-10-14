@@ -1,14 +1,15 @@
+import 'package:flip_card/flip_card.dart';
+import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:words_native/core/presentation/app_bar.dart';
 import 'package:words_native/core/presentation/drawer_widget.dart';
-import 'package:words_native/core/presentation/toasts.dart';
 import 'package:words_native/generated/l10n.dart';
 import 'package:words_native/global_settings/domain/translation_directions.dart';
 import 'package:words_native/language_selector/presentation/no_results_display.dart';
-import 'package:words_native/profile/presentation/choose_user_page.dart';
 import 'package:words_native/words/card/application/cards_notifier.dart';
+import 'package:words_native/words/card/presentation/card_tile_widget.dart';
 import 'package:words_native/words/core/shared/providers.dart';
 
 class CardsListPage extends StatefulWidget {
@@ -26,8 +27,10 @@ class CardsListPage extends StatefulWidget {
 }
 
 class _CardsListPageState extends State<CardsListPage> {
+  GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
   bool flipped = false;
   int index = 0;
+  final FlipCardController _controller = FlipCardController();
 
   @override
   void initState() {
@@ -81,6 +84,7 @@ class _CardsListPageState extends State<CardsListPage> {
                     if (flipped) {
                       cardsNotifier.flipWord(serviceModel.getCurrentWord().id);
                     }
+                    _controller.toggleCard();
                   },
                   child: const Icon(Icons.flip),
                   backgroundColor: Colors.amber,
@@ -170,185 +174,22 @@ class _CardsListPageState extends State<CardsListPage> {
                       ),
                     ),
                     Center(
-                      child: Card(
-                        clipBehavior: Clip.antiAlias,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
+                      child: FlipCard(
+                        controller: _controller,
+                        key: cardKey,
+                        flipOnTouch: false,
+                        front: CardTileWidget(
+                          serviceModel: serviceModel,
+                          text: serviceModel.getCurrentWord().getLanguageValue(
+                              widget.direction.originalLanguage),
+                          flipped: false,
                         ),
-                        elevation: 5,
-                        margin: const EdgeInsets.all(5),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(
-                                    serviceModel.getDisplayCurrent() +
-                                        '/' +
-                                        serviceModel.words.length.toString(),
-                                    style:
-                                        Theme.of(context).textTheme.subtitle2,
-                                  ),
-                                  Text(
-                                    '#' +
-                                        serviceModel
-                                            .getCurrentWord()
-                                            .id
-                                            .toString(),
-                                    style:
-                                        Theme.of(context).textTheme.subtitle2,
-                                  ),
-                                  IconButton(
-                                    onPressed: () {
-                                      cardsNotifier
-                                          .deleteWord(
-                                              serviceModel.getCurrentWord().id)
-                                          .then((value) =>
-                                              showNoConnectionToast(
-                                                  S.of(context).delete_info +
-                                                      serviceModel
-                                                          .getCurrentWord()
-                                                          .id
-                                                          .toString(),
-                                                  context))
-                                          .catchError((e) {
-                                        showNoConnectionToast(
-                                            S.of(context).delete_error +
-                                                e.toString(),
-                                            context);
-                                      });
-
-                                      serviceNotifier.deleteWord();
-                                    },
-                                    icon: Icon(Icons.delete),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            ListTile(
-                              title: Text(
-                                flipped
-                                    ? serviceModel
-                                        .getCurrentWord()
-                                        .getLanguageValue(
-                                            widget.direction.mainLanguage)
-                                    : serviceModel
-                                        .getCurrentWord()
-                                        .getLanguageValue(
-                                            widget.direction.originalLanguage),
-                                style: Theme.of(context).textTheme.headline5,
-                              ),
-                            ),
-                            ButtonBar(
-                              alignment: MainAxisAlignment.start,
-                              children: [
-                                FlatButton(
-                                  textColor: serviceModel.prev == null
-                                      ? const Color.fromRGBO(90, 90, 90, 100)
-                                      : const Color.fromRGBO(157, 252, 3, 100),
-                                  onPressed: () {
-                                    serviceNotifier.setPrevWord();
-                                  },
-                                  child: Text(S.of(context).prev),
-                                ),
-                                FlatButton(
-                                  textColor:
-                                      const Color.fromRGBO(252, 86, 3, 100),
-                                  onPressed: () {
-                                    cardsNotifier
-                                        .markKnown(
-                                            serviceModel.getCurrentWord())
-                                        .catchError((e) {
-                                      showNoConnectionToast(
-                                          S.of(context).learned_error +
-                                              e.toString(),
-                                          context);
-                                    });
-                                  },
-                                  child: Text(
-                                      serviceModel.getCurrentWord().done_at ==
-                                              null
-                                          ? S.of(context).know
-                                          : S.of(context).unknown),
-                                ),
-                                FlatButton(
-                                  textColor: const Color(0xFF6200EE),
-                                  onPressed: () {
-                                    cardsNotifier
-                                        .starWord(serviceModel.getCurrentWord())
-                                        .catchError((e) {
-                                      showNoConnectionToast(
-                                          S.of(context).starring_error +
-                                              e.toString(),
-                                          context);
-                                    });
-                                    serviceNotifier.setStarred(
-                                        !serviceModel.getCurrentWord().starred);
-                                    showNoConnectionToast(
-                                        S.of(context).starring_notification +
-                                            serviceModel
-                                                .getCurrentWord()
-                                                .id
-                                                .toString(),
-                                        context);
-                                  },
-                                  child: serviceModel.getCurrentWord().starred
-                                      ? Text(S.of(context).unstar)
-                                      : Text(S.of(context).star),
-                                ),
-                                FlatButton(
-                                  textColor:
-                                      const Color.fromRGBO(76, 128, 158, 100),
-                                  onPressed: () async {
-                                    var tappedName = await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return ChooseUserPage();
-                                    }));
-                                    if (tappedName != null) {
-                                      cardsNotifier
-                                          .shareWord(
-                                              serviceModel.getCurrentWord().id,
-                                              tappedName as int)
-                                          .then((value) =>
-                                              showNoConnectionToast(
-                                                  S
-                                                          .of(context)
-                                                          .creation_message +
-                                                      value.id.toString(),
-                                                  context))
-                                          .catchError((e) {
-                                        showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) =>
-                                                AlertDialog(
-                                                  title: Text(S
-                                                      .of(context)
-                                                      .sharing_error_header),
-                                                  content: Text(S
-                                                      .of(context)
-                                                      .sharing_error),
-                                                  actions: <Widget>[
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              context, 'OK'),
-                                                      child: Text(
-                                                          S.of(context).ok),
-                                                    ),
-                                                  ],
-                                                ));
-                                      });
-                                    }
-                                  },
-                                  child: Text(S.of(context).share),
-                                ),
-                              ],
-                            ),
-                          ],
+                        back: CardTileWidget(
+                          serviceModel: serviceModel,
+                          text: serviceModel
+                              .getCurrentWord()
+                              .getLanguageValue(widget.direction.mainLanguage),
+                          flipped: true,
                         ),
                       ),
                     ),
