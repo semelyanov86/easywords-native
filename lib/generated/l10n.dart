@@ -60,10 +60,10 @@ class S {
     );
   }
 
-  /// `Log Out`
+  /// `Change Password`
   String get ChangePassword {
     return Intl.message(
-      'Log Out',
+      'Change Password',
       name: 'ChangePassword',
       desc: '',
       args: [],
@@ -110,9 +110,25 @@ class S {
     );
   }
 
-  // skipped getter for the 'Profile page' key
+  /// `Profile page`
+  String get Profile_page {
+    return Intl.message(
+      'Profile page',
+      name: 'Profile_page',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Profile Detail Info' key
+  /// `Profile Detail Info`
+  String get Profile_Detail_Info {
+    return Intl.message(
+      'Profile Detail Info',
+      name: 'Profile_Detail_Info',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `Field`
   String get field {
@@ -521,6 +537,16 @@ class S {
     return Intl.message(
       'Number of views',
       name: 'views',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Personal Analytics`
+  String get statistics_title {
+    return Intl.message(
+      'Personal Analytics',
+      name: 'statistics_title',
       desc: '',
       args: [],
     );

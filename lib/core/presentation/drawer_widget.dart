@@ -66,6 +66,11 @@ class DrawerWidget extends ConsumerWidget {
           ListTile(
             leading: Icon(Icons.analytics),
             title: Text(S.of(context).Statistics),
+            onTap: () {
+              AutoRouter.of(context).push(
+                const StatisticsRoute(),
+              );
+            },
           ),
           ListTile(
             leading: const Icon(Icons.password),

@@ -7,6 +7,7 @@ import 'package:words_native/profile/presentation/change_password_page.dart';
 import 'package:words_native/profile/presentation/choose_user_page.dart';
 import 'package:words_native/profile/presentation/profile_page.dart';
 import 'package:words_native/splash/presentation/splash_page.dart';
+import 'package:words_native/statistics/presentation/statistics_page.dart';
 import 'package:words_native/words/card/presentation/cards_list_page.dart';
 import 'package:words_native/words/create_word/presentation/create_word_page.dart';
 
@@ -21,6 +22,7 @@ import 'package:words_native/words/create_word/presentation/create_word_page.dar
     MaterialRoute(page: ProfilePage, path: '/profile'),
     MaterialRoute(page: ChangePasswordPage, path: '/password'),
     MaterialRoute(page: ChooseUserPage, path: '/share'),
+    MaterialRoute(page: StatisticsPage, path: '/statistics'),
   ],
   replaceInRouteName: 'Page,Route',
 )

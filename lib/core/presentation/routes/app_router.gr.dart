@@ -6,11 +6,11 @@
 
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
-import 'package:hooks_riverpod/hooks_riverpod.dart' as _i12;
+import 'package:hooks_riverpod/hooks_riverpod.dart' as _i13;
 
-import '../../../auth/application/auth_notifier.dart' as _i13;
+import '../../../auth/application/auth_notifier.dart' as _i14;
 import '../../../auth/presentation/sign_in_page.dart' as _i4;
-import '../../../global_settings/domain/translation_directions.dart' as _i14;
+import '../../../global_settings/domain/translation_directions.dart' as _i15;
 import '../../../global_settings/presentation/settings_page.dart' as _i8;
 import '../../../language_selector/presentation/language_selector_page.dart'
     as _i5;
@@ -18,6 +18,7 @@ import '../../../profile/presentation/change_password_page.dart' as _i10;
 import '../../../profile/presentation/choose_user_page.dart' as _i11;
 import '../../../profile/presentation/profile_page.dart' as _i9;
 import '../../../splash/presentation/splash_page.dart' as _i3;
+import '../../../statistics/presentation/statistics_page.dart' as _i12;
 import '../../../words/card/presentation/cards_list_page.dart' as _i6;
 import '../../../words/create_word/presentation/create_word_page.dart' as _i7;
 
@@ -67,6 +68,10 @@ class AppRouter extends _i1.RootStackRouter {
     ChooseUserRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i11.ChooseUserPage());
+    },
+    StatisticsRoute.name: (routeData) {
+      return _i1.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i12.StatisticsPage());
     }
   };
 
@@ -80,7 +85,8 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(SettingsRoute.name, path: '/settings'),
         _i1.RouteConfig(ProfileRoute.name, path: '/profile'),
         _i1.RouteConfig(ChangePasswordRoute.name, path: '/password'),
-        _i1.RouteConfig(ChooseUserRoute.name, path: '/share')
+        _i1.RouteConfig(ChooseUserRoute.name, path: '/share'),
+        _i1.RouteConfig(StatisticsRoute.name, path: '/statistics')
       ];
 }
 
@@ -93,7 +99,7 @@ class SplashRoute extends _i1.PageRouteInfo {
 class SignInRoute extends _i1.PageRouteInfo<SignInRouteArgs> {
   SignInRoute(
       {_i2.Key? key,
-      required _i12.StateNotifierProvider<_i13.AuthNotifier, _i13.AuthState>?
+      required _i13.StateNotifierProvider<_i14.AuthNotifier, _i14.AuthState>?
           authNotifierProvider})
       : super(name,
             path: '/sign-in',
@@ -108,7 +114,7 @@ class SignInRouteArgs {
 
   final _i2.Key? key;
 
-  final _i12.StateNotifierProvider<_i13.AuthNotifier, _i13.AuthState>?
+  final _i13.StateNotifierProvider<_i14.AuthNotifier, _i14.AuthState>?
       authNotifierProvider;
 }
 
@@ -119,7 +125,7 @@ class LanguageSelectorRoute extends _i1.PageRouteInfo {
 }
 
 class CardsListRoute extends _i1.PageRouteInfo<CardsListRouteArgs> {
-  CardsListRoute({_i2.Key? key, required _i14.TranslationDirections direction})
+  CardsListRoute({_i2.Key? key, required _i15.TranslationDirections direction})
       : super(name,
             path: '/cards',
             args: CardsListRouteArgs(key: key, direction: direction));
@@ -132,7 +138,7 @@ class CardsListRouteArgs {
 
   final _i2.Key? key;
 
-  final _i14.TranslationDirections direction;
+  final _i15.TranslationDirections direction;
 }
 
 class CreateWordRoute extends _i1.PageRouteInfo {
@@ -163,4 +169,10 @@ class ChooseUserRoute extends _i1.PageRouteInfo {
   const ChooseUserRoute() : super(name, path: '/share');
 
   static const String name = 'ChooseUserRoute';
+}
+
+class StatisticsRoute extends _i1.PageRouteInfo {
+  const StatisticsRoute() : super(name, path: '/statistics');
+
+  static const String name = 'StatisticsRoute';
 }

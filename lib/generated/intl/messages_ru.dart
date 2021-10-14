@@ -25,6 +25,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Изменить пароль"),
         "Logout": MessageLookupByLibrary.simpleMessage("Выход"),
         "Profile": MessageLookupByLibrary.simpleMessage("Страница профиля"),
+        "Profile_Detail_Info":
+            MessageLookupByLibrary.simpleMessage("Информация о пользователе"),
+        "Profile_page":
+            MessageLookupByLibrary.simpleMessage("Страница профиля"),
         "Settings": MessageLookupByLibrary.simpleMessage("Настройки"),
         "Statistics": MessageLookupByLibrary.simpleMessage("Статистика"),
         "added_today":
@@ -149,6 +153,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Слово добавлено в избранное с номером: "),
         "statistics_header": MessageLookupByLibrary.simpleMessage(
             "Ваша персональная статистика по изучению языков"),
+        "statistics_title": MessageLookupByLibrary.simpleMessage("Статистика"),
         "submit": MessageLookupByLibrary.simpleMessage("Отправить"),
         "title": MessageLookupByLibrary.simpleMessage("EasyWords App"),
         "total_views":

@@ -21,9 +21,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "ChangePassword": MessageLookupByLibrary.simpleMessage("Log Out"),
+        "ChangePassword":
+            MessageLookupByLibrary.simpleMessage("Change Password"),
         "Logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "Profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "Profile_Detail_Info":
+            MessageLookupByLibrary.simpleMessage("Profile Detail Info"),
+        "Profile_page": MessageLookupByLibrary.simpleMessage("Profile page"),
         "Settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "Statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
         "added_today": MessageLookupByLibrary.simpleMessage("Added today"),
@@ -141,6 +145,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Successfully mark starring with ID: "),
         "statistics_header": MessageLookupByLibrary.simpleMessage(
             "Your activity in learning language"),
+        "statistics_title":
+            MessageLookupByLibrary.simpleMessage("Personal Analytics"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "title": MessageLookupByLibrary.simpleMessage("EasyWords App"),
         "total_views": MessageLookupByLibrary.simpleMessage("Total views"),
