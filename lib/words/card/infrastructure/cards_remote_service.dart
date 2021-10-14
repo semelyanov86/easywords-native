@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:words_native/core/infrastructure/dio_extensions.dart';
 import 'package:words_native/core/infrastructure/network_exceptions.dart';
@@ -65,34 +63,82 @@ class CardsRemoteService {
     }
   }
 
-  Future<WordDTO> markViewed(int word) async {
+  Future<WordDTO?> markViewed(int word) async {
     final server = await MainLocalSettings.getServerUrl();
     final path = 'api/words/${word.toString()}/viewed';
 
-    final requestUri =
-        Uri.https(server?.host ?? MainLocalSettings.defaultHost, path);
-    final response = await _dio.getUri(requestUri);
-    log(requestUri.toString());
-    return WordDTO.fromJson(response.data['data'] as Map<String, dynamic>);
+    final requestUri = Uri.https(
+      server?.host ?? MainLocalSettings.defaultHost,
+      path,
+    );
+
+    try {
+      final response = await _dio.getUri(requestUri);
+
+      if (response.statusCode == 200) {
+        return WordDTO.fromJson(response.data['data'] as Map<String, dynamic>);
+      } else {
+        throw RestApiException(response.statusCode);
+      }
+    } on DioError catch (e) {
+      if (e.isNoConnectionError) {
+        return null;
+      } else if (e.response != null) {
+        throw RestApiException(e.response?.statusCode);
+      } else {
+        rethrow;
+      }
+    }
   }
 
-  Future<WordDTO> markKnown(int word, bool value) async {
+  Future<WordDTO?> markKnown(int word, bool value) async {
     final server = await MainLocalSettings.getServerUrl();
     final path = 'api/words/${word.toString()}/known/${value ? 1 : 0}';
 
     final requestUri =
         Uri.https(server?.host ?? MainLocalSettings.defaultHost, path);
-    final response = await _dio.getUri(requestUri);
-    return WordDTO.fromJson(response.data['data'] as Map<String, dynamic>);
+    try {
+      final response = await _dio.getUri(requestUri);
+
+      if (response.statusCode == 200) {
+        return WordDTO.fromJson(response.data['data'] as Map<String, dynamic>);
+      } else {
+        throw RestApiException(response.statusCode);
+      }
+    } on DioError catch (e) {
+      if (e.isNoConnectionError) {
+        return null;
+      } else if (e.response != null) {
+        throw RestApiException(e.response?.statusCode);
+      } else {
+        rethrow;
+      }
+    }
   }
 
-  Future<WordDTO> shareWord(int word, int user) async {
+  Future<WordDTO?> shareWord(int word, int user) async {
     final server = await MainLocalSettings.getServerUrl();
     final path = 'api/words/${word.toString()}/share/${user.toString()}';
     final requestUri =
         Uri.https(server?.host ?? MainLocalSettings.defaultHost, path);
-    final response = await _dio.getUri(requestUri);
-    return WordDTO.fromJson(response.data['data'] as Map<String, dynamic>);
+
+    try {
+      final response = await _dio.getUri(requestUri);
+
+      if (response.statusCode == 200) {
+        return WordDTO.fromJson(response.data['data'] as Map<String, dynamic>);
+      } else {
+        throw RestApiException(response.statusCode);
+      }
+    } on DioError catch (e) {
+      if (e.isNoConnectionError) {
+        return null;
+      } else if (e.response != null) {
+        throw RestApiException(e.response?.statusCode);
+      } else {
+        rethrow;
+      }
+    }
   }
 
   Future<void> deleteWord(int word) async {
@@ -104,13 +150,29 @@ class CardsRemoteService {
     await _dio.deleteUri(requestUri);
   }
 
-  Future<WordDTO> starWord(int word, bool value) async {
+  Future<WordDTO?> starWord(int word, bool value) async {
     final server = await MainLocalSettings.getServerUrl();
     final path = 'api/words/${word.toString()}/starred/${value ? 1 : 0}';
 
     final requestUri =
         Uri.https(server?.host ?? MainLocalSettings.defaultHost, path);
-    final response = await _dio.getUri(requestUri);
-    return WordDTO.fromJson(response.data['data'] as Map<String, dynamic>);
+
+    try {
+      final response = await _dio.getUri(requestUri);
+
+      if (response.statusCode == 200) {
+        return WordDTO.fromJson(response.data['data'] as Map<String, dynamic>);
+      } else {
+        throw RestApiException(response.statusCode);
+      }
+    } on DioError catch (e) {
+      if (e.isNoConnectionError) {
+        return null;
+      } else if (e.response != null) {
+        throw RestApiException(e.response?.statusCode);
+      } else {
+        rethrow;
+      }
+    }
   }
 }

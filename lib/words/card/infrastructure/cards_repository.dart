@@ -39,19 +39,29 @@ class CardsRepository {
     }
   }
 
-  Future<void> markFlipped(int word) async {
-    _remoteService
-        .markViewed(word)
-        .then((value) => _localService.updateRecord(value));
+  Future<Either<WordFailure, WordDTO?>> markFlipped(int word) async {
+    try {
+      final actionCompleted = await _remoteService.markViewed(word);
+      return right(actionCompleted);
+    } on RestApiException catch (e) {
+      return left(WordFailure.api(e.errorCode));
+    }
   }
 
-  Future<void> markKnown(Word word) async {
-    _remoteService
-        .markKnown(word.id, word.done_at == null)
-        .then((value) => _localService.updateRecord(value));
+  Future<Either<WordFailure, WordDTO?>> markKnown(Word word) async {
+    try {
+      final actionCompleted =
+          await _remoteService.markKnown(word.id, word.done_at == null);
+      if (actionCompleted != null) {
+        await _localService.updateRecord(actionCompleted);
+      }
+      return right(actionCompleted);
+    } on RestApiException catch (e) {
+      return left(WordFailure.api(e.errorCode));
+    }
   }
 
-  Future<WordDTO> shareWord(int word, int user) async {
+  Future<WordDTO?> shareWord(int word, int user) async {
     return _remoteService.shareWord(word, user);
   }
 
@@ -59,10 +69,17 @@ class CardsRepository {
     return _remoteService.deleteWord(word);
   }
 
-  Future<void> starWord(Word word) async {
-    _remoteService
-        .starWord(word.id, !word.starred)
-        .then((value) => _localService.updateRecord(value));
+  Future<Either<WordFailure, WordDTO?>> starWord(Word word) async {
+    try {
+      final actionCompleted =
+          await _remoteService.starWord(word.id, !word.starred);
+      if (actionCompleted != null) {
+        await _localService.updateRecord(actionCompleted);
+      }
+      return right(actionCompleted);
+    } on RestApiException catch (e) {
+      return left(WordFailure.api(e.errorCode));
+    }
   }
 }
 

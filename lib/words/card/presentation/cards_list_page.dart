@@ -79,13 +79,7 @@ class _CardsListPageState extends State<CardsListPage> {
                       flipped = !flipped;
                     });
                     if (flipped) {
-                      try {
-                        cardsNotifier
-                            .flipWord(serviceModel.getCurrentWord().id);
-                      } on Exception catch (e) {
-                        showNoConnectionToast(
-                            S.of(context).error_marking_viewed, context);
-                      }
+                      cardsNotifier.flipWord(serviceModel.getCurrentWord().id);
                     }
                   },
                   child: const Icon(Icons.flip),
@@ -273,7 +267,6 @@ class _CardsListPageState extends State<CardsListPage> {
                                               e.toString(),
                                           context);
                                     });
-                                    serviceNotifier.setLearned();
                                   },
                                   child: Text(
                                       serviceModel.getCurrentWord().done_at ==

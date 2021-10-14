@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:words_native/core/domain/fresh.dart';
+import 'package:words_native/core/infrastructure/network_exceptions.dart';
 import 'package:words_native/words/card/infrastructure/cards_repository.dart';
 import 'package:words_native/words/core/domain/word.dart';
 import 'package:words_native/words/core/domain/word_failure.dart';
@@ -48,15 +49,50 @@ class CardsNotifier extends StateNotifier<CardsState> {
   }
 
   Future<void> flipWord(int word) async {
-    await _repository.markFlipped(word);
+    state.maybeMap(
+      orElse: () {},
+      loadSuccess: (successState) async {
+        final failureOrSuccess = await _repository.markFlipped(word);
+
+        failureOrSuccess.fold(
+          (l) => state,
+          (r) => state,
+        );
+      },
+    );
   }
 
   Future<void> markKnown(Word word) async {
-    await _repository.markKnown(word);
+    state.maybeMap(
+      orElse: () {},
+      loadSuccess: (successState) async {
+        final stateCopy = successState.copyWith();
+        final words = successState.cards.entity;
+
+        words.removeWhere((Word current) => current.id == word.id);
+        // state = state.copyWith(words: words, prev: null);
+
+        final failureOrSuccess = await _repository.markKnown(word);
+
+        failureOrSuccess.fold(
+          (l) => state = stateCopy,
+          (r) => r == null
+              ? state = stateCopy
+              : state = state.copyWith(
+                  cards: Fresh(
+                      entity: words,
+                      isNextPageAvailable: state.cards.isNextPageAvailable,
+                      isFresh: state.cards.isFresh)),
+        );
+      },
+    );
   }
 
   Future<WordDTO> shareWord(int word, int user) async {
     var result = await _repository.shareWord(word, user);
+    if (result == null) {
+      throw RestApiException(500);
+    }
     return result;
   }
 
@@ -65,7 +101,17 @@ class CardsNotifier extends StateNotifier<CardsState> {
   }
 
   Future<void> starWord(Word word) async {
-    await _repository.starWord(word);
+    state.maybeMap(
+      orElse: () {},
+      loadSuccess: (successState) async {
+        final failureOrSuccess = await _repository.starWord(word);
+
+        failureOrSuccess.fold(
+          (l) => state,
+          (r) => state,
+        );
+      },
+    );
   }
 
   void increasePage() {
