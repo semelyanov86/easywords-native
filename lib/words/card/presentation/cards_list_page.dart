@@ -41,8 +41,6 @@ class _CardsListPageState extends State<CardsListPage> {
           .read(cardsNotifierProvider.notifier)
           .getNextCardsPage(widget.direction.originalLanguage),
     );
-    Future.microtask(
-        () => context.read(cardsCalculationProvider.notifier).setDefaultData());
   }
 
   @override

@@ -38,11 +38,12 @@ final cardsRepositoryProvider = Provider(
   ),
 );
 
-final cardsNotifierProvider = StateNotifierProvider<CardsNotifier, CardsState>(
+final cardsNotifierProvider =
+    StateNotifierProvider.autoDispose<CardsNotifier, CardsState>(
   (ref) => CardsNotifier(ref.watch(cardsRepositoryProvider)),
 );
 
-final cardsCalculationProvider = StateNotifierProvider<
+final cardsCalculationProvider = StateNotifierProvider.autoDispose<
     CardsCalculationServiceNotifier,
     CardsCalculationService>((ref) => CardsCalculationServiceNotifier());
 
