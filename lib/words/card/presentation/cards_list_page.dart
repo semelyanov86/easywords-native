@@ -31,6 +31,7 @@ class _CardsListPageState extends State<CardsListPage> {
   bool flipped = false;
   int index = 0;
   final FlipCardController _controller = FlipCardController();
+  bool _visible = true;
 
   @override
   void initState() {
@@ -78,23 +79,26 @@ class _CardsListPageState extends State<CardsListPage> {
               children: <Widget>[
                 FloatingActionButton(
                   onPressed: () {
-                    setState(() {
-                      flipped = !flipped;
-                    });
-                    if (flipped) {
-                      cardsNotifier.flipWord(serviceModel.getCurrentWord().id);
-                    }
                     _controller.toggleCard();
                   },
                   child: const Icon(Icons.flip),
                   backgroundColor: Colors.amber,
+                  tooltip: S.of(context).show,
                 ),
                 FloatingActionButton(
                   onPressed: () {
-                    serviceNotifier.setNextWord();
+                    if (flipped) {
+                      _controller.toggleCard();
+                    }
+                    _visible = false;
+                    Future.delayed(Duration(milliseconds: 500), () {
+                      _visible = true;
+                      serviceNotifier.setNextWord();
+                    });
                   },
                   child: const Icon(Icons.arrow_forward),
                   backgroundColor: Colors.green,
+                  tooltip: S.of(context).next,
                 ),
               ],
             ),
@@ -177,19 +181,57 @@ class _CardsListPageState extends State<CardsListPage> {
                       child: FlipCard(
                         controller: _controller,
                         key: cardKey,
-                        flipOnTouch: false,
-                        front: CardTileWidget(
-                          serviceModel: serviceModel,
-                          text: serviceModel.getCurrentWord().getLanguageValue(
-                              widget.direction.originalLanguage),
-                          flipped: false,
+                        flipOnTouch: true,
+                        onFlip: () {
+                          setState(() {
+                            flipped = !flipped;
+                          });
+                          if (flipped) {
+                            cardsNotifier
+                                .flipWord(serviceModel.getCurrentWord().id);
+                          }
+                        },
+                        front: AnimatedOpacity(
+                          opacity: _visible ? 1.0 : 0.0,
+                          duration: const Duration(milliseconds: 500),
+                          child: CardTileWidget(
+                            serviceModel: serviceModel,
+                            text: serviceModel
+                                .getCurrentWord()
+                                .getLanguageValue(
+                                    widget.direction.originalLanguage),
+                            onLearned: () {
+                              _visible = false;
+                              if (flipped) {
+                                _controller.toggleCard();
+                              }
+                              Future.delayed(Duration(milliseconds: 500), () {
+                                _visible = true;
+                              });
+                            },
+                            flipped: false,
+                          ),
                         ),
-                        back: CardTileWidget(
-                          serviceModel: serviceModel,
-                          text: serviceModel
-                              .getCurrentWord()
-                              .getLanguageValue(widget.direction.mainLanguage),
-                          flipped: true,
+                        back: AnimatedOpacity(
+                          opacity: _visible ? 1.0 : 0.0,
+                          duration: const Duration(milliseconds: 500),
+                          child: CardTileWidget(
+                            serviceModel: serviceModel,
+                            text: serviceModel
+                                .getCurrentWord()
+                                .getLanguageValue(
+                                    widget.direction.mainLanguage),
+                            onLearned: () {
+                              _visible = false;
+                              if (flipped) {
+                                _controller.toggleCard();
+                              }
+                              Future.delayed(Duration(milliseconds: 500), () {
+                                _visible = true;
+                              });
+                            },
+                            flipped: true,
+                          ),
                         ),
                       ),
                     ),

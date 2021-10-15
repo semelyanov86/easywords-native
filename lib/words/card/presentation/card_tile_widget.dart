@@ -10,11 +10,13 @@ class CardTileWidget extends ConsumerWidget {
   final CardsCalculationService serviceModel;
   final bool flipped;
   final String text;
+  final Function onLearned;
 
   const CardTileWidget({
     Key? key,
     required this.serviceModel,
     required this.text,
+    required this.onLearned,
     this.flipped = false,
   }) : super(key: key);
 
@@ -86,13 +88,16 @@ class CardTileWidget extends ConsumerWidget {
               FlatButton(
                 textColor: const Color.fromRGBO(252, 86, 3, 100),
                 onPressed: () {
-                  cardsNotifier
-                      .markKnown(serviceModel.getCurrentWord())
-                      .catchError((e) {
-                    showNoConnectionToast(
-                        S.of(context).learned_error + e.toString(), context);
+                  onLearned();
+                  Future.delayed(Duration(milliseconds: 500), () {
+                    cardsNotifier
+                        .markKnown(serviceModel.getCurrentWord())
+                        .catchError((e) {
+                      showNoConnectionToast(
+                          S.of(context).learned_error + e.toString(), context);
+                    });
+                    serviceNotifier.setLearned();
                   });
-                  serviceNotifier.setLearned();
                 },
                 child: Text(serviceModel.getCurrentWord().done_at == null
                     ? S.of(context).know
