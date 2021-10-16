@@ -6,11 +6,11 @@
 
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
-import 'package:hooks_riverpod/hooks_riverpod.dart' as _i13;
+import 'package:hooks_riverpod/hooks_riverpod.dart' as _i16;
 
-import '../../../auth/application/auth_notifier.dart' as _i14;
+import '../../../auth/application/auth_notifier.dart' as _i17;
 import '../../../auth/presentation/sign_in_page.dart' as _i4;
-import '../../../global_settings/domain/translation_directions.dart' as _i15;
+import '../../../global_settings/domain/translation_directions.dart' as _i18;
 import '../../../global_settings/presentation/settings_page.dart' as _i8;
 import '../../../language_selector/presentation/language_selector_page.dart'
     as _i5;
@@ -21,6 +21,11 @@ import '../../../splash/presentation/splash_page.dart' as _i3;
 import '../../../statistics/presentation/statistics_page.dart' as _i12;
 import '../../../words/card/presentation/cards_list_page.dart' as _i6;
 import '../../../words/create_word/presentation/create_word_page.dart' as _i7;
+import '../../../words/list_view/presentation/list_all_words_page.dart' as _i13;
+import '../../../words/list_view/presentation/list_known_words_page.dart'
+    as _i14;
+import '../../../words/list_view/presentation/list_unknown_words_page.dart'
+    as _i15;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -72,6 +77,18 @@ class AppRouter extends _i1.RootStackRouter {
     StatisticsRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
           routeData: routeData, child: _i12.StatisticsPage());
+    },
+    ListAllWordsRoute.name: (routeData) {
+      return _i1.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i13.ListAllWordsPage());
+    },
+    ListKnownWordsRoute.name: (routeData) {
+      return _i1.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i14.ListKnownWordsPage());
+    },
+    ListUnknownWordsRoute.name: (routeData) {
+      return _i1.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i15.ListUnknownWordsPage());
     }
   };
 
@@ -86,7 +103,10 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(ProfileRoute.name, path: '/profile'),
         _i1.RouteConfig(ChangePasswordRoute.name, path: '/password'),
         _i1.RouteConfig(ChooseUserRoute.name, path: '/share'),
-        _i1.RouteConfig(StatisticsRoute.name, path: '/statistics')
+        _i1.RouteConfig(StatisticsRoute.name, path: '/statistics'),
+        _i1.RouteConfig(ListAllWordsRoute.name, path: '/all'),
+        _i1.RouteConfig(ListKnownWordsRoute.name, path: '/known'),
+        _i1.RouteConfig(ListUnknownWordsRoute.name, path: '/unknown')
       ];
 }
 
@@ -99,7 +119,7 @@ class SplashRoute extends _i1.PageRouteInfo {
 class SignInRoute extends _i1.PageRouteInfo<SignInRouteArgs> {
   SignInRoute(
       {_i2.Key? key,
-      required _i13.StateNotifierProvider<_i14.AuthNotifier, _i14.AuthState>?
+      required _i16.StateNotifierProvider<_i17.AuthNotifier, _i17.AuthState>?
           authNotifierProvider})
       : super(name,
             path: '/sign-in',
@@ -114,7 +134,7 @@ class SignInRouteArgs {
 
   final _i2.Key? key;
 
-  final _i13.StateNotifierProvider<_i14.AuthNotifier, _i14.AuthState>?
+  final _i16.StateNotifierProvider<_i17.AuthNotifier, _i17.AuthState>?
       authNotifierProvider;
 }
 
@@ -125,7 +145,7 @@ class LanguageSelectorRoute extends _i1.PageRouteInfo {
 }
 
 class CardsListRoute extends _i1.PageRouteInfo<CardsListRouteArgs> {
-  CardsListRoute({_i2.Key? key, required _i15.TranslationDirections direction})
+  CardsListRoute({_i2.Key? key, required _i18.TranslationDirections direction})
       : super(name,
             path: '/cards',
             args: CardsListRouteArgs(key: key, direction: direction));
@@ -138,7 +158,7 @@ class CardsListRouteArgs {
 
   final _i2.Key? key;
 
-  final _i15.TranslationDirections direction;
+  final _i18.TranslationDirections direction;
 }
 
 class CreateWordRoute extends _i1.PageRouteInfo {
@@ -175,4 +195,22 @@ class StatisticsRoute extends _i1.PageRouteInfo {
   const StatisticsRoute() : super(name, path: '/statistics');
 
   static const String name = 'StatisticsRoute';
+}
+
+class ListAllWordsRoute extends _i1.PageRouteInfo {
+  const ListAllWordsRoute() : super(name, path: '/all');
+
+  static const String name = 'ListAllWordsRoute';
+}
+
+class ListKnownWordsRoute extends _i1.PageRouteInfo {
+  const ListKnownWordsRoute() : super(name, path: '/known');
+
+  static const String name = 'ListKnownWordsRoute';
+}
+
+class ListUnknownWordsRoute extends _i1.PageRouteInfo {
+  const ListUnknownWordsRoute() : super(name, path: '/unknown');
+
+  static const String name = 'ListUnknownWordsRoute';
 }

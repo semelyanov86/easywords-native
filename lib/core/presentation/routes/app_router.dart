@@ -10,6 +10,9 @@ import 'package:words_native/splash/presentation/splash_page.dart';
 import 'package:words_native/statistics/presentation/statistics_page.dart';
 import 'package:words_native/words/card/presentation/cards_list_page.dart';
 import 'package:words_native/words/create_word/presentation/create_word_page.dart';
+import 'package:words_native/words/list_view/presentation/list_all_words_page.dart';
+import 'package:words_native/words/list_view/presentation/list_known_words_page.dart';
+import 'package:words_native/words/list_view/presentation/list_unknown_words_page.dart';
 
 @MaterialAutoRouter(
   routes: [
@@ -23,6 +26,9 @@ import 'package:words_native/words/create_word/presentation/create_word_page.dar
     MaterialRoute(page: ChangePasswordPage, path: '/password'),
     MaterialRoute(page: ChooseUserPage, path: '/share'),
     MaterialRoute(page: StatisticsPage, path: '/statistics'),
+    MaterialRoute(page: ListAllWordsPage, path: '/all'),
+    MaterialRoute(page: ListKnownWordsPage, path: '/known'),
+    MaterialRoute(page: ListUnknownWordsPage, path: '/unknown'),
   ],
   replaceInRouteName: 'Page,Route',
 )

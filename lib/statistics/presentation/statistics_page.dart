@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:words_native/core/presentation/app_bar.dart';
 import 'package:words_native/core/presentation/drawer_widget.dart';
+import 'package:words_native/core/presentation/routes/app_router.gr.dart';
 import 'package:words_native/core/presentation/toasts.dart';
 import 'package:words_native/generated/l10n.dart';
 import 'package:words_native/statistics/domain/statistics_notifier.dart';
@@ -85,29 +87,44 @@ class StatisticsPageState extends State<StatisticsPage> {
                     const SizedBox(
                       height: 8.0,
                     ),
-                    StatCard(
-                      iconData: const Icon(MdiIcons.cards,
-                          color: Colors.lightGreen, size: 45),
-                      value: _.statistic.entity.all,
-                      description: Text(S.of(context).all),
+                    GestureDetector(
+                      onTap: () => AutoRouter.of(context).push(
+                        const ListAllWordsRoute(),
+                      ),
+                      child: StatCard(
+                        iconData: const Icon(MdiIcons.cards,
+                            color: Colors.lightGreen, size: 45),
+                        value: _.statistic.entity.all,
+                        description: Text(S.of(context).all),
+                      ),
                     ),
                     const SizedBox(
                       height: 8.0,
                     ),
-                    StatCard(
-                      iconData: const Icon(MdiIcons.eyeOff,
-                          color: Colors.purpleAccent, size: 45),
-                      value: _.statistic.entity.not_dones,
-                      description: Text(S.of(context).not_dones),
+                    GestureDetector(
+                      onTap: () => AutoRouter.of(context).push(
+                        const ListUnknownWordsRoute(),
+                      ),
+                      child: StatCard(
+                        iconData: const Icon(MdiIcons.eyeOff,
+                            color: Colors.purpleAccent, size: 45),
+                        value: _.statistic.entity.not_dones,
+                        description: Text(S.of(context).not_dones),
+                      ),
                     ),
                     const SizedBox(
                       height: 8.0,
                     ),
-                    StatCard(
-                      iconData: const Icon(MdiIcons.school,
-                          color: Colors.cyan, size: 45),
-                      value: _.statistic.entity.dones,
-                      description: Text(S.of(context).dones),
+                    GestureDetector(
+                      onTap: () => AutoRouter.of(context).push(
+                        const ListKnownWordsRoute(),
+                      ),
+                      child: StatCard(
+                        iconData: const Icon(MdiIcons.school,
+                            color: Colors.cyan, size: 45),
+                        value: _.statistic.entity.dones,
+                        description: Text(S.of(context).dones),
+                      ),
                     ),
                     const SizedBox(
                       height: 8.0,

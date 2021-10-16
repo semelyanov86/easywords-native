@@ -1003,6 +1003,76 @@ class S {
       args: [],
     );
   }
+
+  /// `List of all words`
+  String get list_all_words {
+    return Intl.message(
+      'List of all words',
+      name: 'list_all_words',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `List known words`
+  String get list_known_words {
+    return Intl.message(
+      'List known words',
+      name: 'list_known_words',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `List of not learned words`
+  String get list_unknown_words {
+    return Intl.message(
+      'List of not learned words',
+      name: 'list_unknown_words',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occured, please retry`
+  String get unexpected_error {
+    return Intl.message(
+      'An error occured, please retry',
+      name: 'unexpected_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `That's about everything we could find in your starred repos right now.`
+  String get no_results_message {
+    return Intl.message(
+      'That\'s about everything we could find in your starred repos right now.',
+      name: 'no_results_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Word make as learned with id: `
+  String get mark_done {
+    return Intl.message(
+      'Word make as learned with id: ',
+      name: 'mark_done',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Word marked as unlearned with id: `
+  String get mark_undone {
+    return Intl.message(
+      'Word marked as unlearned with id: ',
+      name: 'mark_undone',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -95,5 +95,12 @@
   "password_does_not_match": "Пароли не совпадают",
   "password_chars_required": "Длина пароля минимум 6 символов",
   "password_update_success": "Пароль успешно обновлён",
-  "password_update_error": "Ошибка при обновлении пароля: "
+  "password_update_error": "Ошибка при обновлении пароля: ",
+  "list_all_words": "Список всех слов",
+  "list_known_words": "Список выученных слов",
+  "list_unknown_words": "Список пока ещё не выученных слов",
+  "unexpected_error": "Неожиданная ошибка, попробуйте снова",
+  "no_results_message": "Кажется это все слова, которые мы нашли",
+  "mark_done": "Слово помечено как изученное с номером: ",
+  "mark_undone": "Слово удалено из изученных с номером: "
 }

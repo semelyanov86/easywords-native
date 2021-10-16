@@ -86,6 +86,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "latest_first": MessageLookupByLibrary.simpleMessage("Latest First"),
         "learned_error": MessageLookupByLibrary.simpleMessage(
             "Connection error when trying to mark word as learned: "),
+        "list_all_words":
+            MessageLookupByLibrary.simpleMessage("List of all words"),
+        "list_known_words":
+            MessageLookupByLibrary.simpleMessage("List known words"),
+        "list_unknown_words":
+            MessageLookupByLibrary.simpleMessage("List of not learned words"),
+        "mark_done": MessageLookupByLibrary.simpleMessage(
+            "Word make as learned with id: "),
+        "mark_undone": MessageLookupByLibrary.simpleMessage(
+            "Word marked as unlearned with id: "),
         "most_viewed":
             MessageLookupByLibrary.simpleMessage("Most viewed words"),
         "name": MessageLookupByLibrary.simpleMessage("User Name"),
@@ -93,6 +103,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "next_page": MessageLookupByLibrary.simpleMessage("Next Page"),
         "no_items": MessageLookupByLibrary.simpleMessage(
             "No words for learning. Add new words and try to update list."),
+        "no_results_message": MessageLookupByLibrary.simpleMessage(
+            "That\'s about everything we could find in your starred repos right now."),
         "not_dones":
             MessageLookupByLibrary.simpleMessage("Number of not learned words"),
         "offline_info": MessageLookupByLibrary.simpleMessage(
@@ -151,6 +163,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "title": MessageLookupByLibrary.simpleMessage("EasyWords App"),
         "total_views": MessageLookupByLibrary.simpleMessage("Total views"),
         "translated": MessageLookupByLibrary.simpleMessage("Translated word"),
+        "unexpected_error": MessageLookupByLibrary.simpleMessage(
+            "An error occured, please retry"),
         "unknown": MessageLookupByLibrary.simpleMessage("Learn Again!"),
         "unstar": MessageLookupByLibrary.simpleMessage("Remove Star"),
         "update_words": MessageLookupByLibrary.simpleMessage("Update words"),

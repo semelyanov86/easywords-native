@@ -95,5 +95,12 @@
   "password_does_not_match": "Password does not match",
   "password_chars_required": "6 character required for password",
   "password_update_success": "Password updated successfully",
-  "password_update_error": "Error in updating password: "
+  "password_update_error": "Error in updating password: ",
+  "list_all_words": "List of all words",
+  "list_known_words": "List known words",
+  "list_unknown_words": "List of not learned words",
+  "unexpected_error": "An error occured, please retry",
+  "no_results_message": "That's about everything we could find in your starred repos right now.",
+  "mark_done": "Word make as learned with id: ",
+  "mark_undone": "Word marked as unlearned with id: "
 }

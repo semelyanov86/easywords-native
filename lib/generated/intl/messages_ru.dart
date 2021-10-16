@@ -92,6 +92,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "latest_first": MessageLookupByLibrary.simpleMessage("Сначала свежие"),
         "learned_error": MessageLookupByLibrary.simpleMessage(
             "Ошибка связи с сервером при попытке пометить слово изученным: "),
+        "list_all_words":
+            MessageLookupByLibrary.simpleMessage("Список всех слов"),
+        "list_known_words":
+            MessageLookupByLibrary.simpleMessage("Список выученных слов"),
+        "list_unknown_words": MessageLookupByLibrary.simpleMessage(
+            "Список пока ещё не выученных слов"),
+        "mark_done": MessageLookupByLibrary.simpleMessage(
+            "Слово помечено как изученное с номером: "),
+        "mark_undone": MessageLookupByLibrary.simpleMessage(
+            "Слово удалено из изученных с номером: "),
         "most_viewed":
             MessageLookupByLibrary.simpleMessage("Часто просматриваемые слова"),
         "name": MessageLookupByLibrary.simpleMessage("Имя пользователя"),
@@ -99,6 +109,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "next_page": MessageLookupByLibrary.simpleMessage("Следующая страница"),
         "no_items": MessageLookupByLibrary.simpleMessage(
             "Нет слов для изучения. Добавьте новые слова или обновите список с сервера"),
+        "no_results_message": MessageLookupByLibrary.simpleMessage(
+            "Кажется это все слова, которые мы нашли"),
         "not_dones":
             MessageLookupByLibrary.simpleMessage("Количество не изученных"),
         "offline_info": MessageLookupByLibrary.simpleMessage(
@@ -159,6 +171,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "total_views":
             MessageLookupByLibrary.simpleMessage("Количество просмотров"),
         "translated": MessageLookupByLibrary.simpleMessage("Перевод слова"),
+        "unexpected_error": MessageLookupByLibrary.simpleMessage(
+            "Неожиданная ошибка, попробуйте снова"),
         "unknown": MessageLookupByLibrary.simpleMessage("Учить снова!"),
         "unstar": MessageLookupByLibrary.simpleMessage("Удалить из избранного"),
         "update_words": MessageLookupByLibrary.simpleMessage("Обновить слова"),

@@ -43,6 +43,7 @@ class WordDTO with _$WordDTO {
       language: language,
       views: views,
       created_at: created_at,
+      done_at: done_at == null ? null : done_at.toString(),
     );
   }
 }
