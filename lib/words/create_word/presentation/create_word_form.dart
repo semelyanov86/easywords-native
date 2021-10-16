@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:words_native/core/presentation/primitives/languages_list_widget.dart';
 import 'package:words_native/core/presentation/toasts.dart';
+import 'package:words_native/generated/l10n.dart';
 import 'package:words_native/global_settings/shared/providers.dart';
 import 'package:words_native/words/core/shared/providers.dart';
 import 'package:words_native/words/create_word/application/create_card_state_notifier.dart';
@@ -10,7 +11,7 @@ import 'package:words_native/words/create_word/application/create_card_state_not
 class CreateWordForm extends StatefulWidget {
   final GlobalKey<FormState> formKey;
 
-  CreateWordForm({
+  const CreateWordForm({
     Key? key,
     required this.formKey,
   }) : super(key: key);
@@ -48,15 +49,16 @@ class _CreateWordForm extends State<CreateWordForm> {
         onChange: (context, state) {
           state.map(
             loadInProgress: (_) {
-              return showNotificationToast('Sending data...', context);
+              return showNotificationToast(S.of(context).sending_data, context);
             },
             loadSuccess: (_) => showSuccessToast(
-                'Word successfully created with id ${_.word.entity.id}',
+                S.of(context).creation_message + _.word.entity.id.toString(),
                 context),
             loadFailure: (_) => showNoConnectionToast(
-                'Error in creating word: ${_.failure.toString()}', context),
+                S.of(context).error_creating_word + _.failure.toString(),
+                context),
             validationFailure: (_) => showNoConnectionToast(
-                'Validation Error: ${_.failure.message}', context),
+                S.of(context).validation_error + _.failure.message, context),
           );
         },
         child: ProviderScope(
@@ -67,8 +69,7 @@ class _CreateWordForm extends State<CreateWordForm> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                      'Create new word then press save. Later you can learn it.'),
+                  Text(S.of(context).short),
                   const SizedBox(height: 10),
                   TextFormField(
                     focusNode: _originalFocus,
@@ -79,8 +80,8 @@ class _CreateWordForm extends State<CreateWordForm> {
                     },
                     controller: _originalController,
                     decoration: InputDecoration(
-                      labelText: 'Original word value *',
-                      hintText: 'What is original value of word?',
+                      labelText: S.of(context).original,
+                      hintText: S.of(context).original_helper,
                       prefixIcon: const Icon(MdiIcons.earth),
                       suffixIcon: GestureDetector(
                         onTap: () {
@@ -105,8 +106,8 @@ class _CreateWordForm extends State<CreateWordForm> {
                     focusNode: _translatedFocus,
                     controller: _translatedController,
                     decoration: InputDecoration(
-                      labelText: 'Translated word value *',
-                      hintText: 'What is translated value of word?',
+                      labelText: S.of(context).translated,
+                      hintText: S.of(context).translated_helper,
                       prefixIcon: const Icon(MdiIcons.flag),
                       suffixIcon: GestureDetector(
                         onTap: () {
@@ -140,7 +141,6 @@ class _CreateWordForm extends State<CreateWordForm> {
                   ),
                   const SizedBox(height: 10),
                   ElevatedButton(
-                    child: const Text('Create Word'),
                     onPressed: () {
                       if (widget.formKey.currentState!.validate()) {
                         widget.formKey.currentState!.save();
@@ -160,7 +160,8 @@ class _CreateWordForm extends State<CreateWordForm> {
                     style: ElevatedButton.styleFrom(
                       primary: Colors.green,
                       textStyle: const TextStyle(color: Colors.white),
-                    ), //color: Colors.green,
+                    ),
+                    child: Text(S.of(context).save), //color: Colors.green,
                   ),
                 ],
               ),

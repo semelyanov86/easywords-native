@@ -35,6 +35,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "chooseLanguage": MessageLookupByLibrary.simpleMessage(
             "For starting choose language"),
         "choose_user": MessageLookupByLibrary.simpleMessage("Choose user"),
+        "choose_user_error":
+            MessageLookupByLibrary.simpleMessage("Please choose correct user"),
         "choose_user_helper": MessageLookupByLibrary.simpleMessage(
             "Please choose user and press save button"),
         "create_header":
@@ -56,6 +58,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "done_at": MessageLookupByLibrary.simpleMessage("When done"),
         "dones": MessageLookupByLibrary.simpleMessage("Number of known words"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "error_creating_word":
+            MessageLookupByLibrary.simpleMessage("Error in creating word: "),
         "error_marking_viewed": MessageLookupByLibrary.simpleMessage(
             "There was a connection error when marking this word as viewed"),
         "field": MessageLookupByLibrary.simpleMessage("Field"),
@@ -75,6 +79,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "import_button": MessageLookupByLibrary.simpleMessage("Import Words!"),
         "import_header": MessageLookupByLibrary.simpleMessage(
             "Do not have time for adding new words? Just import most popular words for your default language!"),
+        "import_started": MessageLookupByLibrary.simpleMessage(
+            "Import started in background. Please wait."),
         "intro": MessageLookupByLibrary.simpleMessage(
             "Try to translate word by yourself. Then turn card."),
         "know": MessageLookupByLibrary.simpleMessage("Got it!"),
@@ -111,6 +117,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You are not online. Some information may be outdated."),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "original": MessageLookupByLibrary.simpleMessage("Original word"),
+        "original_helper": MessageLookupByLibrary.simpleMessage(
+            "What is original value of word?"),
         "paginate": MessageLookupByLibrary.simpleMessage(
             "Number of words learn at once"),
         "password": MessageLookupByLibrary.simpleMessage("New password"),
@@ -136,7 +144,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Password updated successfully"),
         "prev": MessageLookupByLibrary.simpleMessage("Prev"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "select_user": MessageLookupByLibrary.simpleMessage("Select User"),
+        "sending_data": MessageLookupByLibrary.simpleMessage("Sending data..."),
         "share": MessageLookupByLibrary.simpleMessage("Share"),
+        "share_with_user":
+            MessageLookupByLibrary.simpleMessage("Share with user"),
         "sharing_error": MessageLookupByLibrary.simpleMessage(
             "There was an error in sharing word. Maybe word already exists."),
         "sharing_error_header":
@@ -163,6 +175,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "title": MessageLookupByLibrary.simpleMessage("EasyWords App"),
         "total_views": MessageLookupByLibrary.simpleMessage("Total views"),
         "translated": MessageLookupByLibrary.simpleMessage("Translated word"),
+        "translated_helper": MessageLookupByLibrary.simpleMessage(
+            "What is translated value of word?"),
         "unexpected_error": MessageLookupByLibrary.simpleMessage(
             "An error occured, please retry"),
         "unknown": MessageLookupByLibrary.simpleMessage("Learn Again!"),

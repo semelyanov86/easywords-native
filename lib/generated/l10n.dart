@@ -492,11 +492,31 @@ class S {
     );
   }
 
+  /// `What is original value of word?`
+  String get original_helper {
+    return Intl.message(
+      'What is original value of word?',
+      name: 'original_helper',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Translated word`
   String get translated {
     return Intl.message(
       'Translated word',
       name: 'translated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What is translated value of word?`
+  String get translated_helper {
+    return Intl.message(
+      'What is translated value of word?',
+      name: 'translated_helper',
       desc: '',
       args: [],
     );
@@ -1069,6 +1089,66 @@ class S {
     return Intl.message(
       'Word marked as unlearned with id: ',
       name: 'mark_undone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sending data...`
+  String get sending_data {
+    return Intl.message(
+      'Sending data...',
+      name: 'sending_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error in creating word: `
+  String get error_creating_word {
+    return Intl.message(
+      'Error in creating word: ',
+      name: 'error_creating_word',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select User`
+  String get select_user {
+    return Intl.message(
+      'Select User',
+      name: 'select_user',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share with user`
+  String get share_with_user {
+    return Intl.message(
+      'Share with user',
+      name: 'share_with_user',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please choose correct user`
+  String get choose_user_error {
+    return Intl.message(
+      'Please choose correct user',
+      name: 'choose_user_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Import started in background. Please wait.`
+  String get import_started {
+    return Intl.message(
+      'Import started in background. Please wait.',
+      name: 'import_started',
       desc: '',
       args: [],
     );

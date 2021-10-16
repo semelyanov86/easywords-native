@@ -44,7 +44,9 @@
   "short": "Quick create new word",
   "fill-data": "Fill out the form",
   "original": "Original word",
+  "original_helper": "What is original value of word?",
   "translated": "Translated word",
+  "translated_helper": "What is translated value of word?",
   "done_at": "When done",
   "language": "Language",
   "save": "Save",
@@ -102,5 +104,11 @@
   "unexpected_error": "An error occured, please retry",
   "no_results_message": "That's about everything we could find in your starred repos right now.",
   "mark_done": "Word make as learned with id: ",
-  "mark_undone": "Word marked as unlearned with id: "
+  "mark_undone": "Word marked as unlearned with id: ",
+  "sending_data": "Sending data...",
+  "error_creating_word": "Error in creating word: ",
+  "select_user": "Select User",
+  "share_with_user": "Share with user",
+  "choose_user_error": "Please choose correct user",
+  "import_started": "Import started in background. Please wait."
 }

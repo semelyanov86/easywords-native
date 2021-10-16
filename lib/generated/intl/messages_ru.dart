@@ -38,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Для начала работы выберите направление перевода"),
         "choose_user":
             MessageLookupByLibrary.simpleMessage("Выберите пользователя"),
+        "choose_user_error": MessageLookupByLibrary.simpleMessage(
+            "Для продолжения выберите пользователя"),
         "choose_user_helper": MessageLookupByLibrary.simpleMessage(
             "Пожалуйста, выберите пользователя и нажмите на кнопку сохранить"),
         "create_header":
@@ -60,6 +62,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "dones":
             MessageLookupByLibrary.simpleMessage("Количество изученных слов"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "error_creating_word":
+            MessageLookupByLibrary.simpleMessage("Ошибка при создании слова: "),
         "error_marking_viewed": MessageLookupByLibrary.simpleMessage(
             "Ошибка при отправке на сервер информации о просмотре слова"),
         "field": MessageLookupByLibrary.simpleMessage("Поле"),
@@ -81,6 +85,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Импортировать слова!"),
         "import_header": MessageLookupByLibrary.simpleMessage(
             "Лень добавлять слова вручную? Импортируй самые часто используемые слова для языка, выбранного по умолчанию"),
+        "import_started": MessageLookupByLibrary.simpleMessage(
+            "Импорт начался в фоне. Ожидайте завершения..."),
         "intro": MessageLookupByLibrary.simpleMessage(
             "Попробуйте перевести слово самостоятельно. Затем переверните карточку"),
         "know": MessageLookupByLibrary.simpleMessage("Выучил!"),
@@ -118,6 +124,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "original":
             MessageLookupByLibrary.simpleMessage("Оригинальное значение слова"),
+        "original_helper": MessageLookupByLibrary.simpleMessage(
+            "Какое оригинальное значение добавляемого вами слова?"),
         "paginate": MessageLookupByLibrary.simpleMessage(
             "Количество слов, изучаемых за один раз"),
         "password": MessageLookupByLibrary.simpleMessage("Новый пароль"),
@@ -143,7 +151,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Пароль успешно обновлён"),
         "prev": MessageLookupByLibrary.simpleMessage("Предыдущий"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
+        "select_user":
+            MessageLookupByLibrary.simpleMessage("Выберите пользователя"),
+        "sending_data":
+            MessageLookupByLibrary.simpleMessage("Отправка данных..."),
         "share": MessageLookupByLibrary.simpleMessage("Поделиться"),
+        "share_with_user":
+            MessageLookupByLibrary.simpleMessage("Поделиться с пользователем"),
         "sharing_error": MessageLookupByLibrary.simpleMessage(
             "Ошибка при попытке создать слово для другого пользователя. Скорее всего слово уже существует."),
         "sharing_error_header":
@@ -171,6 +185,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "total_views":
             MessageLookupByLibrary.simpleMessage("Количество просмотров"),
         "translated": MessageLookupByLibrary.simpleMessage("Перевод слова"),
+        "translated_helper": MessageLookupByLibrary.simpleMessage(
+            "Как звучит перевод добавляемого вами слова?"),
         "unexpected_error": MessageLookupByLibrary.simpleMessage(
             "Неожиданная ошибка, попробуйте снова"),
         "unknown": MessageLookupByLibrary.simpleMessage("Учить снова!"),

@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:words_native/core/presentation/primitives/languages_list_widget.dart';
 import 'package:words_native/core/presentation/toasts.dart';
+import 'package:words_native/generated/l10n.dart';
 import 'package:words_native/global_settings/domain/global_settings_notifier.dart';
 import 'package:words_native/global_settings/shared/providers.dart';
 
@@ -48,7 +49,7 @@ class _SettingsFormState extends State<SettingsForm> {
             loadInProgress: (_) {
               if (isImportPressed) {
                 return showNoConnectionToast(
-                    'Import started in background. Please wait.', context);
+                    S.of(context).import_started, context);
               }
               return const CircularProgressIndicator();
             },
@@ -68,7 +69,7 @@ class _SettingsFormState extends State<SettingsForm> {
               padding: const EdgeInsets.all(16.0),
               children: [
                 RangeTextFormField(
-                  labelText: 'Number of cards for learning',
+                  labelText: S.of(context).paginate,
                   intValueSetter: (value) => context
                       .read(globalSettingsNotifierProvider.notifier)
                       .setPagination(value),
@@ -83,7 +84,7 @@ class _SettingsFormState extends State<SettingsForm> {
                 ),
                 const SizedBox(height: 12),
                 CheckboxSettingFormField(
-                  labelText: 'Show only starred words',
+                  labelText: S.of(context).starred_enabled,
                   boolValueSetter: (value) => {
                     context
                         .read(globalSettingsNotifierProvider.notifier)
@@ -94,7 +95,7 @@ class _SettingsFormState extends State<SettingsForm> {
                       .getStarredValue(),
                 ),
                 CheckboxSettingFormField(
-                  labelText: 'Show learned words',
+                  labelText: S.of(context).known_enabled,
                   boolValueSetter: (value) => {
                     context
                         .read(globalSettingsNotifierProvider.notifier)
@@ -105,7 +106,7 @@ class _SettingsFormState extends State<SettingsForm> {
                       .getLearnedValue(),
                 ),
                 CheckboxSettingFormField(
-                  labelText: 'Order by created time',
+                  labelText: S.of(context).fresh_first,
                   boolValueSetter: (value) => {
                     context
                         .read(globalSettingsNotifierProvider.notifier)
@@ -116,7 +117,7 @@ class _SettingsFormState extends State<SettingsForm> {
                       .getFreshFirstValue(),
                 ),
                 CheckboxSettingFormField(
-                  labelText: 'Show imported words',
+                  labelText: S.of(context).show_imported,
                   boolValueSetter: (value) => {
                     context
                         .read(globalSettingsNotifierProvider.notifier)
@@ -127,7 +128,7 @@ class _SettingsFormState extends State<SettingsForm> {
                       .getShowImportedValue(),
                 ),
                 CheckboxSettingFormField(
-                  labelText: 'Show shared words',
+                  labelText: S.of(context).show_shared,
                   boolValueSetter: (value) => {
                     context
                         .read(globalSettingsNotifierProvider.notifier)
@@ -138,7 +139,7 @@ class _SettingsFormState extends State<SettingsForm> {
                       .getShowSharedValue(),
                 ),
                 CheckboxSettingFormField(
-                  labelText: 'Order latest first',
+                  labelText: S.of(context).latest_first,
                   boolValueSetter: (value) => {
                     context
                         .read(globalSettingsNotifierProvider.notifier)
@@ -150,7 +151,7 @@ class _SettingsFormState extends State<SettingsForm> {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'Do not want manually add words? You can import them!',
+                  S.of(context).import_header,
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
                 const SizedBox(height: 12),
@@ -163,7 +164,7 @@ class _SettingsFormState extends State<SettingsForm> {
                           .read(globalSettingsNotifierProvider.notifier)
                           .importWords();
                     },
-                    child: const Text('Import words!'))
+                    child: Text(S.of(context).import_button))
               ],
             ),
           ),
@@ -191,13 +192,13 @@ class RangeTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
         labelText: labelText,
         prefixIcon: const Icon(MdiIcons.cards),
       ),
       initialValue: initialValue.toString(),
       keyboardType:
-          TextInputType.numberWithOptions(decimal: false, signed: true),
+          const TextInputType.numberWithOptions(decimal: false, signed: true),
       onSaved: (newValue) => intValueSetter(int.parse(newValue ?? '20')),
       onChanged: (newValue) => intValueSetter(int.parse(newValue)),
       validator: (value) {

@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:words_native/core/presentation/app_bar.dart';
 import 'package:words_native/core/presentation/drawer_widget.dart';
 import 'package:words_native/core/presentation/toasts.dart';
+import 'package:words_native/generated/l10n.dart';
 import 'package:words_native/profile/shared/providers.dart';
 
 class ChooseUserPage extends StatefulWidget {
@@ -39,8 +40,8 @@ class _ChooseUserPageState extends State<ChooseUserPage> {
       /*onChange: (context, state) {},
       provider: shortUserNotifierProvider,*/
       child: Scaffold(
-        appBar: const AppBarWidget(
-          header: 'Choose User for continue',
+        appBar: AppBarWidget(
+          header: S.of(context).choose_user,
           showBackButton: true,
         ),
         drawer: const DrawerWidget(),
@@ -50,18 +51,18 @@ class _ChooseUserPageState extends State<ChooseUserPage> {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: DropdownButtonFormField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    icon: Icon(Icons.supervised_user_circle),
-                    labelText: 'Select User',
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    icon: const Icon(Icons.supervised_user_circle),
+                    labelText: S.of(context).select_user,
                   ),
                   items: context
                       .read(shortUserNotifierProvider.notifier)
                       .getUsersList()
                       .map((user) {
                     return DropdownMenuItem(
-                      child: Text(user.name),
                       value: user.id,
+                      child: Text(user.name),
                     );
                   }).toList(),
                   onChanged: (user) {
@@ -71,23 +72,24 @@ class _ChooseUserPageState extends State<ChooseUserPage> {
                   },
                   value: _userId,
                   validator: (val) {
-                    return val == null ? 'Please select a user' : null;
+                    return val == null ? S.of(context).choose_user_error : null;
                   },
                 ),
               ),
             ),
             TextButton(
-              child: Text(
-                'Share With User',
-                style: TextStyle(fontSize: 30.0),
-              ),
               onPressed: () {
                 if (_userId == 0 || _userId == null) {
-                  showNoConnectionToast('Please choose correct user', context);
+                  showNoConnectionToast(
+                      S.of(context).choose_user_error, context);
                 } else {
                   Navigator.pop(context, _userId);
                 }
               },
+              child: Text(
+                S.of(context).share_with_user,
+                style: const TextStyle(fontSize: 30.0),
+              ),
             ),
           ],
         ),

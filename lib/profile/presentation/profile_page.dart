@@ -28,7 +28,7 @@ class ProfilePage extends ConsumerWidget {
               child: Column(
                 children: [
                   ListTile(
-                    leading: Icon(Icons.album),
+                    leading: const Icon(Icons.album),
                     title: Text(S.of(context).Profile_Detail_Info),
                   ),
                   CircleAvatar(
@@ -39,7 +39,7 @@ class ProfilePage extends ConsumerWidget {
                     ),
                     backgroundColor: Colors.transparent,
                   ),
-                  Divider(
+                  const Divider(
                     height: 25,
                   ),
                   DataTable(
