@@ -70,6 +70,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "fresh_first": MessageLookupByLibrary.simpleMessage("Show fresh first"),
         "from_sample": MessageLookupByLibrary.simpleMessage(
             "Word added from samples list"),
+        "from_sample_word":
+            MessageLookupByLibrary.simpleMessage("Card downloaded from sample"),
         "from_user":
             MessageLookupByLibrary.simpleMessage("Word added from other user"),
         "go_back": MessageLookupByLibrary.simpleMessage("Go back"),
@@ -84,6 +86,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do not have time for adding new words? Just import most popular words for your default language!"),
         "import_started": MessageLookupByLibrary.simpleMessage(
             "Import started in background. Please wait."),
+        "in_shared":
+            MessageLookupByLibrary.simpleMessage("Word shared from other user"),
+        "in_starred":
+            MessageLookupByLibrary.simpleMessage("This is starred word"),
         "intro": MessageLookupByLibrary.simpleMessage(
             "Try to translate word by yourself. Then turn card."),
         "know": MessageLookupByLibrary.simpleMessage("Got it!"),

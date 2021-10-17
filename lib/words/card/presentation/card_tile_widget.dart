@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:words_native/core/presentation/toasts.dart';
 import 'package:words_native/generated/l10n.dart';
 import 'package:words_native/profile/presentation/choose_user_page.dart';
@@ -39,14 +40,35 @@ class CardTileWidget extends ConsumerWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                if (serviceModel.getCurrentWord().starred)
+                  Icon(
+                    MdiIcons.star,
+                    semanticLabel: S.of(context).in_starred,
+                  )
+                else
+                  Container(),
                 Text(
                   '${serviceModel.getDisplayCurrent()}/${serviceModel.words.length}',
                   style: Theme.of(context).textTheme.subtitle2,
                 ),
+                if (serviceModel.getCurrentWord().shared_by != null)
+                  Icon(
+                    MdiIcons.gift,
+                    semanticLabel: S.of(context).in_shared,
+                  )
+                else
+                  Container(),
                 Text(
                   '#${serviceModel.getCurrentWord().id}',
                   style: Theme.of(context).textTheme.subtitle2,
                 ),
+                if (serviceModel.getCurrentWord().from_sample)
+                  Icon(
+                    MdiIcons.download,
+                    semanticLabel: S.of(context).from_sample_word,
+                  )
+                else
+                  Container(),
                 IconButton(
                   onPressed: () {
                     cardsNotifier

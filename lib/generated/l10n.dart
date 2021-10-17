@@ -1223,6 +1223,36 @@ class S {
       args: [],
     );
   }
+
+  /// `This is starred word`
+  String get in_starred {
+    return Intl.message(
+      'This is starred word',
+      name: 'in_starred',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Word shared from other user`
+  String get in_shared {
+    return Intl.message(
+      'Word shared from other user',
+      name: 'in_shared',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card downloaded from sample`
+  String get from_sample_word {
+    return Intl.message(
+      'Card downloaded from sample',
+      name: 'from_sample_word',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

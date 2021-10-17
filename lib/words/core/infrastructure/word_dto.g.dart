@@ -17,6 +17,8 @@ _$_WordDTO _$_$_WordDTOFromJson(Map<String, dynamic> json) {
     user_id: json['user_id'] as int,
     language: json['language'] as String,
     views: json['views'] as int,
+    from_sample: json['from_sample'] as bool? ?? false,
+    shared_by: json['shared_by'] as int?,
     created_at: const TimestampNullableConverter()
         .fromJson(json['created_at'] as String?),
   );
@@ -32,6 +34,8 @@ Map<String, dynamic> _$_$_WordDTOToJson(_$_WordDTO instance) =>
       'user_id': instance.user_id,
       'language': instance.language,
       'views': instance.views,
+      'from_sample': instance.from_sample,
+      'shared_by': instance.shared_by,
       'created_at':
           const TimestampNullableConverter().toJson(instance.created_at),
     };

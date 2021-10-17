@@ -117,5 +117,8 @@
   "share_with_user": "Share with user",
   "choose_user_error": "Please choose correct user",
   "import_started": "Import started in background. Please wait.",
-  "auth_error": "Auth Error"
+  "auth_error": "Auth Error",
+  "in_starred": "This is starred word",
+  "in_shared": "Word shared from other user",
+  "from_sample_word": "Card downloaded from sample"
 }

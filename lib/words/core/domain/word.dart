@@ -15,6 +15,8 @@ class Word with _$Word {
     required String language,
     required int views,
     required DateTime? created_at,
+    @Default(false) bool from_sample,
+    @Default(null) int? shared_by,
   }) = _Word;
 
   String get displayName => '$original - $translated';

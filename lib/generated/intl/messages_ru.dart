@@ -76,6 +76,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Показывать сначала слова сортированные по дате создания"),
         "from_sample": MessageLookupByLibrary.simpleMessage(
             "Слово добавлено из списка самых популярных"),
+        "from_sample_word": MessageLookupByLibrary.simpleMessage(
+            "Слово импортировано из справочника"),
         "from_user": MessageLookupByLibrary.simpleMessage(
             "Слово добавлено другим пользователем"),
         "go_back": MessageLookupByLibrary.simpleMessage("Назад"),
@@ -91,6 +93,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Лень добавлять слова вручную? Импортируй самые часто используемые слова для языка, выбранного по умолчанию"),
         "import_started": MessageLookupByLibrary.simpleMessage(
             "Импорт начался в фоне. Ожидайте завершения..."),
+        "in_shared": MessageLookupByLibrary.simpleMessage(
+            "Слово расшарено другим пользователем"),
+        "in_starred":
+            MessageLookupByLibrary.simpleMessage("Слово находится в избранном"),
         "intro": MessageLookupByLibrary.simpleMessage(
             "Попробуйте перевести слово самостоятельно. Затем переверните карточку"),
         "know": MessageLookupByLibrary.simpleMessage("Выучил!"),

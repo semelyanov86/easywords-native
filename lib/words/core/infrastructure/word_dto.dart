@@ -17,6 +17,8 @@ class WordDTO with _$WordDTO {
     required int user_id,
     required String language,
     required int views,
+    @Default(false) bool from_sample,
+    @Default(null) int? shared_by,
     @TimestampNullableConverter() @Default(null) DateTime? created_at,
   }) = _WordDTO;
 
@@ -31,6 +33,8 @@ class WordDTO with _$WordDTO {
       user_id: _.user_id,
       language: _.language,
       views: _.views,
+      from_sample: _.from_sample,
+      shared_by: _.shared_by,
     );
   }
 
@@ -44,6 +48,8 @@ class WordDTO with _$WordDTO {
       views: views,
       created_at: created_at,
       done_at: done_at == null ? null : done_at.toString(),
+      from_sample: from_sample,
+      shared_by: shared_by,
     );
   }
 }

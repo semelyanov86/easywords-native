@@ -29,6 +29,8 @@ class _$WordDTOTearOff {
       required int user_id,
       required String language,
       required int views,
+      bool from_sample = false,
+      int? shared_by = null,
       @TimestampNullableConverter() DateTime? created_at = null}) {
     return _WordDTO(
       id: id,
@@ -39,6 +41,8 @@ class _$WordDTOTearOff {
       user_id: user_id,
       language: language,
       views: views,
+      from_sample: from_sample,
+      shared_by: shared_by,
       created_at: created_at,
     );
   }
@@ -62,6 +66,8 @@ mixin _$WordDTO {
   int get user_id => throw _privateConstructorUsedError;
   String get language => throw _privateConstructorUsedError;
   int get views => throw _privateConstructorUsedError;
+  bool get from_sample => throw _privateConstructorUsedError;
+  int? get shared_by => throw _privateConstructorUsedError;
   @TimestampNullableConverter()
   DateTime? get created_at => throw _privateConstructorUsedError;
 
@@ -83,6 +89,8 @@ abstract class $WordDTOCopyWith<$Res> {
       int user_id,
       String language,
       int views,
+      bool from_sample,
+      int? shared_by,
       @TimestampNullableConverter() DateTime? created_at});
 }
 
@@ -104,6 +112,8 @@ class _$WordDTOCopyWithImpl<$Res> implements $WordDTOCopyWith<$Res> {
     Object? user_id = freezed,
     Object? language = freezed,
     Object? views = freezed,
+    Object? from_sample = freezed,
+    Object? shared_by = freezed,
     Object? created_at = freezed,
   }) {
     return _then(_value.copyWith(
@@ -139,6 +149,14 @@ class _$WordDTOCopyWithImpl<$Res> implements $WordDTOCopyWith<$Res> {
           ? _value.views
           : views // ignore: cast_nullable_to_non_nullable
               as int,
+      from_sample: from_sample == freezed
+          ? _value.from_sample
+          : from_sample // ignore: cast_nullable_to_non_nullable
+              as bool,
+      shared_by: shared_by == freezed
+          ? _value.shared_by
+          : shared_by // ignore: cast_nullable_to_non_nullable
+              as int?,
       created_at: created_at == freezed
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
@@ -161,6 +179,8 @@ abstract class _$WordDTOCopyWith<$Res> implements $WordDTOCopyWith<$Res> {
       int user_id,
       String language,
       int views,
+      bool from_sample,
+      int? shared_by,
       @TimestampNullableConverter() DateTime? created_at});
 }
 
@@ -183,6 +203,8 @@ class __$WordDTOCopyWithImpl<$Res> extends _$WordDTOCopyWithImpl<$Res>
     Object? user_id = freezed,
     Object? language = freezed,
     Object? views = freezed,
+    Object? from_sample = freezed,
+    Object? shared_by = freezed,
     Object? created_at = freezed,
   }) {
     return _then(_WordDTO(
@@ -218,6 +240,14 @@ class __$WordDTOCopyWithImpl<$Res> extends _$WordDTOCopyWithImpl<$Res>
           ? _value.views
           : views // ignore: cast_nullable_to_non_nullable
               as int,
+      from_sample: from_sample == freezed
+          ? _value.from_sample
+          : from_sample // ignore: cast_nullable_to_non_nullable
+              as bool,
+      shared_by: shared_by == freezed
+          ? _value.shared_by
+          : shared_by // ignore: cast_nullable_to_non_nullable
+              as int?,
       created_at: created_at == freezed
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
@@ -238,6 +268,8 @@ class _$_WordDTO extends _WordDTO {
       required this.user_id,
       required this.language,
       required this.views,
+      this.from_sample = false,
+      this.shared_by = null,
       @TimestampNullableConverter() this.created_at = null})
       : super._();
 
@@ -263,6 +295,12 @@ class _$_WordDTO extends _WordDTO {
   final String language;
   @override
   final int views;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool from_sample;
+  @JsonKey(defaultValue: null)
+  @override
+  final int? shared_by;
   @JsonKey(defaultValue: null)
   @override
   @TimestampNullableConverter()
@@ -270,7 +308,7 @@ class _$_WordDTO extends _WordDTO {
 
   @override
   String toString() {
-    return 'WordDTO(id: $id, original: $original, translated: $translated, done_at: $done_at, starred: $starred, user_id: $user_id, language: $language, views: $views, created_at: $created_at)';
+    return 'WordDTO(id: $id, original: $original, translated: $translated, done_at: $done_at, starred: $starred, user_id: $user_id, language: $language, views: $views, from_sample: $from_sample, shared_by: $shared_by, created_at: $created_at)';
   }
 
   @override
@@ -299,6 +337,12 @@ class _$_WordDTO extends _WordDTO {
                     .equals(other.language, language)) &&
             (identical(other.views, views) ||
                 const DeepCollectionEquality().equals(other.views, views)) &&
+            (identical(other.from_sample, from_sample) ||
+                const DeepCollectionEquality()
+                    .equals(other.from_sample, from_sample)) &&
+            (identical(other.shared_by, shared_by) ||
+                const DeepCollectionEquality()
+                    .equals(other.shared_by, shared_by)) &&
             (identical(other.created_at, created_at) ||
                 const DeepCollectionEquality()
                     .equals(other.created_at, created_at)));
@@ -315,6 +359,8 @@ class _$_WordDTO extends _WordDTO {
       const DeepCollectionEquality().hash(user_id) ^
       const DeepCollectionEquality().hash(language) ^
       const DeepCollectionEquality().hash(views) ^
+      const DeepCollectionEquality().hash(from_sample) ^
+      const DeepCollectionEquality().hash(shared_by) ^
       const DeepCollectionEquality().hash(created_at);
 
   @JsonKey(ignore: true)
@@ -338,6 +384,8 @@ abstract class _WordDTO extends WordDTO {
       required int user_id,
       required String language,
       required int views,
+      bool from_sample,
+      int? shared_by,
       @TimestampNullableConverter() DateTime? created_at}) = _$_WordDTO;
   const _WordDTO._() : super._();
 
@@ -360,6 +408,10 @@ abstract class _WordDTO extends WordDTO {
   String get language => throw _privateConstructorUsedError;
   @override
   int get views => throw _privateConstructorUsedError;
+  @override
+  bool get from_sample => throw _privateConstructorUsedError;
+  @override
+  int? get shared_by => throw _privateConstructorUsedError;
   @override
   @TimestampNullableConverter()
   DateTime? get created_at => throw _privateConstructorUsedError;

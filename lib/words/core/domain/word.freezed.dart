@@ -25,7 +25,9 @@ class _$WordTearOff {
       required int user_id,
       required String language,
       required int views,
-      required DateTime? created_at}) {
+      required DateTime? created_at,
+      bool from_sample = false,
+      int? shared_by = null}) {
     return _Word(
       id: id,
       original: original,
@@ -36,6 +38,8 @@ class _$WordTearOff {
       language: language,
       views: views,
       created_at: created_at,
+      from_sample: from_sample,
+      shared_by: shared_by,
     );
   }
 }
@@ -54,6 +58,8 @@ mixin _$Word {
   String get language => throw _privateConstructorUsedError;
   int get views => throw _privateConstructorUsedError;
   DateTime? get created_at => throw _privateConstructorUsedError;
+  bool get from_sample => throw _privateConstructorUsedError;
+  int? get shared_by => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WordCopyWith<Word> get copyWith => throw _privateConstructorUsedError;
@@ -72,7 +78,9 @@ abstract class $WordCopyWith<$Res> {
       int user_id,
       String language,
       int views,
-      DateTime? created_at});
+      DateTime? created_at,
+      bool from_sample,
+      int? shared_by});
 }
 
 /// @nodoc
@@ -94,6 +102,8 @@ class _$WordCopyWithImpl<$Res> implements $WordCopyWith<$Res> {
     Object? language = freezed,
     Object? views = freezed,
     Object? created_at = freezed,
+    Object? from_sample = freezed,
+    Object? shared_by = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -132,6 +142,14 @@ class _$WordCopyWithImpl<$Res> implements $WordCopyWith<$Res> {
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      from_sample: from_sample == freezed
+          ? _value.from_sample
+          : from_sample // ignore: cast_nullable_to_non_nullable
+              as bool,
+      shared_by: shared_by == freezed
+          ? _value.shared_by
+          : shared_by // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -150,7 +168,9 @@ abstract class _$WordCopyWith<$Res> implements $WordCopyWith<$Res> {
       int user_id,
       String language,
       int views,
-      DateTime? created_at});
+      DateTime? created_at,
+      bool from_sample,
+      int? shared_by});
 }
 
 /// @nodoc
@@ -173,6 +193,8 @@ class __$WordCopyWithImpl<$Res> extends _$WordCopyWithImpl<$Res>
     Object? language = freezed,
     Object? views = freezed,
     Object? created_at = freezed,
+    Object? from_sample = freezed,
+    Object? shared_by = freezed,
   }) {
     return _then(_Word(
       id: id == freezed
@@ -211,6 +233,14 @@ class __$WordCopyWithImpl<$Res> extends _$WordCopyWithImpl<$Res>
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      from_sample: from_sample == freezed
+          ? _value.from_sample
+          : from_sample // ignore: cast_nullable_to_non_nullable
+              as bool,
+      shared_by: shared_by == freezed
+          ? _value.shared_by
+          : shared_by // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -227,7 +257,9 @@ class _$_Word extends _Word {
       required this.user_id,
       required this.language,
       required this.views,
-      required this.created_at})
+      required this.created_at,
+      this.from_sample = false,
+      this.shared_by = null})
       : super._();
 
   @override
@@ -250,10 +282,16 @@ class _$_Word extends _Word {
   final int views;
   @override
   final DateTime? created_at;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool from_sample;
+  @JsonKey(defaultValue: null)
+  @override
+  final int? shared_by;
 
   @override
   String toString() {
-    return 'Word(id: $id, original: $original, translated: $translated, done_at: $done_at, starred: $starred, user_id: $user_id, language: $language, views: $views, created_at: $created_at)';
+    return 'Word(id: $id, original: $original, translated: $translated, done_at: $done_at, starred: $starred, user_id: $user_id, language: $language, views: $views, created_at: $created_at, from_sample: $from_sample, shared_by: $shared_by)';
   }
 
   @override
@@ -284,7 +322,13 @@ class _$_Word extends _Word {
                 const DeepCollectionEquality().equals(other.views, views)) &&
             (identical(other.created_at, created_at) ||
                 const DeepCollectionEquality()
-                    .equals(other.created_at, created_at)));
+                    .equals(other.created_at, created_at)) &&
+            (identical(other.from_sample, from_sample) ||
+                const DeepCollectionEquality()
+                    .equals(other.from_sample, from_sample)) &&
+            (identical(other.shared_by, shared_by) ||
+                const DeepCollectionEquality()
+                    .equals(other.shared_by, shared_by)));
   }
 
   @override
@@ -298,7 +342,9 @@ class _$_Word extends _Word {
       const DeepCollectionEquality().hash(user_id) ^
       const DeepCollectionEquality().hash(language) ^
       const DeepCollectionEquality().hash(views) ^
-      const DeepCollectionEquality().hash(created_at);
+      const DeepCollectionEquality().hash(created_at) ^
+      const DeepCollectionEquality().hash(from_sample) ^
+      const DeepCollectionEquality().hash(shared_by);
 
   @JsonKey(ignore: true)
   @override
@@ -316,7 +362,9 @@ abstract class _Word extends Word {
       required int user_id,
       required String language,
       required int views,
-      required DateTime? created_at}) = _$_Word;
+      required DateTime? created_at,
+      bool from_sample,
+      int? shared_by}) = _$_Word;
   const _Word._() : super._();
 
   @override
@@ -337,6 +385,10 @@ abstract class _Word extends Word {
   int get views => throw _privateConstructorUsedError;
   @override
   DateTime? get created_at => throw _privateConstructorUsedError;
+  @override
+  bool get from_sample => throw _privateConstructorUsedError;
+  @override
+  int? get shared_by => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$WordCopyWith<_Word> get copyWith => throw _privateConstructorUsedError;
