@@ -90,7 +90,7 @@ class CardTileWidget extends ConsumerWidget {
             ),
           ),
           ListTile(
-            title: Text(
+            title: SelectableText(
               text,
               style: Theme.of(context).textTheme.headline5,
             ),
