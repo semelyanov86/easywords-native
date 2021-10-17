@@ -2,7 +2,7 @@
     package="com.sergeyem.words_native">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="words_native"
+        android:label="Easywords"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"

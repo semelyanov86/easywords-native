@@ -1,5 +1,6 @@
 name: words_native
 description: Easywords android application
+display_name: Easywords
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 

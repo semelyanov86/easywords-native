@@ -4,6 +4,9 @@ import 'package:words_native/local_settings/infrastructure/secure_local_settings
 class MainLocalSettings {
   static const defaultHost = 'easywordsapp.ru';
   static String parseUrl(String uri) {
+    if (uri == '') {
+      return 'https://' + defaultHost;
+    }
     final url = Uri.parse(uri);
     String address = '';
     if (url.hasScheme) {
