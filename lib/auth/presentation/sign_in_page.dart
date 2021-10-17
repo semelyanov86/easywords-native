@@ -8,6 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:words_native/auth/application/auth_notifier.dart';
 import 'package:words_native/auth/shared/providers.dart';
 import 'package:words_native/core/presentation/toasts.dart';
+import 'package:words_native/generated/l10n.dart';
 import 'package:words_native/local_settings/domain/local_settings_model.dart';
 import 'package:words_native/local_settings/infrastructure/local_settings_storage.dart';
 import 'package:words_native/local_settings/infrastructure/main_local_settings.dart';
@@ -55,7 +56,7 @@ class _SignInState extends State<SignInPage> {
             _.failure.map(
               server: (_) {
                 showNoConnectionToast(
-                  _.message ?? 'Auth Error',
+                  _.message ?? S.of(context).auth_error,
                   context,
                 );
               },
@@ -86,13 +87,13 @@ class _SignInState extends State<SignInPage> {
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       controller: emailController,
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
+                      decoration: InputDecoration(
+                        labelText: S.of(context).email,
                       ),
                       validator: (String? value) {
                         // Validation condition
                         if (value!.trim().isEmpty) {
-                          return 'Please enter email';
+                          return S.of(context).email_helper;
                         }
                         return null;
                       },
@@ -103,11 +104,12 @@ class _SignInState extends State<SignInPage> {
                       obscureText: true,
                       autocorrect: false,
                       enableSuggestions: false,
-                      decoration: const InputDecoration(labelText: 'Password'),
+                      decoration: InputDecoration(
+                          labelText: S.of(context).login_password),
                       validator: (String? value) {
                         // Validation condition
                         if (value!.isEmpty) {
-                          return 'Please enter password';
+                          return S.of(context).login_password_validation;
                         }
 
                         return null;
@@ -117,13 +119,13 @@ class _SignInState extends State<SignInPage> {
                       keyboardType: TextInputType.url,
                       controller: serverController,
                       // initialValue: storage.read(),
-                      decoration: const InputDecoration(
-                        labelText: 'Server',
+                      decoration: InputDecoration(
+                        labelText: S.of(context).server,
                       ),
                       validator: (String? value) {
                         // Validation condition
                         if (value!.trim().isEmpty) {
-                          return 'Please enter valid server';
+                          return S.of(context).server_validation;
                         }
                         return null;
                       },
@@ -146,7 +148,7 @@ class _SignInState extends State<SignInPage> {
                             deviceName,
                             Uri.parse(url));
                       },
-                      child: const Text('Sign In'),
+                      child: Text(S.of(context).sign_in),
                     ),
                     Text(errorMessage,
                         style: const TextStyle(color: Colors.red)),

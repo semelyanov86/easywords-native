@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
         "added_today": MessageLookupByLibrary.simpleMessage("Added today"),
         "all": MessageLookupByLibrary.simpleMessage("Total number of words"),
+        "auth_error": MessageLookupByLibrary.simpleMessage("Auth Error"),
         "chooseLanguage": MessageLookupByLibrary.simpleMessage(
             "For starting choose language"),
         "choose_user": MessageLookupByLibrary.simpleMessage("Choose user"),
@@ -58,6 +59,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "done_at": MessageLookupByLibrary.simpleMessage("When done"),
         "dones": MessageLookupByLibrary.simpleMessage("Number of known words"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "email_helper":
+            MessageLookupByLibrary.simpleMessage("Please enter email"),
         "error_creating_word":
             MessageLookupByLibrary.simpleMessage("Error in creating word: "),
         "error_marking_viewed": MessageLookupByLibrary.simpleMessage(
@@ -98,6 +101,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("List known words"),
         "list_unknown_words":
             MessageLookupByLibrary.simpleMessage("List of not learned words"),
+        "login_password": MessageLookupByLibrary.simpleMessage("Password"),
+        "login_password_validation":
+            MessageLookupByLibrary.simpleMessage("Please enter password"),
         "mark_done": MessageLookupByLibrary.simpleMessage(
             "Word make as learned with id: "),
         "mark_undone": MessageLookupByLibrary.simpleMessage(
@@ -146,6 +152,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "select_user": MessageLookupByLibrary.simpleMessage("Select User"),
         "sending_data": MessageLookupByLibrary.simpleMessage("Sending data..."),
+        "server": MessageLookupByLibrary.simpleMessage("Server"),
+        "server_validation":
+            MessageLookupByLibrary.simpleMessage("Please enter valid server"),
         "share": MessageLookupByLibrary.simpleMessage("Share"),
         "share_with_user":
             MessageLookupByLibrary.simpleMessage("Share with user"),
@@ -159,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Show imported words"),
         "show_shared":
             MessageLookupByLibrary.simpleMessage("Show shared words"),
+        "sign_in": MessageLookupByLibrary.simpleMessage("Sign In"),
         "star": MessageLookupByLibrary.simpleMessage("Add to star"),
         "starred": MessageLookupByLibrary.simpleMessage("In starred"),
         "starred_enabled":

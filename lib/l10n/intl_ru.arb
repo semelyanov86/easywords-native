@@ -11,6 +11,10 @@
   "value": "Значение",
   "created_at": "Дата создания",
   "email": "Email",
+  "email_helper": "Введите свой адрес электронной почты",
+  "server": "Сервер",
+  "server_validation": "Введите корректный адрес сервера",
+  "sign_in": "Авторизоваться",
   "id": "ID",
   "name": "Имя пользователя",
   "updated_at": "Дата обновления",
@@ -66,6 +70,8 @@
   "known_list": "Список изученных слов",
   "go_back": "Назад",
   "password_header": "Изменить пароль",
+  "login_password": "Password",
+  "login_password_validation": "Please enter password",
   "password_short": "Здесь можно изменить пароль пользователя",
   "password_fill-data": "Заполните форму для добавления",
   "current_password": "Текущий пароль",
@@ -110,5 +116,6 @@
   "select_user": "Выберите пользователя",
   "share_with_user": "Поделиться с пользователем",
   "choose_user_error": "Для продолжения выберите пользователя",
-  "import_started": "Импорт начался в фоне. Ожидайте завершения..."
+  "import_started": "Импорт начался в фоне. Ожидайте завершения...",
+  "auth_error": "Ошибка авторизации"
 }

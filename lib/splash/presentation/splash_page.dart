@@ -11,15 +11,16 @@ class SplashPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 48),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Icon(
               MdiIcons.cardSearch,
               size: 150,
+              color: Theme.of(context).accentColor,
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
-            LinearProgressIndicator(),
+            const LinearProgressIndicator(),
           ],
         ),
       ),

@@ -170,6 +170,46 @@ class S {
     );
   }
 
+  /// `Please enter email`
+  String get email_helper {
+    return Intl.message(
+      'Please enter email',
+      name: 'email_helper',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Server`
+  String get server {
+    return Intl.message(
+      'Server',
+      name: 'server',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter valid server`
+  String get server_validation {
+    return Intl.message(
+      'Please enter valid server',
+      name: 'server_validation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get sign_in {
+    return Intl.message(
+      'Sign In',
+      name: 'sign_in',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `ID`
   String get id {
     return Intl.message(
@@ -754,6 +794,26 @@ class S {
     );
   }
 
+  /// `Password`
+  String get login_password {
+    return Intl.message(
+      'Password',
+      name: 'login_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter password`
+  String get login_password_validation {
+    return Intl.message(
+      'Please enter password',
+      name: 'login_password_validation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Enter new password`
   String get password_desc {
     return Intl.message(
@@ -1149,6 +1209,16 @@ class S {
     return Intl.message(
       'Import started in background. Please wait.',
       name: 'import_started',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Auth Error`
+  String get auth_error {
+    return Intl.message(
+      'Auth Error',
+      name: 'auth_error',
       desc: '',
       args: [],
     );

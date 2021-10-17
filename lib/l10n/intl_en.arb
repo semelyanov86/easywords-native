@@ -11,6 +11,10 @@
   "value": "Value",
   "created_at": "Created At",
   "email": "Email",
+  "email_helper": "Please enter email",
+  "server": "Server",
+  "server_validation": "Please enter valid server",
+  "sign_in": "Sign In",
   "id": "ID",
   "name": "User Name",
   "updated_at": "Updated At",
@@ -71,6 +75,8 @@
   "current_password": "Current password",
   "current_password_desc": "Enter your current password",
   "password": "New password",
+  "login_password": "Password",
+  "login_password_validation": "Please enter password",
   "password_desc": "Enter new password",
   "password_confirmation": "Confirm password",
   "password_confirmation_desc": "Please Confirm password",
@@ -110,5 +116,6 @@
   "select_user": "Select User",
   "share_with_user": "Share with user",
   "choose_user_error": "Please choose correct user",
-  "import_started": "Import started in background. Please wait."
+  "import_started": "Import started in background. Please wait.",
+  "auth_error": "Auth Error"
 }

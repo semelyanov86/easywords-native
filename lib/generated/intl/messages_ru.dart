@@ -34,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "added_today":
             MessageLookupByLibrary.simpleMessage("Добавлены сегодня"),
         "all": MessageLookupByLibrary.simpleMessage("Всего слов"),
+        "auth_error":
+            MessageLookupByLibrary.simpleMessage("Ошибка авторизации"),
         "chooseLanguage": MessageLookupByLibrary.simpleMessage(
             "Для начала работы выберите направление перевода"),
         "choose_user":
@@ -62,6 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "dones":
             MessageLookupByLibrary.simpleMessage("Количество изученных слов"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "email_helper": MessageLookupByLibrary.simpleMessage(
+            "Введите свой адрес электронной почты"),
         "error_creating_word":
             MessageLookupByLibrary.simpleMessage("Ошибка при создании слова: "),
         "error_marking_viewed": MessageLookupByLibrary.simpleMessage(
@@ -104,6 +108,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Список выученных слов"),
         "list_unknown_words": MessageLookupByLibrary.simpleMessage(
             "Список пока ещё не выученных слов"),
+        "login_password": MessageLookupByLibrary.simpleMessage("Password"),
+        "login_password_validation":
+            MessageLookupByLibrary.simpleMessage("Please enter password"),
         "mark_done": MessageLookupByLibrary.simpleMessage(
             "Слово помечено как изученное с номером: "),
         "mark_undone": MessageLookupByLibrary.simpleMessage(
@@ -155,6 +162,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Выберите пользователя"),
         "sending_data":
             MessageLookupByLibrary.simpleMessage("Отправка данных..."),
+        "server": MessageLookupByLibrary.simpleMessage("Сервер"),
+        "server_validation": MessageLookupByLibrary.simpleMessage(
+            "Введите корректный адрес сервера"),
         "share": MessageLookupByLibrary.simpleMessage("Поделиться"),
         "share_with_user":
             MessageLookupByLibrary.simpleMessage("Поделиться с пользователем"),
@@ -169,6 +179,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Показывать импортированные слова"),
         "show_shared": MessageLookupByLibrary.simpleMessage(
             "Показывать расшаренные слова"),
+        "sign_in": MessageLookupByLibrary.simpleMessage("Авторизоваться"),
         "star": MessageLookupByLibrary.simpleMessage("Добавить в избранное"),
         "starred": MessageLookupByLibrary.simpleMessage("В избранном"),
         "starred_enabled":
