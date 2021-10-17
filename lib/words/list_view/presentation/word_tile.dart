@@ -44,7 +44,7 @@ class _WordTileState extends State<WordTile> {
               : Theme.of(context).errorColor,
         ),
         onPressed: () {
-          Word copyWord = widget.word.copyWith(done_at: done_date);
+          final Word copyWord = widget.word.copyWith(done_at: done_date);
           context.read(paginatedWordsNotifier).onClickLearn(copyWord);
           done_date == null
               ? showSuccessToast(

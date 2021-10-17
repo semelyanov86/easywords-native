@@ -9,7 +9,7 @@ import 'package:words_native/profile/infrastructure/user_remote_service.dart';
 class UserRepository {
   final UserRemoteService _remoteService;
   final UserLocalService _localService;
-  static const defaultUser = const User(
+  static const defaultUser = User(
       id: 0,
       name: 'Admin',
       email: 'admin@admin.com',

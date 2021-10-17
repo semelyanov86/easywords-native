@@ -81,11 +81,11 @@ class MainAuthenticator {
       await _credentialsStorage.save(httpClient.credentials);
       return right(unit);
     } on FormatException {
-      return left(AuthFailure.server());
+      return left(const AuthFailure.server());
     } on AuthorizationException catch (e) {
       return left(AuthFailure.server('${e.error}: ${e.description}'));
     } on PlatformException {
-      return left(AuthFailure.storage());
+      return left(const AuthFailure.storage());
     }
   }
 
@@ -140,7 +140,7 @@ class MainAuthenticator {
               'Content-Type': 'application/json',
               'Accept': 'application/json'
             }));
-        String token = response.data['token'] as String;
+        final String token = response.data['token'] as String;
         await _credentialsStorage.save(Credentials(token));
       } on DioError catch (e) {
         if (e.isNoConnectionError) {
@@ -174,7 +174,7 @@ class MainAuthenticator {
     } on AuthorizationException catch (e) {
       return left(AuthFailure.server('${e.error}: ${e.description}'));
     } on PlatformException {
-      return left(AuthFailure.storage());
+      return left(const AuthFailure.storage());
     }
   }
 }

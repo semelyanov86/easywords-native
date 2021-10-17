@@ -80,7 +80,7 @@ class GlobalSettingsNotifier extends StateNotifier<GlobalSettingsState> {
 
   Future<Either<GlobalSettingsFailure, Fresh<bool>>> setPagination(
       int value) async {
-    var result = _repository.setSettings('paginate', value);
+    final result = _repository.setSettings('paginate', value);
     getSettings();
 
     return result;
@@ -88,7 +88,7 @@ class GlobalSettingsNotifier extends StateNotifier<GlobalSettingsState> {
 
   Future<Either<GlobalSettingsFailure, Fresh<bool>>> setStarred(
       bool value) async {
-    var result = _repository.setSettings('starred_enabled', value);
+    final result = _repository.setSettings('starred_enabled', value);
     getSettings();
 
     return result;
@@ -96,7 +96,7 @@ class GlobalSettingsNotifier extends StateNotifier<GlobalSettingsState> {
 
   Future<Either<GlobalSettingsFailure, Fresh<bool>>> setAsKnown(
       bool value) async {
-    var result = _repository.setSettings('known_enabled', value);
+    final result = _repository.setSettings('known_enabled', value);
     getSettings();
 
     return result;
@@ -104,7 +104,7 @@ class GlobalSettingsNotifier extends StateNotifier<GlobalSettingsState> {
 
   Future<Either<GlobalSettingsFailure, Fresh<bool>>> setFreshFirst(
       bool value) async {
-    var result = _repository.setSettings('fresh_first', value);
+    final result = _repository.setSettings('fresh_first', value);
     getSettings();
 
     return result;
@@ -112,7 +112,7 @@ class GlobalSettingsNotifier extends StateNotifier<GlobalSettingsState> {
 
   Future<Either<GlobalSettingsFailure, Fresh<bool>>> setShowImported(
       bool value) async {
-    var result = _repository.setSettings('show_imported', value);
+    final result = _repository.setSettings('show_imported', value);
     getSettings();
 
     return result;
@@ -120,7 +120,7 @@ class GlobalSettingsNotifier extends StateNotifier<GlobalSettingsState> {
 
   Future<Either<GlobalSettingsFailure, Fresh<bool>>> setShowShared(
       bool value) async {
-    var result = _repository.setSettings('show_shared', value);
+    final result = _repository.setSettings('show_shared', value);
     getSettings();
 
     return result;
@@ -128,7 +128,7 @@ class GlobalSettingsNotifier extends StateNotifier<GlobalSettingsState> {
 
   Future<Either<GlobalSettingsFailure, Fresh<bool>>> setLatestFirst(
       bool value) async {
-    var result = _repository.setSettings('latest_first', value);
+    final result = _repository.setSettings('latest_first', value);
     getSettings();
 
     return result;
@@ -136,7 +136,7 @@ class GlobalSettingsNotifier extends StateNotifier<GlobalSettingsState> {
 
   Future<Either<GlobalSettingsFailure, Fresh<bool>>> setDefaultLanguage(
       String value) async {
-    var result = _repository.setSettings('default_language', value);
+    final result = _repository.setSettings('default_language', value);
     getSettings();
 
     return result;

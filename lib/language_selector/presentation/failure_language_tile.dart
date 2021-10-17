@@ -18,7 +18,7 @@ class FailureLanguageTile extends ConsumerWidget {
         color: Theme.of(context).errorColor,
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: ListTile(
-          title: Text('An error occured, please, retry'),
+          title: const Text('An error occured, please, retry'),
           subtitle: Text(
             failure.map(
               api: (_) => 'Api returned ${_.errorCode}',
@@ -26,12 +26,12 @@ class FailureLanguageTile extends ConsumerWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          leading: SizedBox(
+          leading: const SizedBox(
             height: double.infinity,
             child: Icon(Icons.warning),
           ),
           trailing: IconButton(
-            icon: Icon(Icons.refresh),
+            icon: const Icon(Icons.refresh),
             onPressed: () {
               ref(globalSettingsNotifierProvider.notifier).getSettings();
             },

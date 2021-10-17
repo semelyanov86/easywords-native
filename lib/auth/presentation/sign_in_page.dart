@@ -167,12 +167,12 @@ class _SignInState extends State<SignInPage> {
 
     try {
       if (Platform.isAndroid) {
-        var build = await deviceInfoPlugin.androidInfo;
+        final build = await deviceInfoPlugin.androidInfo;
         setState(() {
           deviceName = build.model;
         });
       } else if (Platform.isIOS) {
-        var build = await deviceInfoPlugin.iosInfo;
+        final build = await deviceInfoPlugin.iosInfo;
         setState(() {
           deviceName = build.model;
         });

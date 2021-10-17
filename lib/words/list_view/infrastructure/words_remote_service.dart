@@ -32,7 +32,7 @@ abstract class WordsRemoteService {
       );
 
       if (response.statusCode == 304) {
-        return RemoteResponse.notModified(
+        return const RemoteResponse.notModified(
           maxPage: 0,
         );
       } else if (response.statusCode == 200) {

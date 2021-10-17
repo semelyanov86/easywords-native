@@ -26,7 +26,7 @@ class StatCard extends StatelessWidget {
             leading: iconData,
             title: Text(
               value.toString(),
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
             subtitle: description,
           ),

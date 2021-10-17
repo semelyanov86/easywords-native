@@ -27,14 +27,14 @@ class GlobalSettings with _$GlobalSettings {
         original: main_language,
         main: key,
         icon: MdiIcons.arrowRightCircle,
-        description: 'First we will show ${main_language} and only then ${key}',
+        description: 'First we will show $main_language and only then $key',
         reversed: false,
       ));
       result.add(TranslationDirections(
         original: key,
         main: main_language,
         icon: MdiIcons.arrowLeftCircle,
-        description: 'First we will show ${key} and only then ${main_language}',
+        description: 'First we will show $key and only then $main_language',
         reversed: true,
       ));
     });

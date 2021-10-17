@@ -21,7 +21,7 @@ class AppBarWidget extends ConsumerWidget implements PreferredSizeWidget {
               onPressed: () {
                 AutoRouter.of(context).pop();
               },
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
             )
           : null,
       actions: [

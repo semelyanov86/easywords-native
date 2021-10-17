@@ -58,7 +58,7 @@ class StatisticsPageState extends State<StatisticsPage> {
           drawer: const DrawerWidget(),
           body: state.map(
             initial: (_) => Container(),
-            loadInProgress: (_) => Center(
+            loadInProgress: (_) => const Center(
               child: CircularProgressIndicator(),
             ),
             loadSuccess: (_) {

@@ -47,7 +47,7 @@ class PaginatedWordsNotifier extends StateNotifier<PaginatedWordsState> {
 
   @protected
   Future<void> getNextPage(WordGetter getter) async {
-    int pagination = _settingsNotifier.state.settings.entity.paginate;
+    final int pagination = _settingsNotifier.state.settings.entity.paginate;
     state = PaginatedWordsState.loadInProgress(
       state.words,
       pagination,
