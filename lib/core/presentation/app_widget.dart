@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:words_native/auth/application/auth_notifier.dart';
 import 'package:words_native/auth/shared/providers.dart';
 import 'package:words_native/core/presentation/routes/app_router.gr.dart';
 import 'package:words_native/core/shared/providers.dart';
+import 'package:words_native/core/shared/themes.dart';
 import 'package:words_native/generated/l10n.dart';
 
 final initializationProvider = FutureProvider<Unit>((ref) async {
@@ -52,21 +54,25 @@ class AppWidget extends HookWidget {
                     predicate: (route) => false);
               });
         },
-        child: MaterialApp.router(
-          localizationsDelegates: [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: S.delegate.supportedLocales,
-          title: 'EasyWords App',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: Colors.lightGreen,
+        child: AdaptiveTheme(
+          initial: AdaptiveThemeMode.light,
+          light: ewLightTheme,
+          dark: ewDarkTheme,
+          builder: (light, dark) => MaterialApp.router(
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            title: 'EasyWords App',
+            debugShowCheckedModeBanner: false,
+            theme: light,
+            darkTheme: dark,
+            routerDelegate: appRouter.delegate(),
+            routeInformationParser: appRouter.defaultRouteParser(),
           ),
-          routerDelegate: appRouter.delegate(),
-          routeInformationParser: appRouter.defaultRouteParser(),
         ),
       ),
     );

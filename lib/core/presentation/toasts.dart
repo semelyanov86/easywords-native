@@ -42,7 +42,7 @@ Future<void> showNotificationToast(String message, BuildContext context) async {
           child: Text(
             message,
             style: TextStyle(
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
               fontSize: 16,
             ),
           ),

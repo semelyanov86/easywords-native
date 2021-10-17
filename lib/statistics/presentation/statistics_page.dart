@@ -77,8 +77,9 @@ class StatisticsPageState extends State<StatisticsPage> {
                       height: 24,
                     ),
                     StatCard(
-                      iconData: const Icon(MdiIcons.accountMultiple,
-                          color: Colors.cyan, size: 45),
+                      iconData: Icon(MdiIcons.accountMultiple,
+                          color: Theme.of(context).colorScheme.secondary,
+                          size: 45),
                       value: _.statistic.entity.users_count,
                       description: Text(
                         S.of(context).users_count,
@@ -92,8 +93,8 @@ class StatisticsPageState extends State<StatisticsPage> {
                         const ListAllWordsRoute(),
                       ),
                       child: StatCard(
-                        iconData: const Icon(MdiIcons.cards,
-                            color: Colors.lightGreen, size: 45),
+                        iconData: Icon(MdiIcons.cards,
+                            color: Theme.of(context).accentColor, size: 45),
                         value: _.statistic.entity.all,
                         description: Text(S.of(context).all),
                       ),
@@ -106,8 +107,10 @@ class StatisticsPageState extends State<StatisticsPage> {
                         const ListUnknownWordsRoute(),
                       ),
                       child: StatCard(
-                        iconData: const Icon(MdiIcons.eyeOff,
-                            color: Colors.purpleAccent, size: 45),
+                        iconData: Icon(MdiIcons.eyeOff,
+                            color:
+                                Theme.of(context).colorScheme.secondaryVariant,
+                            size: 45),
                         value: _.statistic.entity.not_dones,
                         description: Text(S.of(context).not_dones),
                       ),
@@ -120,8 +123,9 @@ class StatisticsPageState extends State<StatisticsPage> {
                         const ListKnownWordsRoute(),
                       ),
                       child: StatCard(
-                        iconData: const Icon(MdiIcons.school,
-                            color: Colors.cyan, size: 45),
+                        iconData: Icon(MdiIcons.school,
+                            color: Theme.of(context).colorScheme.secondary,
+                            size: 45),
                         value: _.statistic.entity.dones,
                         description: Text(S.of(context).dones),
                       ),
@@ -130,8 +134,8 @@ class StatisticsPageState extends State<StatisticsPage> {
                       height: 8.0,
                     ),
                     StatCard(
-                      iconData: const Icon(MdiIcons.eyeCircle,
-                          color: Colors.lightGreen, size: 45),
+                      iconData: Icon(MdiIcons.eyeCircle,
+                          color: Theme.of(context).accentColor, size: 45),
                       value: _.statistic.entity.total_views,
                       description: Text(S.of(context).total_views),
                     ),
@@ -139,8 +143,9 @@ class StatisticsPageState extends State<StatisticsPage> {
                       height: 8.0,
                     ),
                     StatCard(
-                      iconData: const Icon(MdiIcons.cardsOutline,
-                          color: Colors.purpleAccent, size: 45),
+                      iconData: Icon(MdiIcons.cardsOutline,
+                          color: Theme.of(context).colorScheme.secondaryVariant,
+                          size: 45),
                       value: _.statistic.entity.updated_this_month,
                       description: Text(S.of(context).updated_this_month),
                     ),
@@ -148,8 +153,9 @@ class StatisticsPageState extends State<StatisticsPage> {
                       height: 8.0,
                     ),
                     StatCard(
-                      iconData: const Icon(MdiIcons.update,
-                          color: Colors.cyan, size: 45),
+                      iconData: Icon(MdiIcons.update,
+                          color: Theme.of(context).colorScheme.secondary,
+                          size: 45),
                       value: _.statistic.entity.updated_today,
                       description: Text(S.of(context).updated_today),
                     ),

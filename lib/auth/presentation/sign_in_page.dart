@@ -151,7 +151,7 @@ class _SignInState extends State<SignInPage> {
                       child: Text(S.of(context).sign_in),
                     ),
                     Text(errorMessage,
-                        style: const TextStyle(color: Colors.red)),
+                        style: TextStyle(color: Theme.of(context).errorColor)),
                   ],
                 ),
               ),

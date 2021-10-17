@@ -10,8 +10,8 @@ class LoadingWordTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey.shade400,
-      highlightColor: Colors.grey.shade300,
+      baseColor: Theme.of(context).dialogBackgroundColor,
+      highlightColor: Theme.of(context).highlightColor,
       child: ListTile(
         title: Align(
           alignment: Alignment.centerLeft,
@@ -19,7 +19,7 @@ class LoadingWordTile extends StatelessWidget {
             height: 14,
             width: 100,
             decoration: BoxDecoration(
-              color: Colors.grey,
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -30,7 +30,7 @@ class LoadingWordTile extends StatelessWidget {
             height: 14,
             width: 250,
             decoration: BoxDecoration(
-              color: Colors.grey,
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.circular(2),
             ),
           ),

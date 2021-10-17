@@ -19,15 +19,15 @@ class DrawerWidget extends ConsumerWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
-            decoration: const BoxDecoration(
-              color: Colors.lightGreen,
+            decoration: BoxDecoration(
+              color: Theme.of(context).accentColor,
             ),
             child: Column(
               children: [
                 Text(
                   user.name,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Theme.of(context).cardColor,
                     fontSize: 24,
                   ),
                 ),

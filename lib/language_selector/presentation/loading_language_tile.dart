@@ -8,8 +8,8 @@ class LoadingLanguageTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey.shade400,
-      highlightColor: Colors.grey.shade300,
+      baseColor: Theme.of(context).dialogBackgroundColor,
+      highlightColor: Theme.of(context).highlightColor,
       child: ListTile(
         title: Align(
           alignment: Alignment.centerLeft,
@@ -18,7 +18,7 @@ class LoadingLanguageTile extends StatelessWidget {
             width: 100,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(2),
-              color: Colors.grey,
+              color: Theme.of(context).colorScheme.surface,
             ),
           ),
         ),
@@ -29,7 +29,7 @@ class LoadingLanguageTile extends StatelessWidget {
             width: 250,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(2),
-              color: Colors.grey,
+              color: Theme.of(context).colorScheme.surface,
             ),
           ),
         ),

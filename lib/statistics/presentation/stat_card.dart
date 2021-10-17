@@ -16,8 +16,8 @@ class StatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(10),
-      color: Colors.white,
-      shadowColor: Colors.blueGrey,
+      color: Theme.of(context).cardColor,
+      shadowColor: Theme.of(context).shadowColor,
       elevation: 10,
       child: Column(
         mainAxisSize: MainAxisSize.min,

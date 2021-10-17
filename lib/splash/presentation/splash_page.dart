@@ -20,7 +20,10 @@ class SplashPage extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            const LinearProgressIndicator(),
+            LinearProgressIndicator(
+              color: Theme.of(context).accentColor,
+              backgroundColor: Theme.of(context).primaryColor,
+            ),
           ],
         ),
       ),

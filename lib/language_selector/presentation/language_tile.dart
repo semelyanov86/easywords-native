@@ -23,7 +23,7 @@ class LanguageTile extends StatelessWidget {
       ),
       leading: Icon(
         direction.icon,
-        color: Colors.green,
+        color: Theme.of(context).primaryColor,
       ),
       trailing: Column(
         mainAxisAlignment: MainAxisAlignment.center,

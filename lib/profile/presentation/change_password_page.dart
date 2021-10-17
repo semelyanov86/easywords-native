@@ -112,8 +112,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 ElevatedButton(
                   onPressed: _submitForm,
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
-                    textStyle: const TextStyle(color: Colors.white),
+                    primary: Theme.of(context).primaryColor,
+                    textStyle: TextStyle(color: Theme.of(context).cardColor),
                   ),
                   child: Text(S.of(context).submit),
                   //color: Colors.green,
@@ -162,11 +162,11 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 1),
-        backgroundColor: Colors.red,
+        backgroundColor: Theme.of(context).errorColor,
         content: Text(
           message,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: Theme.of(context).cardColor,
             fontWeight: FontWeight.w600,
             fontSize: 18.0,
           ),
@@ -183,7 +183,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             title: Text(
               'Registration successful',
               style: TextStyle(
-                color: Colors.green,
+                color: Theme.of(context).primaryColor,
               ),
             ),
             content: Text(
@@ -201,7 +201,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   child: Text(
                     'Verified',
                     style: TextStyle(
-                      color: Colors.green,
+                      color: Theme.of(context).primaryColor,
                       fontSize: 18.0,
                     ),
                   ))

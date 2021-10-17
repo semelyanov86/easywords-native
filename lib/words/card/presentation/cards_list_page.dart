@@ -80,7 +80,7 @@ class _CardsListPageState extends State<CardsListPage> {
                     _controller.toggleCard();
                   },
                   child: const Icon(Icons.flip),
-                  backgroundColor: Colors.amber,
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
                   tooltip: S.of(context).show,
                 ),
                 FloatingActionButton(
@@ -95,7 +95,7 @@ class _CardsListPageState extends State<CardsListPage> {
                     });
                   },
                   child: const Icon(Icons.arrow_forward),
-                  backgroundColor: Colors.green,
+                  backgroundColor: Theme.of(context).primaryColor,
                   tooltip: S.of(context).next,
                 ),
               ],
@@ -147,9 +147,9 @@ class _CardsListPageState extends State<CardsListPage> {
                               serviceNotifier.setWords(state.cards.entity);
                               serviceNotifier.setDefaultData();
                             },
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.arrow_back_ios,
-                              color: Colors.yellowAccent,
+                              color: Theme.of(context).colorScheme.secondary,
                               size: 24.0,
                             ),
                             label: Text(S.of(context).first_page),
@@ -163,9 +163,9 @@ class _CardsListPageState extends State<CardsListPage> {
                                 serviceNotifier.setWords(state.cards.entity);
                                 serviceNotifier.setDefaultData();
                               },
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.arrow_forward_ios,
-                                color: Colors.yellowAccent,
+                                color: Theme.of(context).colorScheme.secondary,
                                 size: 24.0,
                               ),
                               label: Text(S.of(context).next_page),

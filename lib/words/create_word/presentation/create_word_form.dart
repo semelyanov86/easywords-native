@@ -90,9 +90,9 @@ class _CreateWordForm extends State<CreateWordForm> {
                               .setOriginal('');
                           _originalController.clear();
                         },
-                        child: const Icon(
+                        child: Icon(
                           Icons.delete_outline,
-                          color: Colors.red,
+                          color: Theme.of(context).errorColor,
                         ),
                       ),
                     ),
@@ -116,9 +116,9 @@ class _CreateWordForm extends State<CreateWordForm> {
                               .setTranslated('');
                           _translatedController.clear();
                         },
-                        child: const Icon(
+                        child: Icon(
                           Icons.delete_outline,
-                          color: Colors.red,
+                          color: Theme.of(context).errorColor,
                         ),
                       ),
                     ),
@@ -158,8 +158,8 @@ class _CreateWordForm extends State<CreateWordForm> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.green,
-                      textStyle: const TextStyle(color: Colors.white),
+                      primary: Theme.of(context).primaryColor,
+                      textStyle: TextStyle(color: Theme.of(context).cardColor),
                     ),
                     child: Text(S.of(context).save), //color: Colors.green,
                   ),
