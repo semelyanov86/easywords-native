@@ -154,6 +154,8 @@ class _CreateWordForm extends State<CreateWordForm> {
                           context
                               .read(createWordProvider.notifier)
                               .setOriginal('');
+                          _originalController.text = '';
+                          _translatedController.text = '';
                         });
                       }
                     },
