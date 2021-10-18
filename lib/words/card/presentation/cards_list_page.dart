@@ -219,8 +219,8 @@ class _CardsListPageState extends State<CardsListPage> {
                             text: serviceModel
                                 .getCurrentWord()
                                 .getLanguageValue(widget.direction.reversed
-                                    ? widget.direction.originalLanguage
-                                    : widget.direction.mainLanguage),
+                                    ? widget.direction.mainLanguage
+                                    : widget.direction.originalLanguage),
                             onLearned: () {
                               _visible = false;
                               if (flipped) {
