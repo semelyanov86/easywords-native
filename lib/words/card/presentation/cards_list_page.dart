@@ -32,6 +32,7 @@ class _CardsListPageState extends State<CardsListPage> {
   int index = 0;
   final FlipCardController _controller = FlipCardController();
   bool _visible = true;
+  var inFlipping = false;
 
   @override
   void initState() {
@@ -181,6 +182,10 @@ class _CardsListPageState extends State<CardsListPage> {
                         key: cardKey,
                         flipOnTouch: true,
                         onFlip: () {
+                          if (inFlipping) {
+                            return;
+                          }
+                          inFlipping = true;
                           setState(() {
                             flipped = !flipped;
                           });
@@ -188,6 +193,9 @@ class _CardsListPageState extends State<CardsListPage> {
                             cardsNotifier
                                 .flipWord(serviceModel.getCurrentWord().id);
                           }
+                          Future.delayed(const Duration(milliseconds: 500), () {
+                            inFlipping = false;
+                          });
                         },
                         front: AnimatedOpacity(
                           opacity: _visible ? 1.0 : 0.0,
